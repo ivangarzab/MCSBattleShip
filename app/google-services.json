@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "232435920247",
+    "firebase_url": "https://mcsbattleship.firebaseio.com",
+    "project_id": "mcsbattleship",
+    "storage_bucket": "mcsbattleship.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232435920247:android:aee33ec31bd3d444",
+        "android_client_info": {
+          "package_name": "mcs.salazar.jesus.mcsbattleship"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232435920247-7lp9k6pm33j2heumr1d05fkus98rd1sm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mcs.salazar.jesus.mcsbattleship",
+            "certificate_hash": "bbbe117a5e0db6c925cedcf874ca6422d5b11071"
+          }
+        },
+        {
+          "client_id": "232435920247-hpfr377k8ncvj40hln0ouh2jtsadafkj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB_6-07a0MbtZ6aILDiVnmgYr6dQtL19I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232435920247-hpfr377k8ncvj40hln0ouh2jtsadafkj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
