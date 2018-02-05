@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MCSBattleShip</string>
+    <string name="facebook_app_id">147216785969353</string>
+    <string name="fb_login_protocol_scheme">fb147216785969353</string>
 </resources>
