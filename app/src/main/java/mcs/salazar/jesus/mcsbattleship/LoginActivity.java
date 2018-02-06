@@ -5,8 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -28,6 +26,8 @@ import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public static final String TAG = LoginActivity.class.getName();
+
     @BindView(R.id.login_facebook_button) LoginButton mFacebookButton;
 
     private FirebaseAuth mAuth;
@@ -46,23 +46,23 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
         // Defined the information needed from user
-        mFacebookButton.setReadPermissions("email");
+        mFacebookButton.setReadPermissions(getResources().getString(R.string.string_email));
         mFacebookButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d("TRASH", "facebook:onSuccess:" + loginResult);
+                Log.d(TAG, getString(R.string.facebook_login_success) + loginResult);
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
             public void onCancel() {
-                Log.d("TRASH", "facebook:onCancel");
+                Log.d(TAG, getString(R.string.facebook_login_cancel));
                 //TODO: Handle Facebook login cancellation
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.d("TRASH", "facebook:onError", error);
+                Log.d(TAG, getString(R.string.facebook_login_error), error);
                 //TODO: Handle Facebook login error
             }
         });
@@ -88,8 +88,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.d("TRASH", "handleFacebookAccessToken:" + token);
-
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -97,15 +95,15 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d("TRASH", "signInWithCredential:success");
+                            Log.d(TAG, getString(R.string.facebook_signin_success));
                             // Get user for future use
                             //FirebaseUser user = mAuth.getCurrentUser();
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w("TRASH", "signInWithCredential:failure",
+                            Log.w(TAG, getString(R.string.facebook_signin_success),
                                     task.getException());
                             Toast.makeText(LoginActivity.this,
-                                    "Authentication failed! Please, try again",
+                                    getString(R.string.authentication_failed),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
