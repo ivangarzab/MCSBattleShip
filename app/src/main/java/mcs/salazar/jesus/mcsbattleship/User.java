@@ -51,6 +51,70 @@ public class User extends Model implements Parcelable {
         }
     };
 
+    public String getId() {
+        return mId;
+    }
+
+    public void setId(String id) {
+        mId = id;
+    }
+
+    public String getEmail() {
+        return mEmail;
+    }
+
+    public void setEmail(String email) {
+        mEmail = email;
+    }
+
+    public int getScore() {
+        return mScore;
+    }
+
+    public void setScore(int score) {
+        mScore = score;
+    }
+
+    public int getGamesPlayed() {
+        return mGamesPlayed;
+    }
+
+    public void setGamesPlayed(int gamesPlayed) {
+        mGamesPlayed = gamesPlayed;
+    }
+
+    public int getGamesWin() {
+        return mGamesWin;
+    }
+
+    public void setGamesWin(int gamesWin) {
+        mGamesWin = gamesWin;
+    }
+
+    public int getGamesSurrender() {
+        return mGamesSurrender;
+    }
+
+    public void setGamesSurrender(int gamesSurrender) {
+        mGamesSurrender = gamesSurrender;
+    }
+
+    public int getTotalHitsSent() {
+        return mTotalHitsSent;
+    }
+
+    public void setTotalHitsSent(int totalHitsSent) {
+        mTotalHitsSent = totalHitsSent;
+    }
+
+    public int getTotalHitsReceived() {
+        return mTotalHitsReceived;
+    }
+
+    public void setTotalHitsReceived(int totalHitsReceived) {
+        mTotalHitsReceived = totalHitsReceived;
+    }
+
     @Override
     public int describeContents() {
         return 0;

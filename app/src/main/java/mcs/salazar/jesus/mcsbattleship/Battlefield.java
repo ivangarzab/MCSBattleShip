@@ -3,6 +3,9 @@ package mcs.salazar.jesus.mcsbattleship;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Ivan on 2/5/2018
  */
@@ -10,23 +13,23 @@ public class Battlefield extends Model implements Parcelable {
 
     private int mSize;
     /** This needs to be Parcel'd as well */
-    private boolean[][] mHitMatrix;
+    //private boolean[][] mHitMatrix;
     private int mNumberOfShips;
-    private Battleship[] mBattleships;
+    //private List<Battleship> mBattleships;
     private int mNumberOfShipsLeft;
 
     public Battlefield(int size, int numberOfShips) {
         mSize = size;
-        mHitMatrix = new boolean[mSize][mSize];
+       // mHitMatrix = new boolean[mSize][mSize];
         mNumberOfShips = numberOfShips;
-        mBattleships = new Battleship[mNumberOfShips];
+        //mBattleships = new ArrayList<>(mNumberOfShips);
         mNumberOfShipsLeft = mNumberOfShips;
     }
 
     protected Battlefield(Parcel in) {
         mSize = in.readInt();
         mNumberOfShips = in.readInt();
-        mBattleships = in.createTypedArray(Battleship.CREATOR);
+        //mBattleships = in.createTypedArrayList(Battleship.CREATOR);
         mNumberOfShipsLeft = in.readInt();
     }
 
@@ -42,6 +45,46 @@ public class Battlefield extends Model implements Parcelable {
         }
     };
 
+    public int getSize() {
+        return mSize;
+    }
+
+    public void setSize(int size) {
+        mSize = size;
+    }
+
+    /*public boolean[][] getHitMatrix() {
+        return mHitMatrix;
+    }
+
+    public void setHitMatrix(boolean[][] hitMatrix) {
+        mHitMatrix = hitMatrix;
+    }
+*/
+    public int getNumberOfShips() {
+        return mNumberOfShips;
+    }
+
+    public void setNumberOfShips(int numberOfShips) {
+        mNumberOfShips = numberOfShips;
+    }
+
+  /*  public List<Battleship> getBattleships() {
+        return mBattleships;
+    }
+
+    public void setBattleships(List<Battleship> battleships) {
+        mBattleships = battleships;
+    }
+*/
+    public int getNumberOfShipsLeft() {
+        return mNumberOfShipsLeft;
+    }
+
+    public void setNumberOfShipsLeft(int numberOfShipsLeft) {
+        mNumberOfShipsLeft = numberOfShipsLeft;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -51,7 +94,7 @@ public class Battlefield extends Model implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(mSize);
         parcel.writeInt(mNumberOfShips);
-        parcel.writeTypedArray(mBattleships, i);
+        //parcel.writeTypedList(mBattleships);
         parcel.writeInt(mNumberOfShipsLeft);
     }
 }
