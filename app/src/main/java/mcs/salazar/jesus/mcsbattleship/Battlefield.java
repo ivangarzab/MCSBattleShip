@@ -18,6 +18,12 @@ public class Battlefield extends Model implements Parcelable {
     //private List<Battleship> mBattleships;
     private int mNumberOfShipsLeft;
 
+    public Battlefield() {
+        mSize = -1;
+        mNumberOfShips = -1;
+        mNumberOfShipsLeft = -1;
+    }
+
     public Battlefield(int size, int numberOfShips) {
         mSize = size;
        // mHitMatrix = new boolean[mSize][mSize];

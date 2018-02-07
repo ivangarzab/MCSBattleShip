@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity   {
 
     private CallbackManager mCallbackManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,9 @@ public class LoginActivity extends AppCompatActivity   {
         setupFacebookAuth();
         setupEmailLogin();
 
+        Intent serviceIntent = new Intent(this, MyService.class);
+
+        startService(serviceIntent);
     }
 
     private void setupFacebookAuth() {

@@ -25,6 +25,17 @@ public class Session extends Model implements Parcelable {
     private String mDateStarted;
     private String mDateFinished;
 
+    public Session() {
+        mChallenger = null;
+        mChallengerBattlefield = null;
+        mChallengee = null;
+        mChallengeeBattlefield = null;
+        mNextTurn = null;
+        mTotalTurns = 0;
+        mDateStarted = "";
+        mDateFinished = "";
+    }
+
     public Session(User challenger, User challengee) {
         mChallenger = challenger;
         mChallengerBattlefield = new Battlefield(BATTLEFIELD_SIZE, BATTLESHIPS_PER_PLAYER);

@@ -17,6 +17,12 @@ public class Battleship extends Model implements Parcelable {
     //private ArrayList<int[][]> mCoordinates;
     private boolean mSunk;
 
+    public Battleship() {
+        mSize = -1;
+        mHitpoints = -1;
+        mSunk = false;
+    }
+
     public Battleship(int size) {
         mSize = size;
         mHitpoints = mSize;
