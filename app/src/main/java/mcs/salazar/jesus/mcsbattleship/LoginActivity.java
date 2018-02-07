@@ -23,6 +23,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import mcs.salazar.jesus.mcsbattleship.cloudmsg.MyFirebaseInstanceIDService;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,8 +54,7 @@ public class LoginActivity extends AppCompatActivity   {
         setContentView(R.layout.activity_login);
 
         setupFacebookAuth();
-        setupEmailLogin();
-
+        setupEmailLogin();;
     }
 
     private void setupFacebookAuth() {
