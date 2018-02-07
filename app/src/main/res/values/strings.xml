@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">MCSBattleShip</string>
+
+    <string name="facebook_app_id">147216785969353</string>
+    <string name="fb_login_protocol_scheme">fb147216785969353</string>
+    <string name="facebook_login_success">facebook:onSuccess:</string>
+    <string name="facebook_login_cancel">facebook:onCancel:</string>
+    <string name="facebook_login_error">facebook:onError:</string>
+    <string name="facebook_signin_success">signInWithCredential:success</string>
+    <string name="facebook_signin_failure">signInWithCredential:failure</string>
+
+    <string name="string_email">email</string>
+
+    <string name="authentication_failed">Authentication failed! Please, try again</string>
 </resources>
