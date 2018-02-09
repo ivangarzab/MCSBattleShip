@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +30,12 @@ public class MyService extends Service{
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mDatabaseReference = database.getReference().child("session");
 
+    Session mSession = new Session();
+    User mUser = new User();
+    Battlefield mBattlefield = new Battlefield();
+
+    DatabaseReference mDatabaseRef;
+
     public MyService() {}
 
     @Nullable
@@ -39,17 +46,37 @@ public class MyService extends Service{
 
     Query mQuery = mDatabaseReference;
 
+
+
     @Override
     public void onCreate() {
         super.onCreate();
+        mUser.setEmail("bereketh18@gmail.com");
+        mSession.setDateFinished("");
+        mSession.setDateStarted("");
+        mSession.setTotalTurns(1);
+        mSession.setChallengee(mUser);
+        mSession.setChallenger(mUser);
+        mSession.setChallengeeBattlefield(mBattlefield);
+        mSession.setChallengerBattlefield(mBattlefield);
+        mSession.setNextTurn(mUser);
+        //mDatabaseReference = database.getReference().child("session").push();
+        //mDatabaseReference.setValue(mSession);
+
+
         mQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                mDatabaseReference.equals("bereket@gmail.com");
+                //Session sesh = dataSnapshot.getValue(Session.class);
+                //int id = sesh.getTotalTurns();
+               /* for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Session sesh = child.getValue(Session.class);
                     String email = sesh.getNextTurn().getEmail();
+
                     Toast.makeText(getApplicationContext(), email, Toast.LENGTH_LONG).show();
-                }
+                }*/
+
             }
 
             @Override

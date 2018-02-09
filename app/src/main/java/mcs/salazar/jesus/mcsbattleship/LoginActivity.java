@@ -20,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,7 +58,6 @@ public class LoginActivity extends AppCompatActivity   {
         setupEmailLogin();
 
         Intent serviceIntent = new Intent(this, MyService.class);
-
         startService(serviceIntent);
     }
 
@@ -91,6 +92,8 @@ public class LoginActivity extends AppCompatActivity   {
         });
     }
 
+
+
     private void setupEmailLogin() {
         // Gettting firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
@@ -103,9 +106,8 @@ public class LoginActivity extends AppCompatActivity   {
             @Override
             public void onClick(View v) {
 
-                String email = editTextEmail.getText().toString();
-
-                String password = editTextPassword.getText().toString();
+                final String email = editTextEmail.getText().toString();
+                final String password = editTextPassword.getText().toString();
 
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
