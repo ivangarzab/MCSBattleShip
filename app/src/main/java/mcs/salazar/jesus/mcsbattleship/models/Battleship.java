@@ -1,15 +1,12 @@
-package mcs.salazar.jesus.mcsbattleship;
+package mcs.salazar.jesus.mcsbattleship.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Ivan on 2/5/2018
  */
-public class Battleship extends Model implements Parcelable {
+public class Battleship implements Model, Parcelable {
 
     private int mSize;
     private int mHitpoints;
@@ -84,5 +81,15 @@ public class Battleship extends Model implements Parcelable {
         parcel.writeInt(mSize);
         parcel.writeInt(mHitpoints);
         parcel.writeByte((byte) (mSunk ? 1 : 0));
+    }
+
+    @Override
+    public void toJson() {
+
+    }
+
+    @Override
+    public void fromJson() {
+
     }
 }

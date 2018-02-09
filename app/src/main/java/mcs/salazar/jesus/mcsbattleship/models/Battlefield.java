@@ -1,15 +1,12 @@
-package mcs.salazar.jesus.mcsbattleship;
+package mcs.salazar.jesus.mcsbattleship.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Ivan on 2/5/2018
  */
-public class Battlefield extends Model implements Parcelable {
+public class Battlefield implements Model, Parcelable {
 
     private int mSize;
     /** This needs to be Parcel'd as well */
@@ -96,5 +93,15 @@ public class Battlefield extends Model implements Parcelable {
         parcel.writeInt(mNumberOfShips);
         //parcel.writeTypedList(mBattleships);
         parcel.writeInt(mNumberOfShipsLeft);
+    }
+
+    @Override
+    public void toJson() {
+
+    }
+
+    @Override
+    public void fromJson() {
+
     }
 }

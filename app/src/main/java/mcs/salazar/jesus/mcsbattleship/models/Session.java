@@ -1,4 +1,4 @@
-package mcs.salazar.jesus.mcsbattleship;
+package mcs.salazar.jesus.mcsbattleship.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -11,7 +11,7 @@ import java.util.Locale;
 /**
  * Created by Ivan on 2/5/2018
  */
-public class Session extends Model implements Parcelable {
+public class Session implements Model, Parcelable {
 
     private final static int BATTLEFIELD_SIZE = 10;
     private final static int BATTLESHIPS_PER_PLAYER = 6;
@@ -141,5 +141,15 @@ public class Session extends Model implements Parcelable {
         parcel.writeInt(mTotalTurns);
         parcel.writeString(mDateStarted);
         parcel.writeString(mDateFinished);
+    }
+
+    @Override
+    public void toJson() {
+
+    }
+
+    @Override
+    public void fromJson() {
+
     }
 }

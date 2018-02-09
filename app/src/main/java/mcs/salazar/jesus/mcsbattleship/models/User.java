@@ -1,4 +1,4 @@
-package mcs.salazar.jesus.mcsbattleship;
+package mcs.salazar.jesus.mcsbattleship.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by Ivan on 2/5/2018
  */
-public class User extends Model implements Parcelable {
+public class User implements Model, Parcelable {
 
     private String mId;
     private String mEmail;
@@ -130,5 +130,15 @@ public class User extends Model implements Parcelable {
         parcel.writeInt(mGamesSurrender);
         parcel.writeInt(mTotalHitsSent);
         parcel.writeInt(mTotalHitsReceived);
+    }
+
+    @Override
+    public void toJson() {
+
+    }
+
+    @Override
+    public void fromJson() {
+
     }
 }
