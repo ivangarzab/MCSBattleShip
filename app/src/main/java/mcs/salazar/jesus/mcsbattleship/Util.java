@@ -39,9 +39,42 @@ public class Util {
             if (!grid[coordinate.x][coordinate.y + 1])
                 availableTiles.add(new Coordinate(coordinate.x, coordinate.y + 1));
         }
-        Log.i("TRASH", "Available Tiles: " + availableTiles.size());
         return availableTiles;
     }
 
+    /**
+     * Explore the tiles that a ship of certain size want to occupy
+     * @param position Initial position for the ship's front
+     * @param direction Second position of ship which infers the direction
+     * @param grid Grid representing battlefield
+     * @param size Size of the give ship
+     * @return Whether the Battleship of given size can fit the explored tiles
+     */
+    public boolean doesShipFit(Coordinate position, Coordinate direction,
+                               boolean[][] grid, int size) {
+        // If the ship size is 2 or less, return true before processing
+        if (size <= 2) return true;
 
+        boolean doesFit = true;
+        // Figure out the orientation of the ship
+        if (!(position.x == direction.x)) {
+            // Explore grid through x
+            for (int i = position.x; i < size; i++) {
+                if (grid[direction.y][i]) {
+                    doesFit = false;
+                    break;
+                }
+            }
+        }
+        else if (!(position.y == direction.y)) {
+            // Explore grid through y
+            for (int i = position.y; i < size; i++) {
+                if (grid[i][direction.x]) {
+                    doesFit = false;
+                    break;
+                }
+            }
+        }
+        return doesFit;
+    }
 }
