@@ -1,7 +1,9 @@
-package mcs.salazar.jesus.mcsbattleship;
+package mcs.salazar.jesus.mcsbattleship.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import mcs.salazar.jesus.mcsbattleship.Model;
 
 /**
  * Created by Ivan on 2/5/2018
