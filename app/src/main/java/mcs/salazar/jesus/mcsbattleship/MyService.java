@@ -4,21 +4,13 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by berekethaile on 2/6/18.
@@ -51,10 +43,10 @@ public class MyService extends Service{
     @Override
     public void onCreate() {
         super.onCreate();
-        mUser.setEmail("bereketh18@gmail.com");
+        mUser.setEmail("bk@gmail.com");
         mSession.setDateFinished("");
         mSession.setDateStarted("");
-        mSession.setTotalTurns(1);
+        mSession.setTotalTurns(2);
         mSession.setChallengee(mUser);
         mSession.setChallenger(mUser);
         mSession.setChallengeeBattlefield(mBattlefield);
@@ -67,9 +59,8 @@ public class MyService extends Service{
         mQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                mDatabaseReference.equals("bereket@gmail.com");
-                //Session sesh = dataSnapshot.getValue(Session.class);
-                //int id = sesh.getTotalTurns();
+                mDatabaseReference.equals("bk@gmail.com");
+                Session sesh = dataSnapshot.getValue(Session.class);
                /* for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Session sesh = child.getValue(Session.class);
                     String email = sesh.getNextTurn().getEmail();

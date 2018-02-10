@@ -1,4 +1,4 @@
-package mcs.salazar.jesus.mcsbattleship.Models;
+package mcs.salazar.jesus.mcsbattleship;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,8 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-
-import mcs.salazar.jesus.mcsbattleship.Model;
 
 /**
  * Created by Ivan on 2/5/2018
@@ -19,9 +17,9 @@ public class Session extends Model implements Parcelable {
     private final static int BATTLESHIPS_PER_PLAYER = 6;
 
     private User mChallenger;
-    private Models.Battlefield mChallengerBattlefield;
+    private Battlefield mChallengerBattlefield;
     private User mChallengee;
-    private Models.Battlefield mChallengeeBattlefield;
+    private Battlefield mChallengeeBattlefield;
     private User mNextTurn;
     private int mTotalTurns;
     private String mDateStarted;
@@ -40,9 +38,9 @@ public class Session extends Model implements Parcelable {
 
     public Session(User challenger, User challengee) {
         mChallenger = challenger;
-        mChallengerBattlefield = new Models.Battlefield(BATTLEFIELD_SIZE, BATTLESHIPS_PER_PLAYER);
+        mChallengerBattlefield = new Battlefield(BATTLEFIELD_SIZE, BATTLESHIPS_PER_PLAYER);
         mChallengee = challengee;
-        mChallengeeBattlefield = new Models.Battlefield(BATTLEFIELD_SIZE, BATTLESHIPS_PER_PLAYER);
+        mChallengeeBattlefield = new Battlefield(BATTLEFIELD_SIZE, BATTLESHIPS_PER_PLAYER);
         mNextTurn = mChallengee;
         mTotalTurns = 0;
         // Get today's date
@@ -54,9 +52,9 @@ public class Session extends Model implements Parcelable {
 
     protected Session(Parcel in) {
         mChallenger = in.readParcelable(User.class.getClassLoader());
-        mChallengerBattlefield = in.readParcelable(Models.Battlefield.class.getClassLoader());
+        mChallengerBattlefield = in.readParcelable(Battlefield.class.getClassLoader());
         mChallengee = in.readParcelable(User.class.getClassLoader());
-        mChallengeeBattlefield = in.readParcelable(Models.Battlefield.class.getClassLoader());
+        mChallengeeBattlefield = in.readParcelable(Battlefield.class.getClassLoader());
         mNextTurn = in.readParcelable(User.class.getClassLoader());
         mTotalTurns = in.readInt();
         mDateStarted = in.readString();
@@ -83,11 +81,11 @@ public class Session extends Model implements Parcelable {
         mChallenger = challenger;
     }
 
-    public Models.Battlefield getChallengerBattlefield() {
+    public Battlefield getChallengerBattlefield() {
         return mChallengerBattlefield;
     }
 
-    public void setChallengerBattlefield(Models.Battlefield challengerBattlefield) {
+    public void setChallengerBattlefield(Battlefield challengerBattlefield) {
         mChallengerBattlefield = challengerBattlefield;
     }
 
@@ -99,11 +97,11 @@ public class Session extends Model implements Parcelable {
         mChallengee = challengee;
     }
 
-    public Models.Battlefield getChallengeeBattlefield() {
+    public Battlefield getChallengeeBattlefield() {
         return mChallengeeBattlefield;
     }
 
-    public void setChallengeeBattlefield(Models.Battlefield challengeeBattlefield) {
+    public void setChallengeeBattlefield(Battlefield challengeeBattlefield) {
         mChallengeeBattlefield = challengeeBattlefield;
     }
 
