@@ -39,10 +39,17 @@ public class Util {
        hitGrid[y][x] = grid;
     }
 
+    /**
+     * Check whether the Battleship has any Hitpoints left
+     * @param ship Battleship to inspect
+     * @return true if Battleship has no Hitpoints left
+     */
     public boolean didItSank(Battleship ship) {
-
-
-        return false;
+        int hitpointsLeft = ship.getSize();
+        for (boolean hit : ship.getHitpoints()) {
+            if (hit) hitpointsLeft--;
+        }
+        return hitpointsLeft == 0;
     }
 
 }
