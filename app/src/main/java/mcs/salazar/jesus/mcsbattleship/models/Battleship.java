@@ -3,6 +3,9 @@ package mcs.salazar.jesus.mcsbattleship.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by Ivan on 2/5/2018
  */
@@ -10,14 +13,14 @@ public class Battleship implements Model, Parcelable {
 
     private int mSize;
     private int mHitpoints;
-    /** I bet there's a better way to do this... */
-    //private ArrayList<int[][]> mCoordinates;
+    private Coordinate[] mCoordinates;
     private boolean mSunk;
+    int[] array;
 
     public Battleship(int size) {
         mSize = size;
         mHitpoints = mSize;
-       // mCoordinates = new ArrayList<>(mSize);
+        mCoordinates = new Coordinate[mSize];
         mSunk = false;
     }
 
@@ -25,6 +28,8 @@ public class Battleship implements Model, Parcelable {
         mSize = in.readInt();
         mHitpoints = in.readInt();
         mSunk = in.readByte() != 0;
+        array = new int[in.readInt()];
+        in.readIntArray(array);
     }
 
     public static final Creator<Battleship> CREATOR = new Creator<Battleship>() {
@@ -72,18 +77,6 @@ public class Battleship implements Model, Parcelable {
     }
 
     @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(mSize);
-        parcel.writeInt(mHitpoints);
-        parcel.writeByte((byte) (mSunk ? 1 : 0));
-    }
-
-    @Override
     public void toJson() {
 
     }
@@ -91,5 +84,27 @@ public class Battleship implements Model, Parcelable {
     @Override
     public void fromJson() {
 
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mSize);
+        dest.writeInt(mHitpoints);
+        dest.writeByte((byte) (mSunk ? 1 : 0));
+        dest.writeInt(mCoordinates.length);
+        dest.writeIntArray(array);
+    }
+
+    public Coordinate[] getCoordinates() {
+        return mCoordinates;
+    }
+
+    public void setCoordinates(Coordinate[] coordinates) {
+        mCoordinates = coordinates;
     }
 }
