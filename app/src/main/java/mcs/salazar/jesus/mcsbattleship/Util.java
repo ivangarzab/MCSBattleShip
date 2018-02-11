@@ -57,21 +57,56 @@ public class Util {
 
         boolean doesFit = true;
         // Figure out the orientation of the ship
+        // Explore grid through x
         if (!(position.x == direction.x)) {
-            // Explore grid through x
-            for (int i = position.x; i < size; i++) {
-                if (grid[direction.y][i]) {
-                    doesFit = false;
-                    break;
+            if (position.x < direction.x) {
+                for (int i = position.x; i < (position.x + size); i++) {
+                    if (i >= BATTLEFIELD_SIZE) {
+                        doesFit = false;
+                        break;
+                    }
+                    if (grid[direction.y][i]) {
+                        doesFit = false;
+                        break;
+                    }
+                }
+            }
+            else { //position.x > direction.x
+                for (int i = position.x; i > (position.x - size); i--) {
+                    if (i < 0) {
+                        doesFit = false;
+                        break;
+                    }
+                    if (grid[direction.y][i]) {
+                        doesFit = false;
+                        break;
+                    }
                 }
             }
         }
+        // Explore grid through y
         else if (!(position.y == direction.y)) {
-            // Explore grid through y
-            for (int i = position.y; i < size; i++) {
-                if (grid[i][direction.x]) {
-                    doesFit = false;
-                    break;
+            if (position.y < direction.y) {
+                for (int i = position.y; i < (position.y + size); i++) {
+                    if (i >= BATTLEFIELD_SIZE) {
+                        doesFit = false;
+                        break;
+                    }
+                    if (grid[i][direction.x]) {
+                        doesFit = false;
+                        break;
+                    }
+                }
+            } else { //position.y > direction.y
+                for (int i = position.y; i > (position.y - size); i--) {
+                    if (i < 0) {
+                        doesFit = false;
+                        break;
+                    }
+                    if (grid[i][direction.x]) {
+                        doesFit = false;
+                        break;
+                    }
                 }
             }
         }
