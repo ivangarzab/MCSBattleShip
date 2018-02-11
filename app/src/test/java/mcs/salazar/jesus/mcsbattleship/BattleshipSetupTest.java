@@ -2,6 +2,9 @@ package mcs.salazar.jesus.mcsbattleship;
 
 import org.junit.Test;
 
+import java.util.List;
+import java.util.Random;
+
 import mcs.salazar.jesus.mcsbattleship.models.Coordinate;
 
 import static org.junit.Assert.*;
@@ -147,5 +150,23 @@ public class BattleshipSetupTest {
         assertFalse(check11);
         assertFalse(check12);
 
+    }
+
+    @Test
+    public void integrationTest() {
+        Random random = new Random();
+        boolean[][] grid = {{false, false, false, false, false},
+                            {false, false, false, false, false},
+                            {false, false, false, false, false},
+                            {false, false, false, false, false},
+                            {false, false, false, false, false}};
+        Coordinate initPos = new Coordinate(random.nextInt(5), random.nextInt(5));
+
+        List<Coordinate> coordinates = new Util().adjacentAvailableCoordinates(initPos, grid);
+        boolean check = new Util().doesShipFit(initPos,
+                coordinates.get(random.nextInt(coordinates.size())), grid,
+                random.nextInt(3) + 2);
+
+        assertNotNull(check);
     }
 }
