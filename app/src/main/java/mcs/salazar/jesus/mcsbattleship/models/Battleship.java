@@ -12,24 +12,21 @@ import java.util.ArrayList;
 public class Battleship implements Model, Parcelable {
 
     private int mSize;
-    private int mHitpoints;
     private Coordinate[] mCoordinates;
-    private boolean mSunk;
-    int[] array;
+    private boolean[] mHitpoints;
 
     public Battleship(int size) {
         mSize = size;
-        mHitpoints = mSize;
         mCoordinates = new Coordinate[mSize];
-        mSunk = false;
+        mHitpoints = new boolean[mSize];
+        for (int i = 0; i < size; i++)
+            mHitpoints[i] = false;
     }
 
     protected Battleship(Parcel in) {
         mSize = in.readInt();
-        mHitpoints = in.readInt();
-        mSunk = in.readByte() != 0;
-        array = new int[in.readInt()];
-        in.readIntArray(array);
+        mCoordinates = in.createTypedArray(Coordinate.CREATOR);
+        mHitpoints = in.createBooleanArray();
     }
 
     public static final Creator<Battleship> CREATOR = new Creator<Battleship>() {
@@ -52,28 +49,20 @@ public class Battleship implements Model, Parcelable {
         mSize = size;
     }
 
-    public int getHitpoints() {
-        return mHitpoints;
-    }
-
-    public void setHitpoints(int hitpoints) {
-        mHitpoints = hitpoints;
-    }
-
-    /*public ArrayList<int[][]> getCoordinates() {
+    public Coordinate[] getCoordinates() {
         return mCoordinates;
     }
 
-    public void setCoordinates(ArrayList<int[][]> coordinates) {
+    public void setCoordinates(Coordinate[] coordinates) {
         mCoordinates = coordinates;
     }
-*/
-    public boolean isSunk() {
-        return mSunk;
+
+    public boolean[] getHitpoints() {
+        return mHitpoints;
     }
 
-    public void setSunk(boolean sunk) {
-        mSunk = sunk;
+    public void setHitpoints(boolean[] hitpoints) {
+        mHitpoints = hitpoints;
     }
 
     @Override
@@ -92,19 +81,9 @@ public class Battleship implements Model, Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(mSize);
-        dest.writeInt(mHitpoints);
-        dest.writeByte((byte) (mSunk ? 1 : 0));
-        dest.writeInt(mCoordinates.length);
-        dest.writeIntArray(array);
-    }
-
-    public Coordinate[] getCoordinates() {
-        return mCoordinates;
-    }
-
-    public void setCoordinates(Coordinate[] coordinates) {
-        mCoordinates = coordinates;
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(mSize);
+        parcel.writeTypedArray(mCoordinates, i);
+        parcel.writeBooleanArray(mHitpoints);
     }
 }

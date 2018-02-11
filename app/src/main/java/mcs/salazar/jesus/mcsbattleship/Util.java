@@ -39,4 +39,10 @@ public class Util {
        hitGrid[y][x] = grid;
     }
 
+    public boolean didItSank(Battleship ship) {
+
+
+        return false;
+    }
+
 }
