@@ -11,11 +11,73 @@ import static org.junit.Assert.*;
  */
 public class BattleshipSetupTest {
 
-    public  boolean[][] mGrid = {{false, false, false, false, false},
-                                {false, false, false, false, false},
-                                {false, false, false, false, false},
-                                {false, false, false, false, false},
-                                {false, false, false, false, false}};
+    private final boolean[][] mGrid = {{false, false, false, false, false},
+                                    {false, false, false, false, false},
+                                    {false, false, false, false, false},
+                                    {false, false, false, false, false},
+                                    {false, false, false, false, false}};
+
+    @Test
+    public void testAdjacentAvailableCoordinates() {
+        // All cells are available
+        int check0 = new Util().adjacentAvailableCoordinates(new Coordinate(2,2), mGrid).size();
+        // All cells available + 1 obstruction
+        boolean[][] grid1 = {{false, false, false, false, false},
+                            {false, false, true, false, false},
+                            {false, false, false, false, false},
+                            {false, false, false, false, false},
+                            {false, false, false, false, false}};
+        int check1 = new Util().adjacentAvailableCoordinates(new Coordinate(2,2), grid1).size();
+        // All cells available + 2 obstructions
+        grid1[3][2] = true;
+        int check2 = new Util().adjacentAvailableCoordinates(new Coordinate(2,2), grid1).size();
+        // All cells available + 3 obstructions
+        grid1[2][1] = true;
+        int check3 = new Util().adjacentAvailableCoordinates(new Coordinate(2,2), grid1).size();
+        // All cells available + 4 obstructions
+        grid1[2][3] = true;
+        int check4 = new Util().adjacentAvailableCoordinates(new Coordinate(2,2), grid1).size();
+        // Corner case
+        int check5 = new Util().adjacentAvailableCoordinates(new Coordinate(0,0), mGrid).size();
+        // Corner case + 1 obstruction
+        boolean[][] grid6 = {{false, false, false, false, false},
+                            {true, false, false, false, false},
+                            {false, false, false, false, false},
+                            {false, false, false, false, false},
+                            {false, false, false, false, false}};
+        int check6 = new Util().adjacentAvailableCoordinates(new Coordinate(0,0), grid6).size();
+        // Corner case + 2 obstructions
+        grid6[0][1] = true;
+        int check7 = new Util().adjacentAvailableCoordinates(new Coordinate(0,0), grid6).size();
+        // Side case
+        int check8 = new Util().adjacentAvailableCoordinates(new Coordinate(2,4), mGrid).size();
+        // Side case + 1 obstruction
+        boolean[][] grid9 = {{false, false, false, false, false},
+                            {false, false, false, false, false},
+                            {false, false, false, false, false},
+                            {false, false, false, false, false},
+                            {false, true, false, false, false}};;
+        int check9 = new Util().adjacentAvailableCoordinates(new Coordinate(2,4), grid9).size();
+        // Side case + 2 obstructions
+        grid9[4][3] = true;
+        int check10 = new Util().adjacentAvailableCoordinates(new Coordinate(2,4), grid9).size();
+        // Side case + 3 obstructions
+        grid9[3][2] = true;
+        int check11 = new Util().adjacentAvailableCoordinates(new Coordinate(2,4), grid9).size();
+
+        assertEquals(4, check0);
+        assertEquals(3, check1);
+        assertEquals(2, check2);
+        assertEquals(1, check3);
+        assertEquals(0, check4);
+        assertEquals(2, check5);
+        assertEquals(1, check6);
+        assertEquals(0, check7);
+        assertEquals(3, check8);
+        assertEquals(2, check9);
+        assertEquals(1, check10);
+        assertEquals(0, check11);
+    }
 
     @Test
     public void testDoesShipFit() {
@@ -70,7 +132,6 @@ public class BattleshipSetupTest {
         grid12[2][4] = true;
         boolean check12 = new Util().doesShipFit(new Coordinate(4,4), new Coordinate(4,3),
                 grid12, 4);
-
 
         assertTrue(check0);
         assertTrue(check1);

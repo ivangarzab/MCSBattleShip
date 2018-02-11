@@ -24,19 +24,23 @@ public class Util {
         List<Coordinate> availableTiles = new ArrayList<>();
         // Check for the availability of adjacent cells of coordinate
         if (!(coordinate.x - 1 < 0)) {
-            if (!grid[coordinate.x - 1][coordinate.y])
+            // Left
+            if (!grid[coordinate.y][coordinate.x - 1])
                 availableTiles.add(new Coordinate(coordinate.x - 1, coordinate.y));
         }
         if (!(coordinate.x + 1 >= BATTLEFIELD_SIZE)) {
-            if (!grid[coordinate.x + 1][coordinate.y])
+            // Right
+            if (!grid[coordinate.y][coordinate.x + 1])
                 availableTiles.add(new Coordinate(coordinate.x + 1, coordinate.y));
         }
         if (!(coordinate.y - 1 < 0)) {
-            if (!grid[coordinate.x][coordinate.y - 1])
+            // Top
+            if (!grid[coordinate.y - 1][coordinate.x])
                 availableTiles.add(new Coordinate(coordinate.x, coordinate.y - 1));
         }
         if (!(coordinate.y + 1 >= BATTLEFIELD_SIZE)) {
-            if (!grid[coordinate.x][coordinate.y + 1])
+            // Bottom
+            if (!grid[coordinate.y + 1][coordinate.x])
                 availableTiles.add(new Coordinate(coordinate.x, coordinate.y + 1));
         }
         return availableTiles;
