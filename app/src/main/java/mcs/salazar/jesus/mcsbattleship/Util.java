@@ -52,4 +52,19 @@ public class Util {
         return hitpointsLeft == 0;
     }
 
+    /**
+     * Check if the Coordinate on the grid has already been shot on
+     * @param grid to check Coordinate
+     * @param selection Coordinate selected by the User
+     * @return Whether the Coordinate selected has already been shot
+     */
+    public boolean isNewCoordinateForSoot(boolean[][] grid, Coordinate selection) {
+        if (grid[selection.getY()][selection.getX()]) return false;
+        else {
+            // Change grid's (Coordinate) tile boolean
+            grid[selection.getY()][selection.getX()] = true;
+            return false;
+        }
+    }
+
 }
