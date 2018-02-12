@@ -28,7 +28,7 @@ public class Util {
             if (!grid[coordinate.y][coordinate.x - 1])
                 availableTiles.add(new Coordinate(coordinate.x - 1, coordinate.y));
         }
-        if (!(coordinate.x + 1 >= BATTLEFIELD_SIZE)) {
+        if (!(coordinate.x + 1 >= grid[0].length)) {
             // Right
             if (!grid[coordinate.y][coordinate.x + 1])
                 availableTiles.add(new Coordinate(coordinate.x + 1, coordinate.y));
@@ -38,7 +38,7 @@ public class Util {
             if (!grid[coordinate.y - 1][coordinate.x])
                 availableTiles.add(new Coordinate(coordinate.x, coordinate.y - 1));
         }
-        if (!(coordinate.y + 1 >= BATTLEFIELD_SIZE)) {
+        if (!(coordinate.y + 1 >= grid.length)) {
             // Bottom
             if (!grid[coordinate.y + 1][coordinate.x])
                 availableTiles.add(new Coordinate(coordinate.x, coordinate.y + 1));
@@ -65,26 +65,14 @@ public class Util {
         if (!(position.x == direction.x)) {
             if (position.x < direction.x) {
                 for (int i = position.x; i < (position.x + size); i++) {
-                    if (i >= BATTLEFIELD_SIZE) {
-                        doesFit = false;
-                        break;
-                    }
-                    if (grid[direction.y][i]) {
-                        doesFit = false;
-                        break;
-                    }
+                    if (i >= grid[0].length) { return false; }
+                    if (grid[direction.y][i]) { return false; }
                 }
             }
             else { //position.x > direction.x
                 for (int i = position.x; i > (position.x - size); i--) {
-                    if (i < 0) {
-                        doesFit = false;
-                        break;
-                    }
-                    if (grid[direction.y][i]) {
-                        doesFit = false;
-                        break;
-                    }
+                    if (i < 0) { return false; }
+                    if (grid[direction.y][i]) { return false; }
                 }
             }
         }

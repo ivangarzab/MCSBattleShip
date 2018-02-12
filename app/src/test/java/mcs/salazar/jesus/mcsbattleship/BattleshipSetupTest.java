@@ -15,10 +15,10 @@ import static org.junit.Assert.*;
 public class BattleshipSetupTest {
 
     private final boolean[][] mGrid = {{false, false, false, false, false},
-                                    {false, false, false, false, false},
-                                    {false, false, false, false, false},
-                                    {false, false, false, false, false},
-                                    {false, false, false, false, false}};
+            {false, false, false, false, false},
+            {false, false, false, false, false},
+            {false, false, false, false, false},
+            {false, false, false, false, false}};
 
     @Test
     public void testAdjacentAvailableCoordinates() {
@@ -44,10 +44,10 @@ public class BattleshipSetupTest {
         int check5 = new Util().adjacentAvailableCoordinates(new Coordinate(0,0), mGrid).size();
         // Corner case + 1 obstruction
         boolean[][] grid6 = {{false, false, false, false, false},
-                            {true, false, false, false, false},
-                            {false, false, false, false, false},
-                            {false, false, false, false, false},
-                            {false, false, false, false, false}};
+                {true, false, false, false, false},
+                {false, false, false, false, false},
+                {false, false, false, false, false},
+                {false, false, false, false, false}};
         int check6 = new Util().adjacentAvailableCoordinates(new Coordinate(0,0), grid6).size();
         // Corner case + 2 obstructions
         grid6[0][1] = true;
@@ -56,10 +56,10 @@ public class BattleshipSetupTest {
         int check8 = new Util().adjacentAvailableCoordinates(new Coordinate(2,4), mGrid).size();
         // Side case + 1 obstruction
         boolean[][] grid9 = {{false, false, false, false, false},
-                            {false, false, false, false, false},
-                            {false, false, false, false, false},
-                            {false, false, false, false, false},
-                            {false, true, false, false, false}};;
+                {false, false, false, false, false},
+                {false, false, false, false, false},
+                {false, false, false, false, false},
+                {false, true, false, false, false}};
         int check9 = new Util().adjacentAvailableCoordinates(new Coordinate(2,4), grid9).size();
         // Side case + 2 obstructions
         grid9[4][3] = true;
@@ -156,10 +156,10 @@ public class BattleshipSetupTest {
     public void integrationTest() {
         Random random = new Random();
         boolean[][] grid = {{false, false, false, false, false},
-                            {false, false, false, false, false},
-                            {false, false, false, false, false},
-                            {false, false, false, false, false},
-                            {false, false, false, false, false}};
+                {false, false, false, false, false},
+                {false, false, false, false, false},
+                {false, false, false, false, false},
+                {false, false, false, false, false}};
         Coordinate initPos = new Coordinate(random.nextInt(5), random.nextInt(5));
 
         List<Coordinate> coordinates = new Util().adjacentAvailableCoordinates(initPos, grid);
