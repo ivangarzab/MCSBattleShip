@@ -11,8 +11,6 @@ import mcs.salazar.jesus.mcsbattleship.models.Coordinate;
  */
 public class Util {
 
-    public static final char SHIP_IS_HIT = 'O';
-    public static final char SHIP_MISSED = 'M';
 
     // Check if a coordinate hit a ship
     public boolean didItHit(Coordinate coordinate, List<Battleship> battleships) {
@@ -21,22 +19,24 @@ public class Util {
         for (Battleship battleship: battleships) {
 
             for (Coordinate c : battleship.getCoordinates()) {
-                if (c == coordinate) {
+                if (c.getX() == coordinate.getX() && c.getY() == coordinate.getY()) {
                     isHit = true;
+                    updateHitGrid(coordinate, battleship, isHit);
                     return true;
                 }
             }
         }
-        final char hitGrid = isHit ? SHIP_IS_HIT : SHIP_MISSED;
-        updateHitGrid(coordinate, hitGrid);
+
         return false;
     }
 
-    private void updateHitGrid(Coordinate coordinate, final char grid) {
-       char[][] hitGrid= null;
-       int x = coordinate.getX() -1;
-       int y = coordinate.getY()-1;
-       hitGrid[y][x] = grid;
+    private void updateHitGrid(Coordinate coordinate, Battleship battleship, boolean hitGrid) {
+        for (boolean hit :battleship.getHitpoints()) {
+            if (coordinate.getX() == coordinate.getX() && coordinate.getY() == coordinate.getY()) {
+                hit=hitGrid;
+            }
+        }
+
     }
 
     /**
@@ -58,12 +58,12 @@ public class Util {
      * @param selection Coordinate selected by the User
      * @return Whether the Coordinate selected has already been shot
      */
-    public boolean isNewCoordinateForSoot(boolean[][] grid, Coordinate selection) {
+    public boolean isNewCoordinateForShoot(boolean[][] grid, Coordinate selection) {
         if (grid[selection.getY()][selection.getX()]) return false;
         else {
             // Change grid's (Coordinate) tile boolean
             grid[selection.getY()][selection.getX()] = true;
-            return false;
+            return true;
         }
     }
 
