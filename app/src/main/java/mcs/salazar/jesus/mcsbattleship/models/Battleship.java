@@ -19,8 +19,7 @@ public class Battleship implements Model, Parcelable {
         mSize = size;
         mCoordinates = new Coordinate[mSize];
         mHitpoints = new boolean[mSize];
-        for (int i = 0; i < size; i++)
-            mHitpoints[i] = false;
+
     }
 
     protected Battleship(Parcel in) {

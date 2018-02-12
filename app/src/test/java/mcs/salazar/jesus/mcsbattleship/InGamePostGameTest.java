@@ -140,7 +140,7 @@ public class InGamePostGameTest {
         boolean check6 = new Util().isNewCoordinateForShoot(board,coordinate1 );
         // Check battleship is hit
         boolean check7 = new Util().didItHit(coordinate1, battleships);
-        // Check if battleship sunk
+        // Check if battleship sank
         boolean check8 = new Util().didItSank(battleship1);
 
         assertFalse(check6);

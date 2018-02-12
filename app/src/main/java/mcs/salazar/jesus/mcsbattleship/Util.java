@@ -14,14 +14,11 @@ public class Util {
 
     // Check if a coordinate hit a ship
     public boolean didItHit(Coordinate coordinate, List<Battleship> battleships) {
-        boolean isHit = false;
 
-        for (Battleship battleship: battleships) {
+        for (Battleship battleship : battleships) {
 
             for (Coordinate c : battleship.getCoordinates()) {
                 if (c.getX() == coordinate.getX() && c.getY() == coordinate.getY()) {
-                    isHit = true;
-                    updateHitGrid(coordinate, battleship, isHit);
                     return true;
                 }
             }
@@ -30,14 +27,14 @@ public class Util {
         return false;
     }
 
-    private void updateHitGrid(Coordinate coordinate, Battleship battleship, boolean hitGrid) {
-        for (boolean hit :battleship.getHitpoints()) {
+   /* private void updateHitGrid(Coordinate coordinate, Battleship battleship, boolean hitGrid) {
+        for (boolean hit : battleship.getHitpoints()) {
             if (coordinate.getX() == coordinate.getX() && coordinate.getY() == coordinate.getY()) {
-                hit=hitGrid;
+                hit = hitGrid;
             }
         }
 
-    }
+    }*/
 
     /**
      * Check whether the Battleship has any Hitpoints left

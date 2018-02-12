@@ -32,8 +32,8 @@ public class mockitoDidItHit {
     public void didItHit_battlship() {
 
 
-        Coordinate[] shipGrid= new Coordinate[]{new Coordinate(0, 0)};
-        Battleship battleship= new Battleship(1);
+        Coordinate[] shipGrid= new Coordinate[]{new Coordinate(0, 0), new Coordinate(0, 1)};
+        Battleship battleship= new Battleship(2);
         List<Battleship> battleships= new ArrayList<>();
         battleship.setCoordinates(shipGrid);
         battleships.add(battleship);
