@@ -3,28 +3,29 @@ package mcs.salazar.jesus.mcsbattleship.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by Ivan on 2/5/2018
  */
 public class Battleship implements Model, Parcelable {
 
     private int mSize;
-    private int mHitpoints;
-    /** I bet there's a better way to do this... */
-    //private ArrayList<int[][]> mCoordinates;
-    private boolean mSunk;
+    private Coordinate[] mCoordinates;
+    private boolean[] mHitpoints;
 
     public Battleship(int size) {
         mSize = size;
-        mHitpoints = mSize;
-       // mCoordinates = new ArrayList<>(mSize);
-        mSunk = false;
+        mCoordinates = new Coordinate[mSize];
+        mHitpoints = new boolean[mSize];
+
     }
 
     protected Battleship(Parcel in) {
         mSize = in.readInt();
-        mHitpoints = in.readInt();
-        mSunk = in.readByte() != 0;
+        mCoordinates = in.createTypedArray(Coordinate.CREATOR);
+        mHitpoints = in.createBooleanArray();
     }
 
     public static final Creator<Battleship> CREATOR = new Creator<Battleship>() {
@@ -47,40 +48,20 @@ public class Battleship implements Model, Parcelable {
         mSize = size;
     }
 
-    public int getHitpoints() {
-        return mHitpoints;
-    }
-
-    public void setHitpoints(int hitpoints) {
-        mHitpoints = hitpoints;
-    }
-
-    /*public ArrayList<int[][]> getCoordinates() {
+    public Coordinate[] getCoordinates() {
         return mCoordinates;
     }
 
-    public void setCoordinates(ArrayList<int[][]> coordinates) {
+    public void setCoordinates(Coordinate[] coordinates) {
         mCoordinates = coordinates;
     }
-*/
-    public boolean isSunk() {
-        return mSunk;
+
+    public boolean[] getHitpoints() {
+        return mHitpoints;
     }
 
-    public void setSunk(boolean sunk) {
-        mSunk = sunk;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(mSize);
-        parcel.writeInt(mHitpoints);
-        parcel.writeByte((byte) (mSunk ? 1 : 0));
+    public void setHitpoints(boolean[] hitpoints) {
+        mHitpoints = hitpoints;
     }
 
     @Override
@@ -91,5 +72,17 @@ public class Battleship implements Model, Parcelable {
     @Override
     public void fromJson() {
 
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(mSize);
+        parcel.writeTypedArray(mCoordinates, i);
+        parcel.writeBooleanArray(mHitpoints);
     }
 }
