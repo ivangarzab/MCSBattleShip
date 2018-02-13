@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,7 +54,6 @@ public class LoginActivity extends AppCompatActivity   {
 
         setupFacebookAuth();
         setupEmailLogin();
-
     }
 
     private void setupFacebookAuth() {
