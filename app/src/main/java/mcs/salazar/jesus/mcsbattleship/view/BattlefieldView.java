@@ -13,7 +13,7 @@ import mcs.salazar.jesus.mcsbattleship.models.Coordinate;
 /**
  * Created by Ivan on 2/14/2018
  */
-public class BattlefieldView extends GridView {
+public class BattlefieldView extends GridView implements MVVMView {
 
     private int mBattlefieldSize;
 

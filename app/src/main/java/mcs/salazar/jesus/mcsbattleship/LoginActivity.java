@@ -53,15 +53,16 @@ public class LoginActivity extends AppCompatActivity   {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
+        setContentView(R.layout.grid_view);
+/*
         Bundle bundle = new Bundle();
         bundle.putParcelable("battlefield", new Battlefield(5, 3));
         Battlefield ship = bundle.getParcelable("battlefield");
         Log.i("TRASH", "SOMETHING");
         setupFacebookAuth();
         setupEmailLogin();
-    }
+    */}
+/*
 
     private void setupFacebookAuth() {
         ButterKnife.bind(this);
@@ -168,5 +169,6 @@ public class LoginActivity extends AppCompatActivity   {
                 });
     }
 
+*/
 
 }
