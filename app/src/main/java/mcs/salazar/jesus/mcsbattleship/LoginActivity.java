@@ -15,6 +15,7 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -35,8 +36,10 @@ public class LoginActivity extends AppCompatActivity   {
 
     //defining views
     private Button buttonSignIn;
+    private Button buttonRegister;
     private EditText editTextEmail;
     private EditText editTextPassword;
+
 
     // Firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -60,6 +63,7 @@ public class LoginActivity extends AppCompatActivity   {
         Log.i("TRASH", "SOMETHING");
         setupFacebookAuth();
         setupEmailLogin();
+        setUpEmailRegister();
     }
 
     private void setupFacebookAuth() {
@@ -93,10 +97,27 @@ public class LoginActivity extends AppCompatActivity   {
         });
     }
 
+    private void setUpEmailRegister() {
+        // Initializing views
+        buttonRegister = findViewById(R.id.buttonRegister);
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+            }
+        });
+
+    }
+
+    private void dashBoard() {
+        Intent intent = new Intent(LoginActivity.this, PlayerDashBoard.class);
+        startActivity(intent);
+    }
+
     private void setupEmailLogin() {
         // Gettting firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
-        //initializing views
+        // Initializing views
         editTextEmail =  findViewById(R.id.editTextEmail);
         editTextPassword =  findViewById(R.id.editTextPassword);
         buttonSignIn = findViewById(R.id.buttonSignin);
@@ -106,7 +127,6 @@ public class LoginActivity extends AppCompatActivity   {
             public void onClick(View v) {
 
                 String email = editTextEmail.getText().toString();
-
                 String password = editTextPassword.getText().toString();
 
                 firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -115,13 +135,13 @@ public class LoginActivity extends AppCompatActivity   {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(LoginActivity.this, "Successful login", Toast.LENGTH_LONG).show();
+                                    dashBoard();
                                 } else {
                                     Toast toast = Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG);
                                     toast.show();
                                 }
                             }
                         });
-
             }
         });
     }
