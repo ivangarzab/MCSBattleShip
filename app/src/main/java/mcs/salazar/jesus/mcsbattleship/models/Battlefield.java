@@ -21,11 +21,6 @@ public class Battlefield implements Model, Parcelable {
         mNumberOfShipsLeft = mNumberOfShips;
         // Initiate and populate grid
         mGrid = new boolean[mSize][mSize];
-        for (int i = 0; i < mSize; i++) {
-            for (int j = 0; j < mSize; j++) {
-                mGrid[i][j] = false;
-            }
-        }
     }
 
 

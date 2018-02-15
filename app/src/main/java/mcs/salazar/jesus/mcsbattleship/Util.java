@@ -113,7 +113,7 @@ public class Util {
         for (Battleship battleship : battleships) {
 
             for (Coordinate c : battleship.getCoordinates()) {
-                if (c.getX() == coordinate.getX() && c.getY() == coordinate.getY()) {
+                if (c.x == coordinate.x && c.y == coordinate.y) {
                     return true;
                 }
             }
@@ -151,10 +151,10 @@ public class Util {
      * @return Whether the Coordinate selected has already been shot
      */
     public boolean isNewCoordinateForShoot(boolean[][] grid, Coordinate selection) {
-        if (grid[selection.getY()][selection.getX()]) return false;
+        if (grid[selection.y][selection.x]) return false;
         else {
             // Change grid's (Coordinate) tile boolean
-            grid[selection.getY()][selection.getX()] = true;
+            grid[selection.y][selection.x] = true;
             return true;
         }
     }
