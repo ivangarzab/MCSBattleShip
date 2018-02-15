@@ -30,7 +30,6 @@ public class BattlefieldView extends GridView {
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs,
                 R.styleable.BattlefieldView, 0, 0);
         try {
-            //get the text and colors specified using the names in attrs.xml
             mMainColor = a.getColor(R.styleable.BattlefieldView_gridMainColor, 0);
             mSecondColor = a.getColor(R.styleable.BattlefieldView_gridSecondColor, 0);
             mDetailColor = a.getColor(R.styleable.BattlefieldView_gridDetailColor, 0);
@@ -45,7 +44,6 @@ public class BattlefieldView extends GridView {
         super.onDraw(canvas);
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         mPaint.setStrokeWidth(1);
-        mPaint.setColor(mMainColor);
 
         int viewWidth = getMeasuredWidth();
         int viewHeight = getMeasuredHeight();
@@ -105,5 +103,19 @@ public class BattlefieldView extends GridView {
 
     public void addShot(Coordinate shot) {
         mGrid[shot.y][shot.x] = true;
+        invalidate();
     }
+
+    /*@Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            int column = (int)(event.getX() / cellWidth);
+            int row = (int)(event.getY() / cellHeight);
+
+            cellChecked[column][row] = !cellChecked[column][row];
+            invalidate();
+        }
+
+        return true;
+    }*/
 }
