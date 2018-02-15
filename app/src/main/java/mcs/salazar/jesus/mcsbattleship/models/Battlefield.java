@@ -9,24 +9,31 @@ import android.os.Parcelable;
 public class Battlefield implements Model, Parcelable {
 
     private int mSize;
-    /** This needs to be Parcel'd as well */
-    //private boolean[][] mHitMatrix;
+    private boolean[][] mGrid;
     private int mNumberOfShips;
-    //private List<Battleship> mBattleships;
+    private Battleship[] mBattleships;
     private int mNumberOfShipsLeft;
 
     public Battlefield(int size, int numberOfShips) {
         mSize = size;
-       // mHitMatrix = new boolean[mSize][mSize];
         mNumberOfShips = numberOfShips;
-        //mBattleships = new ArrayList<>(mNumberOfShips);
+        mBattleships = new Battleship[mNumberOfShips];
         mNumberOfShipsLeft = mNumberOfShips;
+        // Initiate and populate grid
+        mGrid = new boolean[mSize][mSize];
+        for (int i = 0; i < mSize; i++) {
+            for (int j = 0; j < mSize; j++) {
+                mGrid[i][j] = false;
+            }
+        }
     }
+
 
     protected Battlefield(Parcel in) {
         mSize = in.readInt();
+        mGrid = (boolean[][])in.readSerializable();
         mNumberOfShips = in.readInt();
-        //mBattleships = in.createTypedArrayList(Battleship.CREATOR);
+        mBattleships = in.createTypedArray(Battleship.CREATOR);
         mNumberOfShipsLeft = in.readInt();
     }
 
@@ -42,44 +49,14 @@ public class Battlefield implements Model, Parcelable {
         }
     };
 
-    public int getSize() {
-        return mSize;
+    @Override
+    public void toJson() {
+
     }
 
-    public void setSize(int size) {
-        mSize = size;
-    }
+    @Override
+    public void fromJson() {
 
-    /*public boolean[][] getHitMatrix() {
-        return mHitMatrix;
-    }
-
-    public void setHitMatrix(boolean[][] hitMatrix) {
-        mHitMatrix = hitMatrix;
-    }
-*/
-    public int getNumberOfShips() {
-        return mNumberOfShips;
-    }
-
-    public void setNumberOfShips(int numberOfShips) {
-        mNumberOfShips = numberOfShips;
-    }
-
-  /*  public List<Battleship> getBattleships() {
-        return mBattleships;
-    }
-
-    public void setBattleships(List<Battleship> battleships) {
-        mBattleships = battleships;
-    }
-*/
-    public int getNumberOfShipsLeft() {
-        return mNumberOfShipsLeft;
-    }
-
-    public void setNumberOfShipsLeft(int numberOfShipsLeft) {
-        mNumberOfShipsLeft = numberOfShipsLeft;
     }
 
     @Override
@@ -90,18 +67,9 @@ public class Battlefield implements Model, Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(mSize);
+        parcel.writeSerializable(mGrid);
         parcel.writeInt(mNumberOfShips);
-        //parcel.writeTypedList(mBattleships);
+        parcel.writeTypedArray(mBattleships, i);
         parcel.writeInt(mNumberOfShipsLeft);
-    }
-
-    @Override
-    public void toJson() {
-
-    }
-
-    @Override
-    public void fromJson() {
-
     }
 }

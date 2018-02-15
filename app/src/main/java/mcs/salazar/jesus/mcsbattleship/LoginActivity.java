@@ -24,6 +24,9 @@ import com.google.firebase.auth.FirebaseUser;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import mcs.salazar.jesus.mcsbattleship.models.Battlefield;
+import mcs.salazar.jesus.mcsbattleship.models.Battleship;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +55,10 @@ public class LoginActivity extends AppCompatActivity   {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("battlefield", new Battlefield(5, 3));
+        Battlefield ship = bundle.getParcelable("battlefield");
+        Log.i("TRASH", "SOMETHING");
         setupFacebookAuth();
         setupEmailLogin();
     }
