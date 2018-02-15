@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="SessionGameView">
+
+    </declare-styleable>
     <declare-styleable name="BattlefieldView">
         <attr name="gridMainColor" format="color" />
         <attr name="gridSecondColor" format="color" />
