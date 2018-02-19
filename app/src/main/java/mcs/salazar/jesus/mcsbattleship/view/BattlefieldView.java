@@ -1,10 +1,8 @@
 package mcs.salazar.jesus.mcsbattleship.view;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.widget.GridView;
 
 import mcs.salazar.jesus.mcsbattleship.R;
@@ -15,17 +13,46 @@ import mcs.salazar.jesus.mcsbattleship.models.Coordinate;
  */
 public class BattlefieldView extends GridView implements MVVMView {
 
-    private int mBattlefieldSize;
+    // Mock default grid images
+    public static Integer[] mThumbImages = {
+            R.drawable.sample_0, R.drawable.sample_0,
+            R.drawable.sample_0, R.drawable.sample_0,
+            R.drawable.sample_0, R.drawable.sample_0,
+            R.drawable.sample_0, R.drawable.sample_0,
+            R.drawable.sample_0, R.drawable.sample_0,
+            R.drawable.sample_0, R.drawable.sample_0,
+            R.drawable.sample_0, R.drawable.sample_0,
+            R.drawable.sample_0, R.drawable.sample_0,
+            R.drawable.sample_0, R.drawable.sample_0,
+            R.drawable.sample_0, R.drawable.sample_0,
+            R.drawable.sample_0, R.drawable.sample_0,
+            R.drawable.sample_0, R.drawable.sample_0,
+            R.drawable.sample_0
+    };
 
-    private boolean[][] mGrid;
+    // Mock grid status
+    public static boolean[][] mGrid;
 
-    private int mMainColor, mSecondColor, mDetailColor;
-    // Paint for drawing a custom View
-    private Paint mPaint;
+    public static int mBattlefieldSize;
+
+    public BattlefieldView(Context context) {
+        super(context);
+        getBattlefieldDetails();
+        setupBattlefield();
+    }
 
     public BattlefieldView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mPaint = new Paint();
+        getBattlefieldDetails();
+        setupBattlefield();
+    }
+
+    public BattlefieldView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+    /*public BattlefieldView(Context context, AttributeSet attrs) {
+        super(context, attrs);
 
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs,
                 R.styleable.BattlefieldView, 0, 0);
@@ -37,42 +64,7 @@ public class BattlefieldView extends GridView implements MVVMView {
             a.recycle();
         }
         getBattlefieldDetails();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        mPaint.setStrokeWidth(1);
-
-        int viewWidth = getMeasuredWidth();
-        int viewHeight = getMeasuredHeight();
-
-        int cellWidth = viewWidth / mBattlefieldSize;
-        int cellHeight = viewHeight / mBattlefieldSize;
-        // Create the grid cells
-        for (int i = 0; i < mBattlefieldSize; i++) {
-            for (int j = 0; j < mBattlefieldSize; j++) {
-                // If the cell == true, paint differently for contrast
-                if (mGrid[j][i]) {
-                    mPaint.setColor(mSecondColor);
-                    canvas.drawRect(i * cellWidth, j * cellHeight,
-                            (i + 1) * cellWidth, (j + 1) * cellHeight, mPaint);
-                }
-                else {
-                    mPaint.setColor(mMainColor);
-                    canvas.drawRect(i * cellWidth, j * cellHeight,
-                            (i + 1) * cellWidth, (j + 1) * cellHeight, mPaint);
-                }
-            }
-        }
-        // Add the dividing lines to the grid
-        mPaint.setColor(mDetailColor);
-        for (int i = 1; i < mBattlefieldSize; i++) {
-            canvas.drawLine(i * cellWidth, 0, i * cellWidth, viewHeight, mPaint);
-            canvas.drawLine(0, i * cellHeight, viewWidth, i * cellHeight, mPaint);
-        }
-    }
+    }*/
 
     private void getBattlefieldDetails() {
         //TODO: Call VM and get the details for the Battlefield
@@ -85,8 +77,11 @@ public class BattlefieldView extends GridView implements MVVMView {
 
     }
 
-    public void changeColor() {
-
+    /** Default setup for Battlefield */
+    private void setupBattlefield() {
+        this.setNumColumns(mBattlefieldSize);
+        this.setGravity(Gravity.CENTER);
+        this.setStretchMode(STRETCH_COLUMN_WIDTH);
     }
 
     public void selectCell(Coordinate selection) {
@@ -103,19 +98,6 @@ public class BattlefieldView extends GridView implements MVVMView {
 
     public void addShot(Coordinate shot) {
         mGrid[shot.y][shot.x] = true;
-        invalidate();
+        //TODO: Let the Adapter know that there was a change after checking if Util.didItHit()
     }
-
-    /*@Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            int column = (int)(event.getX() / cellWidth);
-            int row = (int)(event.getY() / cellHeight);
-
-            cellChecked[column][row] = !cellChecked[column][row];
-            invalidate();
-        }
-
-        return true;
-    }*/
 }
