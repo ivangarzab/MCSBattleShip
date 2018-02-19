@@ -10,9 +10,10 @@
         <attr name="gridDetailColor" format="color" />
     </declare-styleable>
     -->
+    <!--
     <declare-styleable name="BattleshipView">
         <attr name="shipMainColor" format="color" />
-        <attr name="shipSelectionColor" format="color" />
         <attr name="shipOrientation" format="string" />
     </declare-styleable>
+    -->
 </resources>
