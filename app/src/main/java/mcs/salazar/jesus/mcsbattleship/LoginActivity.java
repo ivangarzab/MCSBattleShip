@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -129,6 +130,21 @@ public class LoginActivity extends AppCompatActivity   {
 
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(LoginActivity.this, "Please Enter Email", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(LoginActivity.this, "Please Enter password", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if(password.length() < 6) {
+                    Toast.makeText(LoginActivity.this, "Password too short, Enter Again", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {

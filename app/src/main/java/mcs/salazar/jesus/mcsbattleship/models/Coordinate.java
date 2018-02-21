@@ -52,14 +52,12 @@ public class Coordinate implements Model {
         parcel.writeInt(y);
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+
+    public int getX() {
+        return x;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(x);
-        parcel.writeInt(y);
+    public int getY() {
+        return y;
     }
 }
