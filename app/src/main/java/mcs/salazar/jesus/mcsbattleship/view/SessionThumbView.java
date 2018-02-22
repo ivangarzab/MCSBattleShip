@@ -44,7 +44,9 @@ public class SessionThumbView extends RelativeLayout implements MVVMView {
         LayoutInflater inflater;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mView = inflater.inflate(R.layout.session_thumb_layout, this);
+        if (inflater != null) {
+            mView = inflater.inflate(R.layout.session_thumb_layout, this);
+        }
 
 
         ((TextView)mView.findViewById(R.id.session_thumb_opponent_textView)).setText(mOpponent);

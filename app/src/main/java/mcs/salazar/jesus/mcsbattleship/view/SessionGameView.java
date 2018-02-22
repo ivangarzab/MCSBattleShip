@@ -38,7 +38,9 @@ public class SessionGameView extends LinearLayout implements MVVMView {
         LayoutInflater inflater;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mView = inflater.inflate(R.layout.session_game_layout, this);
+        if (inflater != null) {
+            mView = inflater.inflate(R.layout.session_game_layout, this);
+        }
 
         opponentField = mView.findViewById(R.id.opponent_battlefield);
         opponentField.setAdapter(new BattlefieldAdapter(context,5));
