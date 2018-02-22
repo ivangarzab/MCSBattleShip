@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="4"
+    android:background="@android:color/black">
+
+    <ImageButton
+        android:id="@+id/game_action_chat_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:src="@drawable/ic_chat_black_24dp"
+        android:tint="@android:color/holo_blue_light"
+        android:background="@android:color/transparent" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/white" />
+
+    <ImageButton
+        android:id="@+id/game_action_pause_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:src="@drawable/ic_pause_black_24dp"
+        android:tint="@android:color/holo_blue_light"
+        android:background="@android:color/transparent"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/white" />
+
+    <ImageButton
+        android:id="@+id/game_action_surrender_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:src="@drawable/ic_surrender_black_24dp"
+        android:tint="@android:color/holo_blue_light"
+        android:background="@android:color/transparent"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/white" />
+
+    <!--TODO: Place android:src="" image and change id -->
+    <ImageButton
+        android:id="@+id/game_action_other_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:tint="@android:color/holo_blue_light"
+        android:background="@android:color/transparent"/>
+
+</LinearLayout>
