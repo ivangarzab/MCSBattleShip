@@ -29,23 +29,15 @@ public class BattleshipView extends LinearLayout implements MVVMView {
     public BattleshipView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        /*
-        TypedArray a = context.getTheme().obtainStyledAttributes(attrs,
-                R.styleable.BattleshipView, 0, 0);
-        try {
-            mMainColor = a.getColor(R.styleable.BattleshipView_shipMainColor, 0);
-            mOrientation = a.getString(R.styleable.BattleshipView_shipOrientation);
-        } finally {
-            a.recycle();
-        }*/
         getBattleshipDetails();
-        battleshipSetup(context);
+        setupBattleship(context);
     }
 
-    private void battleshipSetup(Context context) {
+    private void setupBattleship(Context context) {
         mSelected = false;
         mSank = false;
 
+        // Create Battleship through Image Resources
         for (int i = 0; i < mSize; i ++) {
             if (getOrientation() == LinearLayout.HORIZONTAL) {
                 ImageView imageView = new ImageView(context);

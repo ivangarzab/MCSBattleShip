@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -52,13 +54,6 @@ public class LoginActivity extends AppCompatActivity   {
         super.onCreate(savedInstanceState);
         // setContentView(R.layout.activity_login);
         setContentView(R.layout.grid_layout);
-
-
-        /*
-        BattlefieldView battlefieldView = findViewById(R.id.battlefield);
-        battlefieldView.setAdapter(
-                new BattlefieldAdapter(this, BattlefieldView.mBattlefieldSize));
-*/
 
         /*Bundle bundle = new Bundle();
         bundle.putParcelable("battlefield", new Battlefield(5, 3));

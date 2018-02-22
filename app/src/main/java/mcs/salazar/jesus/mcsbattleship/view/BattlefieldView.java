@@ -51,21 +51,6 @@ public class BattlefieldView extends GridView implements MVVMView {
         super(context, attrs, defStyleAttr);
     }
 
-    /*public BattlefieldView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-
-        TypedArray a = context.getTheme().obtainStyledAttributes(attrs,
-                R.styleable.BattlefieldView, 0, 0);
-        try {
-            mMainColor = a.getColor(R.styleable.BattlefieldView_gridMainColor, 0);
-            mSecondColor = a.getColor(R.styleable.BattlefieldView_gridSecondColor, 0);
-            mDetailColor = a.getColor(R.styleable.BattlefieldView_gridDetailColor, 0);
-        } finally {
-            a.recycle();
-        }
-        getBattlefieldDetails();
-    }*/
-
     private void getBattlefieldDetails() {
         //TODO: Call VM and get the details for the Battlefield
         mBattlefieldSize = 5;
@@ -74,7 +59,6 @@ public class BattlefieldView extends GridView implements MVVMView {
                 {false, false, false, true, false},
                 {false, false, false, false, false},
                 {false, true, true, true, true}};
-
     }
 
     /** Default setup for Battlefield */
