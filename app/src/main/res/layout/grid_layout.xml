@@ -5,24 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/content">
-<!--
-    <mcs.salazar.jesus.mcsbattleship.view.BattlefieldView
-        android:id="@+id/battlefield"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:verticalSpacing="10dp"
-        android:horizontalSpacing="10dp"/>
-        -->
-<!--
 
-    <mcs.salazar.jesus.mcsbattleship.view.BattleshipView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
--->
-
-    <mcs.salazar.jesus.mcsbattleship.view.SessionGameView
+    <mcs.salazar.jesus.mcsbattleship.view.SessionThumbView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

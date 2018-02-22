@@ -1,19 +1,13 @@
 package mcs.salazar.jesus.mcsbattleship.view;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.GridLayout;
 import android.widget.LinearLayout;
 
 import mcs.salazar.jesus.mcsbattleship.BattlefieldAdapter;
 import mcs.salazar.jesus.mcsbattleship.R;
-import mcs.salazar.jesus.mcsbattleship.models.Battlefield;
 
 
 /**
@@ -44,7 +38,7 @@ public class SessionGameView extends LinearLayout implements MVVMView {
         LayoutInflater inflater;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mView = inflater.inflate(R.layout.session_layout, this);
+        mView = inflater.inflate(R.layout.session_game_layout, this);
 
         opponentField = mView.findViewById(R.id.opponent_battlefield);
         opponentField.setAdapter(new BattlefieldAdapter(context,5));
