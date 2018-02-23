@@ -5,4 +5,5 @@ package mcs.salazar.jesus.mcsbattleship.viewmodel;
  */
 
 public interface MVVMViewModel {
+    void bind();
 }

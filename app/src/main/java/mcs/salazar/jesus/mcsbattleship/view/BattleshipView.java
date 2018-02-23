@@ -7,12 +7,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import mcs.salazar.jesus.mcsbattleship.R;
+import mcs.salazar.jesus.mcsbattleship.models.Battleship;
 import mcs.salazar.jesus.mcsbattleship.models.Coordinate;
+import mcs.salazar.jesus.mcsbattleship.viewmodel.BattleshipViewModel;
 
 /**
  * Created by Ivan on 2/14/2018
  */
 public class BattleshipView extends LinearLayout implements MVVMView {
+
+    private BattleshipViewModel mViewModel;
 
     private int mSize;
 
@@ -66,6 +70,7 @@ public class BattleshipView extends LinearLayout implements MVVMView {
 
     private void getBattleshipDetails() {
         //TODO: Call VM and get the details for the Battleship
+        Battleship battleship = new Battleship(3);
         mSize = 3;
         mCoordinates = new Coordinate[]{new Coordinate(0,1),
                 new Coordinate(0,2), new Coordinate(0,3)};
