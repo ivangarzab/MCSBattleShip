@@ -30,6 +30,7 @@ public class SessionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sessions_activity);
         ListView listView = findViewById(R.id.sessions_list);
+        //Button deleteButton = findViewById(R.id.delete);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this, R.layout.sessions_listview, sessions);
 

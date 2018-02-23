@@ -55,6 +55,7 @@
         <activity android:name=".FriendsActivity"/>
         <activity android:name=".NewGameMenu"/>
         <activity android:name=".BattleField_Board"/>
+        <activity android:name=".PostGameReport"/>
 
     </application>
 
