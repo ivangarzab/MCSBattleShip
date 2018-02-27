@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity   {
     private Button buttonRegister;
     private EditText editTextEmail;
     private EditText editTextPassword;
+   // private TextView resetPassword;
 
 
     // Firebase auth object
@@ -66,6 +68,7 @@ public class LoginActivity extends AppCompatActivity   {
         setupFacebookAuth();
         setupEmailLogin();
         setUpEmailRegister();
+        setResetPassword();
     }
 
     private void setupFacebookAuth() {
@@ -159,6 +162,16 @@ public class LoginActivity extends AppCompatActivity   {
                                 }
                             }
                         });
+            }
+        });
+    }
+
+    private void setResetPassword() {
+        TextView resetPassword = findViewById(R.id.reset_password);
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, ResetPassword.class));
             }
         });
     }

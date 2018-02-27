@@ -13,7 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 public class SplashScreen extends AppCompatActivity {
 
     protected boolean active = true;
-    protected int splashTime = 3000;
+    protected int splashTime = 2000;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
