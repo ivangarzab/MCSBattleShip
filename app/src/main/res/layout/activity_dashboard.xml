@@ -11,75 +11,87 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:background="@android:color/holo_blue_bright">
+        android:paddingLeft="100dp"
+        android:paddingTop="0dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="BattleShip"
+            android:text=""
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal"
-            android:textColor="#613434"
+            android:textColor="#f9f9f9"
             android:paddingTop="20dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:paddingTop="40dp"
-        android:paddingRight="40dp"
-        android:paddingLeft="40dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:paddingTop="350dp"
+            android:paddingRight="0dp"
+            android:paddingLeft="0dp">
 
-        <Button
-            android:id="@+id/name_game"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="New Game"
-            android:layout_gravity="center"
-            android:textAllCaps="false"
-            android:textColor="#613434"
-            android:textSize="20sp"
-            android:background="@drawable/rounded_shape"
-            />
+            <Button
+                android:id="@+id/name_game"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_margin="15dp"
+                android:text="New Game"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#f9f9f9"
+                android:textSize="20sp"
+                android:background="@drawable/rounded_shape"
+                />
 
-        <Button
-            android:id="@+id/my_scores"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="My Scores"
-            android:layout_gravity="center"
-            android:textAllCaps="false"
-            android:textColor="#613434"
-            android:textSize="20sp"
-            android:background="@drawable/rounded_shape"/>
-        <Button
-            android:id="@+id/sessions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="Sessions"
-            android:layout_gravity="center"
-            android:textAllCaps="false"
-            android:textColor="#613434"
-            android:textSize="20sp"
-            android:background="@drawable/rounded_shape"/>
+            <Button
+                android:id="@+id/sessions"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_margin="15dp"
+                android:text="Sessions"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#f9f9f9"
+                android:textSize="20sp"
+                android:background="@drawable/rounded_shape"/>
 
-        <Button
-            android:id="@+id/friends"
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="Friends"
-            android:layout_gravity="center"
-            android:textAllCaps="false"
-            android:textColor="#613434"
-            android:textSize="20sp"
-            android:background="@drawable/rounded_shape"/>
-    </LinearLayout>
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingRight="0dp"
+            android:paddingLeft="0dp">
+
+            <Button
+                android:id="@+id/my_scores"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_margin="15dp"
+                android:text="My Scores"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#f9f9f9"
+                android:textSize="20sp"
+                android:background="@drawable/rounded_shape"/>
+            <Button
+                android:id="@+id/friends"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_margin="15dp"
+                android:text="Friends"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#f9f9f9"
+                android:textSize="20sp"
+                android:background="@drawable/rounded_shape"/>
+        </LinearLayout>
 
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

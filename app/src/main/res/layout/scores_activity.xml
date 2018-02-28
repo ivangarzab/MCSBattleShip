@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:textColor="#613434"
-        android:background="@android:color/holo_blue_bright"
         android:paddingTop="50dp">
 
         <TextView

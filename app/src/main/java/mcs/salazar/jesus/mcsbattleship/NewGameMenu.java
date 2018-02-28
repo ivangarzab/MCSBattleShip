@@ -16,18 +16,17 @@ import mcs.salazar.jesus.mcsbattleship.models.Battlefield;
 
 public class NewGameMenu extends AppCompatActivity {
 
-    Button newGame, settings, contButton;
+    Button mContinue, mSurrender;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_game_menu);
 
-        newGame = findViewById(R.id.new_game);
-        settings = findViewById(R.id.settings);
-        contButton= findViewById(R.id.cont);
+        mContinue = findViewById(R.id.cont);
+        mSurrender = findViewById(R.id.surr);
 
-        newGame.setOnClickListener(new View.OnClickListener() {
+        mContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NewGameMenu.this, BattleField_Board.class);

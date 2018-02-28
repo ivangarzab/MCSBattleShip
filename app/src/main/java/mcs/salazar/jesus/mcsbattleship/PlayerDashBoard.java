@@ -29,7 +29,7 @@ public class PlayerDashBoard extends AppCompatActivity {
         mPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashBoard.this, PlayActivity.class));
+                startActivity(new Intent(PlayerDashBoard.this, BattleField_Board.class));
             }
         });
 

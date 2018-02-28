@@ -1,6 +1,7 @@
 package mcs.salazar.jesus.mcsbattleship;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
@@ -53,6 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(SignUpActivity.this, "Successful Register", Toast.LENGTH_LONG).show();
+                                    loginPage();
                                 } else {
                                     Toast toast = Toast.makeText(SignUpActivity.this, "Register failed", Toast.LENGTH_LONG);
                                     toast.show();
@@ -63,6 +65,10 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    private void loginPage() {
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 }

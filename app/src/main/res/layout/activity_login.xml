@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,30 +9,33 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/holo_blue_bright"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:paddingTop="300dp"
+        android:paddingRight="40dp"
+        android:paddingLeft="40dp">
 
-        <TextView
+        <ImageView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="10dp"
-            android:text="USER LOGIN"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#613434"
             android:textStyle="bold" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:orientation="vertical"
-            android:paddingTop="40dp"
-            android:paddingRight="40dp"
-            android:paddingLeft="40dp">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:orientation="vertical"-->
+            <!--android:paddingTop="0dp"-->
+            <!--android:paddingRight="40dp"-->
+            <!--android:paddingLeft="40dp">-->
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -43,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:drawableLeft="@drawable/account"
-                    android:drawableTint="#d67601"
+                    android:drawableTint="@color/colorAccent"
                     android:hint="User email"
                     android:inputType="textEmailAddress"
                     android:singleLine="true" />
@@ -59,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:drawableLeft="@drawable/lock_reset"
-                    android:drawableTint="#d67601"
+                    android:drawableTint="#35609e"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:singleLine="true" />
@@ -67,37 +71,37 @@
             </android.support.design.widget.TextInputLayout>
 
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:elevation="4dp"
-            android:orientation="vertical">
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:elevation="4dp"-->
+            <!--android:orientation="vertical">-->
 
             <Button
                 android:id="@+id/buttonSignin"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_margin="10dp"
+                android:layout_margin="15dp"
                 android:elevation="10dp"
                 android:text="SIGN IN"
                 android:textAllCaps="false"
-                android:textColor="#613434"
+                android:textColor="#f9f9f9"
                 android:textSize="18sp"
                 android:background="@drawable/rounded_shape"
                 />
 
             <Button
                 android:id="@+id/buttonRegister"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_margin="10dp"
+                android:layout_margin="15dp"
                 android:elevation="5dp"
                 android:text="SIGN UP"
                 android:textAllCaps="false"
-                android:textColor="#613434"
+                android:textColor="#f9f9f9"
                 android:textSize="18sp"
                 android:background="@drawable/rounded_shape"/>
 
@@ -109,7 +113,7 @@
                 android:layout_margin="10dp"
                 />
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
         <TextView
             android:id="@+id/reset_password"
             android:layout_width="wrap_content"

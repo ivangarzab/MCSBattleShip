@@ -11,8 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@android:color/holo_blue_bright"
-        android:paddingTop="100dp">
+        android:paddingTop="300dp"
+        android:paddingRight="40dp"
+        android:paddingLeft="40dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -23,14 +24,7 @@
             android:textSize="20sp"
             android:gravity="center_horizontal"
             android:textColor="#613434"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:paddingTop="40dp"
-        android:paddingRight="40dp"
-        android:paddingLeft="40dp">
+
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -63,18 +57,18 @@
 
         </android.support.design.widget.TextInputLayout>
 
-    </LinearLayout>
+
 
         <Button
             android:id="@+id/register"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_margin="10dp"
             android:elevation="5dp"
             android:text="REGISTER"
             android:layout_gravity="center"
             android:textAllCaps="false"
-            android:textColor="#613434"
+            android:textColor="#f9f9f9"
             android:textSize="18sp"
             android:background="@drawable/rounded_shape"/>
 

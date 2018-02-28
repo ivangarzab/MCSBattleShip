@@ -1,5 +1,6 @@
 package mcs.salazar.jesus.mcsbattleship;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -50,6 +51,7 @@ public class ResetPassword extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(ResetPassword.this, "Check your email for a link to reset your password", Toast.LENGTH_LONG).show();
+                                    loginPage();
                                 } else {
                                     Toast.makeText(ResetPassword.this, "Enter correct email address", Toast.LENGTH_LONG).show();
                                 }
@@ -58,5 +60,10 @@ public class ResetPassword extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void loginPage() {
+        Intent intent = new Intent(ResetPassword.this, LoginActivity.class);
+        startActivity(intent);
     }
 }
