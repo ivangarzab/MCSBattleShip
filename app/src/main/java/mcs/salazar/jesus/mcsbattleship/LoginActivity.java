@@ -26,8 +26,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import mcs.salazar.jesus.mcsbattleship.databinding.GridLayoutBinding;
+import mcs.salazar.jesus.mcsbattleship.models.Battlefield;
 import mcs.salazar.jesus.mcsbattleship.models.Battleship;
 import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
+import mcs.salazar.jesus.mcsbattleship.viewmodel.BattlefieldViewModel;
 import mcs.salazar.jesus.mcsbattleship.viewmodel.BattleshipViewModel;
 
 import android.view.View;
@@ -57,12 +59,16 @@ public class LoginActivity extends AppCompatActivity   {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setContentView(R.layout.activity_login);
-        //setContentView(R.layout.grid_layout);
+        //setContentView(R.layout.session_game_layout);
 
-        /** Create BattleshipView binded to ViewModel which contains Model */
+        // Create BattlefieldView bind to ViewModel which contains Model
         GridLayoutBinding binding = DataBindingUtil
                 .setContentView(this, R.layout.grid_layout);
-        binding.setViewmodel(new BattleshipViewModel(new Battleship(3)));
+        binding.setViewmodel(new BattlefieldViewModel(this,
+                new Battlefield(8, 3))
+        );
+        BattlefieldView field = findViewById(R.id.battlefield);
+        field.setAdapter(binding.getViewmodel().getAdapter());
 
 
 

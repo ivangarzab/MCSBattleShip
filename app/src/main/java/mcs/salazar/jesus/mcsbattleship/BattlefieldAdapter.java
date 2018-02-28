@@ -9,22 +9,28 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.Random;
+
 import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
 
 public class BattlefieldAdapter extends BaseAdapter {
 
     private Context mContext;
 
+    public boolean[][] mGrid;
+
     // Adapter should have access to this number somehow!
     private int mBattlefieldSize;
 
-    public BattlefieldAdapter(Context context, int size) {
-        mContext = context;
-        mBattlefieldSize = size;
+    public BattlefieldAdapter(Context context, int size, boolean[][] grid) {
+        this.mContext = context;
+        this.mBattlefieldSize = size;
+        this.mGrid = grid;
     }
 
     public int getCount() {
-        return BattlefieldView.mThumbImages.length;
+        //return BattlefieldView.mThumbImages.length;
+        return mGrid.length * mBattlefieldSize;
     }
 
     public Object getItem(int position) {
@@ -37,6 +43,7 @@ public class BattlefieldAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
+        //TODO: ClickListener / element!
         ImageView imageView;
 
         if (convertView == null) {
@@ -49,12 +56,12 @@ public class BattlefieldAdapter extends BaseAdapter {
         }
 
         // if there is a ship in this position
-        if (BattlefieldView.mGrid[position / mBattlefieldSize][position % mBattlefieldSize]) {
+        if (mGrid[position / mBattlefieldSize][position % mBattlefieldSize]) {
             imageView.setImageResource(R.drawable.sample_1);
         }
         // else, set default/random background image
         else {
-            imageView.setImageResource(BattlefieldView.mThumbImages[position]);
+            imageView.setImageResource(R.drawable.sample_0);
         }
 
         return imageView;

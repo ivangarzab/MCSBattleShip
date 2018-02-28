@@ -43,8 +43,8 @@ public class SessionGameView extends LinearLayout implements MVVMView {
         }
 
         opponentField = mView.findViewById(R.id.opponent_battlefield);
-        opponentField.setAdapter(new BattlefieldAdapter(context,5));
+        //opponentField.setAdapter(new BattlefieldAdapter(context,5));
         playerField = mView.findViewById(R.id.player_battlefield);
-        playerField.setAdapter(new BattlefieldAdapter(context,5));
+        //playerField.setAdapter(new BattlefieldAdapter(context,5));
     }
 }

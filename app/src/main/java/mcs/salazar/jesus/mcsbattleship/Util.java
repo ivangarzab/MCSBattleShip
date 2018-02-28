@@ -137,7 +137,7 @@ public class Util {
      * @return true if Battleship has no Hitpoints left
      */
     public boolean didItSank(Battleship ship) {
-        int hitpointsLeft = ship.getSize();
+        int hitpointsLeft = ship.getShipSize();
         for (boolean hit : ship.getHitpoints()) {
             if (hit) hitpointsLeft--;
         }

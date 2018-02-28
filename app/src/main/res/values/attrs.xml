@@ -7,4 +7,7 @@
         <attr name="shipHitpoints" format="reference" />
         -->
     </declare-styleable>
+    <declare-styleable name="BattlefieldView">
+        <attr name="fieldSize" format="integer" />
+    </declare-styleable>
 </resources>

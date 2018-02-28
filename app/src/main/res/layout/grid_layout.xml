@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="mcs.salazar.jesus.mcsbattleship.viewmodel.BattleshipViewModel" />
+            type="mcs.salazar.jesus.mcsbattleship.viewmodel.BattlefieldViewModel" />
     </data>
 
     <LinearLayout
@@ -13,14 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+    <!--
         <mcs.salazar.jesus.mcsbattleship.view.BattleshipView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:onClick="@{viewmodel.onShipClick()}"
-            android:onClickListener="@{viewmodel.onShipClick()}"
             custom:shipSize="@{viewmodel.shipSize}" />
+        -->
+        <mcs.salazar.jesus.mcsbattleship.view.BattlefieldView
+            android:id="@+id/battlefield"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:fieldSize="@{viewmodel.fieldSize}" />
 
     </LinearLayout>
 </layout>
