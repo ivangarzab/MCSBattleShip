@@ -1,29 +1,27 @@
 package mcs.salazar.jesus.mcsbattleship.models;
 
+import android.databinding.BaseObservable;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 /**
  * Created by Ivan on 2/5/2018
  */
-public class Battleship implements Model, Parcelable {
+public class Battleship extends BaseObservable implements Model, Parcelable {
 
-    private int mSize;
+    private int mShipSize;
     private Coordinate[] mCoordinates;
     private boolean[] mHitpoints;
 
-    public Battleship(int size) {
-        mSize = size;
-        mCoordinates = new Coordinate[mSize];
-        mHitpoints = new boolean[mSize];
+    public Battleship(int shipSize) {
+        mShipSize = shipSize;
+        mCoordinates = new Coordinate[mShipSize];
+        mHitpoints = new boolean[mShipSize];
 
     }
 
     protected Battleship(Parcel in) {
-        mSize = in.readInt();
+        mShipSize = in.readInt();
         mCoordinates = in.createTypedArray(Coordinate.CREATOR);
         mHitpoints = in.createBooleanArray();
     }
@@ -40,12 +38,12 @@ public class Battleship implements Model, Parcelable {
         }
     };
 
-    public int getSize() {
-        return mSize;
+    public int getShipSize() {
+        return mShipSize;
     }
 
-    public void setSize(int size) {
-        mSize = size;
+    public void setShipSize(int shipSize) {
+        mShipSize = shipSize;
     }
 
     public Coordinate[] getCoordinates() {
@@ -81,7 +79,7 @@ public class Battleship implements Model, Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(mSize);
+        parcel.writeInt(mShipSize);
         parcel.writeTypedArray(mCoordinates, i);
         parcel.writeBooleanArray(mHitpoints);
     }

@@ -1,5 +1,6 @@
 package mcs.salazar.jesus.mcsbattleship;
 
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,7 +25,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import mcs.salazar.jesus.mcsbattleship.databinding.GridLayoutBinding;
+import mcs.salazar.jesus.mcsbattleship.models.Battleship;
 import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
+import mcs.salazar.jesus.mcsbattleship.viewmodel.BattleshipViewModel;
 
 import android.view.View;
 import android.widget.Button;
@@ -53,7 +57,14 @@ public class LoginActivity extends AppCompatActivity   {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setContentView(R.layout.activity_login);
-        setContentView(R.layout.grid_layout);
+        //setContentView(R.layout.grid_layout);
+
+        /** Create BattleshipView binded to ViewModel which contains Model */
+        GridLayoutBinding binding = DataBindingUtil
+                .setContentView(this, R.layout.grid_layout);
+        binding.setViewmodel(new BattleshipViewModel(new Battleship(3)));
+
+
 
         /*Bundle bundle = new Bundle();
         bundle.putParcelable("battlefield", new Battlefield(5, 3));
