@@ -1,4 +1,4 @@
-package mcs.salazar.jesus.mcsbattleship;
+package mcs.salazar.jesus.mcsbattleship.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +9,14 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import mcs.salazar.jesus.mcsbattleship.R;
+
 
 /**
  * Created by berekethaile on 2/14/18.
  */
 
-public class PlayerDashBoard extends AppCompatActivity {
+public class PlayerDashboardActivity extends AppCompatActivity {
 
     private Button mPlay, mScores, mSessions, mFriends, mSignout;
     private FirebaseAuth mFirebaseAuth;
@@ -35,28 +37,28 @@ public class PlayerDashBoard extends AppCompatActivity {
         mPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashBoard.this, BattleField_Board.class));
+                startActivity(new Intent(PlayerDashboardActivity.this, BattleField_Board.class));
             }
         });
 
         mScores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashBoard.this, ScoresActivity.class));
+                startActivity(new Intent(PlayerDashboardActivity.this, ScoresActivity.class));
             }
         });
 
         mSessions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashBoard.this, SessionsActivity.class));
+                startActivity(new Intent(PlayerDashboardActivity.this, SessionsActivity.class));
             }
         });
 
         mFriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashBoard.this, FriendsActivity.class));
+                startActivity(new Intent(PlayerDashboardActivity.this, FriendsActivity.class));
             }
         });
 

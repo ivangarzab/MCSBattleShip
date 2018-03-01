@@ -1,16 +1,17 @@
-package mcs.salazar.jesus.mcsbattleship;
+package mcs.salazar.jesus.mcsbattleship.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import mcs.salazar.jesus.mcsbattleship.R;
 
 /**
  * Created by berekethaile on 2/14/18.
  */
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
 
     protected boolean active = true;
     protected int splashTime = 2000;
@@ -37,7 +38,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 }finally {
                     // Create an intent that will forward to the login activity
-                    startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+                    startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
                     finish();
                 }
             }

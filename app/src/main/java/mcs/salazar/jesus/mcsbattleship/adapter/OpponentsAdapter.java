@@ -1,4 +1,4 @@
-package mcs.salazar.jesus.mcsbattleship;
+package mcs.salazar.jesus.mcsbattleship.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import mcs.salazar.jesus.mcsbattleship.activity.NewGameMenuActivity;
+import mcs.salazar.jesus.mcsbattleship.R;
 
 /**
  * Created by berekethaile on 2/28/18.
@@ -49,7 +52,7 @@ public class OpponentsAdapter extends RecyclerView.Adapter<OpponentsAdapter.Oppo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), NewGameMenu.class);
+                    Intent intent = new Intent(v.getContext(), NewGameMenuActivity.class);
                     v.getContext().startActivity(intent);
                 }
             });
