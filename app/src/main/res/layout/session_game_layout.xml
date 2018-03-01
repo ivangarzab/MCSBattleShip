@@ -8,7 +8,7 @@
 
     <mcs.salazar.jesus.mcsbattleship.view.BattlefieldView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/opponent_battlefield"
+        android:id="@+id/session_game_opponent_battlefield"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5">
@@ -21,7 +21,7 @@
 
     <mcs.salazar.jesus.mcsbattleship.view.BattlefieldView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/player_battlefield"
+        android:id="@+id/session_game_player_battlefield"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5">

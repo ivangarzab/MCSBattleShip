@@ -1,22 +1,18 @@
 package mcs.salazar.jesus.mcsbattleship.viewmodel;
 
-import android.arch.lifecycle.ViewModel;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import mcs.salazar.jesus.mcsbattleship.R;
-import mcs.salazar.jesus.mcsbattleship.models.Battleship;
-import mcs.salazar.jesus.mcsbattleship.view.BattleshipView;
+import mcs.salazar.jesus.mcsbattleship.model.Battleship;
 
 /**
  * Created by Ivan on 2/22/2018
  */
 
-public class BattleshipViewModel extends ViewModel implements MVVMViewModel {
+public class BattleshipViewModel implements MVVMViewModel {
 
     private Battleship mBattleship;
 

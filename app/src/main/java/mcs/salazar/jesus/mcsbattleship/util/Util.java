@@ -1,13 +1,10 @@
-package mcs.salazar.jesus.mcsbattleship;
-
-import android.util.Log;
+package mcs.salazar.jesus.mcsbattleship.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import mcs.salazar.jesus.mcsbattleship.models.Battlefield;
-import mcs.salazar.jesus.mcsbattleship.models.Battleship;
-import mcs.salazar.jesus.mcsbattleship.models.Coordinate;
+import mcs.salazar.jesus.mcsbattleship.model.Battleship;
+import mcs.salazar.jesus.mcsbattleship.model.Coordinate;
 
 /**
  * Created by Ivan on 2/8/2018

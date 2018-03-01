@@ -6,9 +6,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.GridView;
 
-import mcs.salazar.jesus.mcsbattleship.BattlefieldAdapter;
 import mcs.salazar.jesus.mcsbattleship.R;
-import mcs.salazar.jesus.mcsbattleship.models.Coordinate;
 
 /**
  * Created by Ivan on 2/14/2018

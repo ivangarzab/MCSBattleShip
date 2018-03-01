@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="mcs.salazar.jesus.mcsbattleship.viewmodel.BattlefieldViewModel" />
+            type="mcs.salazar.jesus.mcsbattleship.viewmodel.SessionGameViewModel" />
     </data>
 
     <LinearLayout
@@ -21,11 +21,16 @@
             android:onClick="@{viewmodel.onShipClick()}"
             custom:shipSize="@{viewmodel.shipSize}" />
         -->
+        <!--
         <mcs.salazar.jesus.mcsbattleship.view.BattlefieldView
             android:id="@+id/battlefield"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             custom:fieldSize="@{viewmodel.fieldSize}" />
-
+        -->
+        <mcs.salazar.jesus.mcsbattleship.view.SessionGameView
+            android:id="@+id/session"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 </layout>

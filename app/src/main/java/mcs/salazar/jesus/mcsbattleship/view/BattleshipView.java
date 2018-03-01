@@ -4,12 +4,11 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import mcs.salazar.jesus.mcsbattleship.R;
-import mcs.salazar.jesus.mcsbattleship.models.Coordinate;
+import mcs.salazar.jesus.mcsbattleship.model.Coordinate;
 
 /**
  * Created by Ivan on 2/14/2018

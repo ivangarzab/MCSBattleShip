@@ -5,8 +5,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import mcs.salazar.jesus.mcsbattleship.models.Battleship;
-import mcs.salazar.jesus.mcsbattleship.models.Coordinate;
+import mcs.salazar.jesus.mcsbattleship.model.Battleship;
+import mcs.salazar.jesus.mcsbattleship.model.Coordinate;
+import mcs.salazar.jesus.mcsbattleship.util.Util;
 
 import static org.junit.Assert.*;
 

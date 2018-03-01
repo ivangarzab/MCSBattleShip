@@ -1,15 +1,14 @@
 package mcs.salazar.jesus.mcsbattleship.viewmodel;
 
-import android.arch.lifecycle.ViewModel;
 import android.content.Context;
 
 import mcs.salazar.jesus.mcsbattleship.BattlefieldAdapter;
-import mcs.salazar.jesus.mcsbattleship.models.Battlefield;
+import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
 
 /**
  * Created by Ivan on 2/23/2018
  */
-public class BattlefieldViewModel extends ViewModel implements MVVMViewModel {
+public class BattlefieldViewModel implements MVVMViewModel {
 
     private Battlefield mBattlefield;
     BattlefieldAdapter mAdapter;

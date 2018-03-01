@@ -5,8 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -26,11 +24,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import mcs.salazar.jesus.mcsbattleship.databinding.GridLayoutBinding;
-import mcs.salazar.jesus.mcsbattleship.models.Battlefield;
-import mcs.salazar.jesus.mcsbattleship.models.Battleship;
+import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
+import mcs.salazar.jesus.mcsbattleship.model.Session;
+import mcs.salazar.jesus.mcsbattleship.model.User;
+import mcs.salazar.jesus.mcsbattleship.util.InGameUtil;
 import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
+import mcs.salazar.jesus.mcsbattleship.view.SessionGameView;
 import mcs.salazar.jesus.mcsbattleship.viewmodel.BattlefieldViewModel;
-import mcs.salazar.jesus.mcsbattleship.viewmodel.BattleshipViewModel;
+import mcs.salazar.jesus.mcsbattleship.viewmodel.SessionGameViewModel;
 
 import android.view.View;
 import android.widget.Button;
@@ -58,34 +59,37 @@ public class LoginActivity extends AppCompatActivity   {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.activity_login);
-        //setContentView(R.layout.session_game_layout);
 
-        // Create BattlefieldView bind to ViewModel which contains Model
+        // Create SessionGameView bind to ViewModel which contains Model
         GridLayoutBinding binding = DataBindingUtil
                 .setContentView(this, R.layout.grid_layout);
-        binding.setViewmodel(new BattlefieldViewModel(this,
-                new Battlefield(8, 3))
-        );
-        BattlefieldView field = findViewById(R.id.battlefield);
-        field.setAdapter(binding.getViewmodel().getAdapter());
+        binding.setViewmodel(new SessionGameViewModel(new Session(new User(), new User())));
+        SessionGameView sessionGameView = findViewById(R.id.session);
 
+        // Bind ChallengerBattlefield
+        InGameUtil.bindBattlefield(this,
+                binding.getViewmodel().getChallengerBattlefield(),
+                (BattlefieldView) findViewById(R.id.session_game_opponent_battlefield));
 
-
-        /*Bundle bundle = new Bundle();
+        // Bind ChallengeeBattlefield
+        InGameUtil.bindBattlefield(this,
+                binding.getViewmodel().getChallengerBattlefield(),
+                (BattlefieldView) findViewById(R.id.session_game_player_battlefield));
+        /*
+        Bundle bundle = new Bundle();
         bundle.putParcelable("battlefield", new Battlefield(5, 3));
         Battlefield ship = bundle.getParcelable("battlefield");
         Log.i("TRASH", "SOMETHING");
         setupFacebookAuth();
-        setupEmailLogin();*/
+        setupEmailLogin();
+        */
     }
 
 
     private void setupFacebookAuth() {
-        ButterKnife.bind(this);
-
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        ButterKnife.bind(this);
 
         // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();

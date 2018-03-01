@@ -5,7 +5,8 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Random;
 
-import mcs.salazar.jesus.mcsbattleship.models.Coordinate;
+import mcs.salazar.jesus.mcsbattleship.model.Coordinate;
+import mcs.salazar.jesus.mcsbattleship.util.Util;
 
 import static org.junit.Assert.*;
 

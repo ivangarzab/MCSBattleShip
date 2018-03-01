@@ -1,4 +1,4 @@
-package mcs.salazar.jesus.mcsbattleship.models;
+package mcs.salazar.jesus.mcsbattleship.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,8 +13,8 @@ import java.util.Locale;
  */
 public class Session implements Model, Parcelable {
 
-    private final static int BATTLEFIELD_SIZE = 10;
-    private final static int BATTLESHIPS_PER_PLAYER = 6;
+    private final static int BATTLEFIELD_SIZE = 8;
+    private final static int BATTLESHIPS_PER_PLAYER = 4;
 
     private User mChallenger;
     private Battlefield mChallengerBattlefield;
