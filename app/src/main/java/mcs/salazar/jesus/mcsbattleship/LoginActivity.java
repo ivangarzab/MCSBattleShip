@@ -1,7 +1,6 @@
 package mcs.salazar.jesus.mcsbattleship;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -28,13 +26,6 @@ import com.google.firebase.auth.FirebaseUser;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import mcs.salazar.jesus.mcsbattleship.databinding.GridLayoutBinding;
-import mcs.salazar.jesus.mcsbattleship.model.Session;
-import mcs.salazar.jesus.mcsbattleship.model.User;
-import mcs.salazar.jesus.mcsbattleship.util.InGameUtil;
-import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
-import mcs.salazar.jesus.mcsbattleship.viewmodel.SessionGameViewModel;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,91 +33,71 @@ import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity   {
 
-    //defining views
-    private Button buttonSignIn;
-    private Button buttonRegister;
-    private EditText editTextEmail;
-    private EditText editTextPassword;
-   // private TextView resetPassword;
-
-
-    // Firebase auth object
-    private FirebaseAuth firebaseAuth;
-
     public static final String TAG = LoginActivity.class.getName();
-
-    @BindView(R.id.login_facebook_button) LoginButton mFacebookButton;
 
     private FirebaseAuth mAuth;
 
     private CallbackManager mCallbackManager;
 
+    @BindView(R.id.buttonSignin) Button buttonSignIn;
+
+    @BindView(R.id.buttonRegister) Button buttonRegister;
+
+    @BindView(R.id.editTextEmail) EditText editTextEmail;
+
+    @BindView(R.id.editTextPassword) EditText editTextPassword;
+
+    @BindView(R.id.login_facebook_button) LoginButton mFacebookButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        setupActivity();
+
         setupFacebookAuth();
         setupEmailLogin();
         setUpEmailRegister();
         setResetPassword();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and act accordingly
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        // If user is already signed-in
+        if (currentUser != null) {
+            gotoDashboard();
+        }
+    }
 
-    private void setupFacebookAuth() {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Pass the activity result back to the Facebook SDK
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void setupActivity() {
+        // Binding ButterKnife!
+        ButterKnife.bind(this);
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        ButterKnife.bind(this);
-
-        // Initialize Facebook Login button
-        mCallbackManager = CallbackManager.Factory.create();
-        // Defined the information needed from user
-        mFacebookButton.setReadPermissions(getResources().getString(R.string.string_email));
-        mFacebookButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, getString(R.string.facebook_login_success) + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d(TAG, getString(R.string.facebook_login_cancel));
-                //TODO: Handle Facebook login cancellation
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(TAG, getString(R.string.facebook_login_error), error);
-                //TODO: Handle Facebook login error
-            }
-        });
     }
+
 
     private void setUpEmailRegister() {
         // Initializing views
-        buttonRegister = findViewById(R.id.buttonRegister);
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
-
-    }
-
-    private void dashBoard() {
-        Intent intent = new Intent(LoginActivity.this, PlayerDashBoard.class);
-        startActivity(intent);
     }
 
     private void setupEmailLogin() {
-        // Gettting firebase auth object
-        firebaseAuth = FirebaseAuth.getInstance();
-        // Initializing views
-        editTextEmail =  findViewById(R.id.editTextEmail);
-        editTextPassword =  findViewById(R.id.editTextPassword);
-        buttonSignIn = findViewById(R.id.buttonSignin);
-
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,13 +120,13 @@ public class LoginActivity extends AppCompatActivity   {
                     return;
                 }
 
-                firebaseAuth.signInWithEmailAndPassword(email, password)
+                mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     //Toast.makeText(LoginActivity.this, "Successful login", Toast.LENGTH_LONG).show();
-                                    dashBoard();
+                                    gotoDashboard();
                                 } else {
                                     Toast toast = Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG);
                                     toast.show();
@@ -176,22 +147,35 @@ public class LoginActivity extends AppCompatActivity   {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and act accordingly
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        // If user is already signed-in
-        if (currentUser != null) {
-            //TODO: What to do if user is already signed-in
-        }
+    private void gotoDashboard() {
+        Intent intent = new Intent(LoginActivity.this, PlayerDashBoard.class);
+        startActivity(intent);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // Pass the activity result back to the Facebook SDK
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    private void setupFacebookAuth() {
+        // Initialize Facebook Login button
+        mCallbackManager = CallbackManager.Factory.create();
+        // Defined the information needed from user
+        mFacebookButton.setReadPermissions(getResources().getString(R.string.string_email));
+        mFacebookButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                gotoDashboard();
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d(TAG, getString(R.string.facebook_login_cancel));
+                //TODO: Handle Facebook login cancellation
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d(TAG, getString(R.string.facebook_login_error), error);
+                //TODO: Handle Facebook login error
+            }
+        });
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
