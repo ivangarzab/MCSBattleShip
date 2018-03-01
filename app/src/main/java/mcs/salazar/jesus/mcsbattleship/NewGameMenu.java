@@ -8,8 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import mcs.salazar.jesus.mcsbattleship.models.Battlefield;
-
 /**
  * Created by berekethaile on 2/20/18.
  */
