@@ -1,4 +1,4 @@
-package mcs.salazar.jesus.mcsbattleship.models;
+package mcs.salazar.jesus.mcsbattleship.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,24 +13,24 @@ import java.util.Locale;
  */
 public class Session implements Model, Parcelable {
 
-    private final static int BATTLEFIELD_SIZE = 10;
-    private final static int BATTLESHIPS_PER_PLAYER = 6;
+    private final static int BATTLEFIELD_SIZE = 8;
+    private final static int BATTLESHIPS_PER_PLAYER = 4;
 
-    private User mChallenger;
-    private Battlefield mChallengerBattlefield;
-    private User mChallengee;
-    private Battlefield mChallengeeBattlefield;
+    private User mPlayer;
+    private Battlefield mPlayerBattlefield;
+    private User mOpponent;
+    private Battlefield mOpponentBattlefield;
     private User mNextTurn;
     private int mTotalTurns;
     private String mDateStarted;
     private String mDateFinished;
 
-    public Session(User challenger, User challengee) {
-        mChallenger = challenger;
-        mChallengerBattlefield = new Battlefield(BATTLEFIELD_SIZE, BATTLESHIPS_PER_PLAYER);
-        mChallengee = challengee;
-        mChallengeeBattlefield = new Battlefield(BATTLEFIELD_SIZE, BATTLESHIPS_PER_PLAYER);
-        mNextTurn = mChallengee;
+    public Session(User opponent, User player) {
+        mPlayer = player;
+        mPlayerBattlefield = new Battlefield(BATTLEFIELD_SIZE, BATTLESHIPS_PER_PLAYER);
+        mOpponent = opponent;
+        mOpponentBattlefield = new Battlefield(BATTLEFIELD_SIZE, BATTLESHIPS_PER_PLAYER);
+        mNextTurn = mPlayer;
         mTotalTurns = 0;
         // Get today's date
         Date c = Calendar.getInstance().getTime();
@@ -40,11 +40,11 @@ public class Session implements Model, Parcelable {
     }
 
     protected Session(Parcel in) {
-        mChallenger = in.readParcelable(User.class.getClassLoader());
-        mChallengerBattlefield = in.readParcelable(Battlefield.class.getClassLoader());
-        mChallengee = in.readParcelable(User.class.getClassLoader());
-        mChallengeeBattlefield = in.readParcelable(Battlefield.class.getClassLoader());
+        mPlayer = in.readParcelable(User.class.getClassLoader());
+        mPlayerBattlefield = in.readParcelable(Battlefield.class.getClassLoader());
         mNextTurn = in.readParcelable(User.class.getClassLoader());
+        mOpponent = in.readParcelable(User.class.getClassLoader());
+        mOpponentBattlefield = in.readParcelable(Battlefield.class.getClassLoader());
         mTotalTurns = in.readInt();
         mDateStarted = in.readString();
         mDateFinished = in.readString();
@@ -62,36 +62,36 @@ public class Session implements Model, Parcelable {
         }
     };
 
-    public User getChallenger() {
-        return mChallenger;
+    public User getPlayer() {
+        return mPlayer;
     }
 
-    public void setChallenger(User challenger) {
-        mChallenger = challenger;
+    public void setPlayer(User player) {
+        mPlayer = player;
     }
 
-    public Battlefield getChallengerBattlefield() {
-        return mChallengerBattlefield;
+    public Battlefield getPlayerBattlefield() {
+        return mPlayerBattlefield;
     }
 
-    public void setChallengerBattlefield(Battlefield challengerBattlefield) {
-        mChallengerBattlefield = challengerBattlefield;
+    public void setPlayerBattlefield(Battlefield playerBattlefield) {
+        mPlayerBattlefield = playerBattlefield;
     }
 
-    public User getChallengee() {
-        return mChallengee;
+    public User getOpponent() {
+        return mOpponent;
     }
 
-    public void setChallengee(User challengee) {
-        mChallengee = challengee;
+    public void setOpponent(User opponent) {
+        mOpponent = opponent;
     }
 
-    public Battlefield getChallengeeBattlefield() {
-        return mChallengeeBattlefield;
+    public Battlefield getOpponentBattlefield() {
+        return mOpponentBattlefield;
     }
 
-    public void setChallengeeBattlefield(Battlefield challengeeBattlefield) {
-        mChallengeeBattlefield = challengeeBattlefield;
+    public void setOpponentBattlefield(Battlefield opponentBattlefield) {
+        mOpponentBattlefield = opponentBattlefield;
     }
 
     public User getNextTurn() {
@@ -133,11 +133,11 @@ public class Session implements Model, Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeParcelable(mChallenger, i);
-        parcel.writeParcelable(mChallengerBattlefield, i);
-        parcel.writeParcelable(mChallengee, i);
-        parcel.writeParcelable(mChallengeeBattlefield, i);
+        parcel.writeParcelable(mPlayerBattlefield, i);
         parcel.writeParcelable(mNextTurn, i);
+        parcel.writeParcelable(mOpponent, i);
+        parcel.writeParcelable(mOpponentBattlefield, i);
+        parcel.writeParcelable(mPlayer, i);
         parcel.writeInt(mTotalTurns);
         parcel.writeString(mDateStarted);
         parcel.writeString(mDateFinished);

@@ -1,4 +1,4 @@
-package mcs.salazar.jesus.mcsbattleship.models;
+package mcs.salazar.jesus.mcsbattleship.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -43,6 +43,46 @@ public class Battlefield implements Model, Parcelable {
             return new Battlefield[size];
         }
     };
+
+    public int getSize() {
+        return mSize;
+    }
+
+    public void setSize(int size) {
+        mSize = size;
+    }
+
+    public boolean[][] getGrid() {
+        return mGrid;
+    }
+
+    public void setGrid(boolean[][] grid) {
+        mGrid = grid;
+    }
+
+    public int getNumberOfShips() {
+        return mNumberOfShips;
+    }
+
+    public void setNumberOfShips(int numberOfShips) {
+        mNumberOfShips = numberOfShips;
+    }
+
+    public Battleship[] getBattleships() {
+        return mBattleships;
+    }
+
+    public void setBattleships(Battleship[] battleships) {
+        mBattleships = battleships;
+    }
+
+    public int getNumberOfShipsLeft() {
+        return mNumberOfShipsLeft;
+    }
+
+    public void setNumberOfShipsLeft(int numberOfShipsLeft) {
+        mNumberOfShipsLeft = numberOfShipsLeft;
+    }
 
     @Override
     public void toJson() {
