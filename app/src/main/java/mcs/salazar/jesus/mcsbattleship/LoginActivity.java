@@ -1,10 +1,13 @@
 package mcs.salazar.jesus.mcsbattleship;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -15,6 +18,7 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -23,34 +27,28 @@ import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.PluralsRes;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.text.method.TextKeyListener;
-import android.util.Log;
+
+import mcs.salazar.jesus.mcsbattleship.databinding.GridLayoutBinding;
+import mcs.salazar.jesus.mcsbattleship.model.Session;
+import mcs.salazar.jesus.mcsbattleship.model.User;
+import mcs.salazar.jesus.mcsbattleship.util.InGameUtil;
+import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
+import mcs.salazar.jesus.mcsbattleship.viewmodel.SessionGameViewModel;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity   {
 
     //defining views
     private Button buttonSignIn;
+    private Button buttonRegister;
     private EditText editTextEmail;
     private EditText editTextPassword;
+   // private TextView resetPassword;
+
 
     // Firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -67,17 +65,17 @@ public class LoginActivity extends AppCompatActivity   {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         setupFacebookAuth();
         setupEmailLogin();
-
+        setUpEmailRegister();
+        setResetPassword();
     }
 
-    private void setupFacebookAuth() {
-        ButterKnife.bind(this);
 
+    private void setupFacebookAuth() {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        ButterKnife.bind(this);
 
         // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
@@ -104,12 +102,27 @@ public class LoginActivity extends AppCompatActivity   {
         });
     }
 
+    private void setUpEmailRegister() {
+        // Initializing views
+        buttonRegister = findViewById(R.id.buttonRegister);
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+            }
+        });
+
+    }
+
+    private void dashBoard() {
+        Intent intent = new Intent(LoginActivity.this, PlayerDashBoard.class);
+        startActivity(intent);
+    }
+
     private void setupEmailLogin() {
         // Gettting firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
-
-        Log.i("Test", "TEST");
-        //initializing views
+        // Initializing views
         editTextEmail =  findViewById(R.id.editTextEmail);
         editTextPassword =  findViewById(R.id.editTextPassword);
         buttonSignIn = findViewById(R.id.buttonSignin);
@@ -119,22 +132,46 @@ public class LoginActivity extends AppCompatActivity   {
             public void onClick(View v) {
 
                 String email = editTextEmail.getText().toString();
-
                 String password = editTextPassword.getText().toString();
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(LoginActivity.this, "Please Enter Email", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(LoginActivity.this, "Please Enter password", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if(password.length() < 6) {
+                    Toast.makeText(LoginActivity.this, "Password too short, Enter Again", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(LoginActivity.this, "Successful login", Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(LoginActivity.this, "Successful login", Toast.LENGTH_LONG).show();
+                                    dashBoard();
                                 } else {
                                     Toast toast = Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG);
                                     toast.show();
                                 }
                             }
                         });
+            }
+        });
+    }
 
+    private void setResetPassword() {
+        TextView resetPassword = findViewById(R.id.reset_password);
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, ResetPassword.class));
             }
         });
     }
@@ -179,6 +216,4 @@ public class LoginActivity extends AppCompatActivity   {
                     }
                 });
     }
-
-
 }

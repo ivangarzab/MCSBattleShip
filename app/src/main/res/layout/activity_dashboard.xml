@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:paddingLeft="100dp"
+        android:paddingTop="0dp">
+
+        <Button
+            android:id="@+id/sign_out"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_margin="15dp"
+            android:text="Sign Out"
+            android:layout_gravity="right"
+            android:textAllCaps="false"
+            android:textColor="#f9f9f9"
+            android:textSize="18sp"
+            android:background="@drawable/circular_shape" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=""
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#f9f9f9"
+            android:paddingTop="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:paddingTop="350dp"
+            android:paddingRight="0dp"
+            android:paddingLeft="0dp">
+
+            <Button
+                android:id="@+id/name_game"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_margin="15dp"
+                android:text="New Game"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#f9f9f9"
+                android:textSize="20sp"
+                android:background="@drawable/rounded_shape"
+                />
+
+            <Button
+                android:id="@+id/sessions"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_margin="15dp"
+                android:text="Sessions"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#f9f9f9"
+                android:textSize="20sp"
+                android:background="@drawable/rounded_shape"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingRight="0dp"
+            android:paddingLeft="0dp">
+
+            <Button
+                android:id="@+id/my_scores"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_margin="15dp"
+                android:text="My Scores"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#f9f9f9"
+                android:textSize="20sp"
+                android:background="@drawable/rounded_shape"/>
+            <Button
+                android:id="@+id/friends"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_margin="15dp"
+                android:text="Friends"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:textColor="#f9f9f9"
+                android:textSize="20sp"
+                android:background="@drawable/rounded_shape"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
