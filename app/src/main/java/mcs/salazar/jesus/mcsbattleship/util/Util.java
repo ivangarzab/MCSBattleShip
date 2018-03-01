@@ -1,13 +1,10 @@
-package mcs.salazar.jesus.mcsbattleship;
-
-import android.util.Log;
+package mcs.salazar.jesus.mcsbattleship.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import mcs.salazar.jesus.mcsbattleship.models.Battlefield;
-import mcs.salazar.jesus.mcsbattleship.models.Battleship;
-import mcs.salazar.jesus.mcsbattleship.models.Coordinate;
+import mcs.salazar.jesus.mcsbattleship.model.Battleship;
+import mcs.salazar.jesus.mcsbattleship.model.Coordinate;
 
 /**
  * Created by Ivan on 2/8/2018
@@ -113,7 +110,7 @@ public class Util {
         for (Battleship battleship : battleships) {
 
             for (Coordinate c : battleship.getCoordinates()) {
-                if (c.getX() == coordinate.getX() && c.getY() == coordinate.getY()) {
+                if (c.x == coordinate.x && c.y == coordinate.y) {
                     return true;
                 }
             }
@@ -137,7 +134,7 @@ public class Util {
      * @return true if Battleship has no Hitpoints left
      */
     public boolean didItSank(Battleship ship) {
-        int hitpointsLeft = ship.getSize();
+        int hitpointsLeft = ship.getShipSize();
         for (boolean hit : ship.getHitpoints()) {
             if (hit) hitpointsLeft--;
         }
@@ -151,10 +148,10 @@ public class Util {
      * @return Whether the Coordinate selected has already been shot
      */
     public boolean isNewCoordinateForShoot(boolean[][] grid, Coordinate selection) {
-        if (grid[selection.getY()][selection.getX()]) return false;
+        if (grid[selection.y][selection.x]) return false;
         else {
             // Change grid's (Coordinate) tile boolean
-            grid[selection.getY()][selection.getX()] = true;
+            grid[selection.y][selection.x] = true;
             return true;
         }
     }

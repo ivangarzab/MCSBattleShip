@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64sp"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/session_thumb_imageView"
+        android:layout_width="64sp"
+        android:layout_height="64sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/session_thumb_opponent_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="v. OPPONENT"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_toEndOf="@id/session_thumb_imageView"
+        android:layout_toRightOf="@id/session_thumb_imageView" />
+
+    <TextView
+        android:id="@+id/session_thumb_date_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DATE"
+        android:textSize="20sp"
+        android:layout_toEndOf="@id/session_thumb_imageView"
+        android:layout_toRightOf="@id/session_thumb_imageView"
+        android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:id="@+id/session_thumb_turn_number_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Turn #0"
+        android:textSize="20sp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:id="@+id/session_thumb_next_turn_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YOUR TURN"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"/>
+
+</RelativeLayout>

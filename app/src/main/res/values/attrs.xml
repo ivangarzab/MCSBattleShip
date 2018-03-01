@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BattleshipView">
+        <attr name="shipSize" format="integer" />
+        <!--
+        <attr name="shipCoordinates" format="integer" />
+        <attr name="shipHitpoints" format="reference" />
+        -->
+    </declare-styleable>
+    <declare-styleable name="BattlefieldView">
+        <attr name="fieldSize" format="integer" />
+    </declare-styleable>
+</resources>
