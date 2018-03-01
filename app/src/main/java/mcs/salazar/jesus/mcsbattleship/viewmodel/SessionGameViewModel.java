@@ -15,36 +15,36 @@ public class SessionGameViewModel implements MVVMViewModel {
         this.mSession = session;
     }
 
-    public User getChallenger() {
-        return this.mSession.getChallenger();
+    public User getOpponent() {
+        return this.mSession.getOpponent();
     }
 
-    public void setChallenger(User challenger) {
-        this.mSession.setChallenger(challenger);
+    public void setOpponent(User opponent) {
+        this.mSession.setOpponent(opponent);
     }
 
-    public Battlefield getChallengerBattlefield() {
-        return this.mSession.getChallengerBattlefield();
+    public Battlefield getOpponentBattlefield() {
+        return this.mSession.getOpponentBattlefield();
     }
 
-    public void setChallengerBattlefield(Battlefield challengerBattlefield) {
-        this.mSession.setChallengerBattlefield(challengerBattlefield);
+    public void setOpponentBattlefield(Battlefield opponentBattlefield) {
+        this.mSession.setOpponentBattlefield(opponentBattlefield);
     }
 
-    public User getChallengee() {
-        return this.mSession.getChallengee();
+    public User getPlayer() {
+        return this.mSession.getPlayer();
     }
 
-    public void setChallengee(User challengee) {
-        this.mSession.setChallengee(challengee);
+    public void setPlayer(User player) {
+        this.mSession.setPlayer(player);
     }
 
-    public Battlefield getChallengeeBattlefield() {
-        return this.mSession.getChallengeeBattlefield();
+    public Battlefield getPlayerBattlefield() {
+        return this.mSession.getPlayerBattlefield();
     }
 
-    public void setChallengeeBattlefield(Battlefield challengeeBattlefield) {
-        this.mSession.setChallengeeBattlefield(challengeeBattlefield);
+    public void setPlayerBattlefield(Battlefield playerBattlefield) {
+        this.mSession.setPlayerBattlefield(playerBattlefield);
     }
 
     public User getNextTurn() {

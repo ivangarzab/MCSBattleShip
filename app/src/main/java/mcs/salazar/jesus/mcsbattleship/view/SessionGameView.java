@@ -3,10 +3,8 @@ package mcs.salazar.jesus.mcsbattleship.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.LinearLayout;
 
-import mcs.salazar.jesus.mcsbattleship.BattlefieldAdapter;
 import mcs.salazar.jesus.mcsbattleship.R;
 
 
@@ -30,9 +28,9 @@ public class SessionGameView extends LinearLayout implements MVVMView {
         }
         /*
         opponentField = mView.findViewById(R.id.opponent_battlefield);
-        //opponentField.setAdapter(new BattlefieldAdapter(context, 5));
+        //opponentField.setAdapter(new PlayerBattlefieldAdapter(context, 5));
         playerField = mView.findViewById(R.id.player_battlefield);
-        //playerField.setAdapter(new BattlefieldAdapter(context,5));
+        //playerField.setAdapter(new PlayerBattlefieldAdapter(context,5));
         */
     }
 }

@@ -1,21 +1,23 @@
 package mcs.salazar.jesus.mcsbattleship.viewmodel;
 
 import android.content.Context;
+import android.widget.BaseAdapter;
 
-import mcs.salazar.jesus.mcsbattleship.BattlefieldAdapter;
+import mcs.salazar.jesus.mcsbattleship.adapter.PlayerBattlefieldAdapter;
 import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
 
 /**
  * Created by Ivan on 2/23/2018
  */
-public class BattlefieldViewModel implements MVVMViewModel {
+public abstract class BattlefieldViewModel implements MVVMViewModel {
 
-    private Battlefield mBattlefield;
-    BattlefieldAdapter mAdapter;
+    public Battlefield mBattlefield;
+
+    public BaseAdapter mAdapter;
 
     public BattlefieldViewModel(Context context, Battlefield battlefield) {
         this.mBattlefield = battlefield;
-        mAdapter = new BattlefieldAdapter(context, mBattlefield.getSize(), mBattlefield.getGrid());
+        createAdapter(context);
     }
 
     public int getFieldSize() {
@@ -26,9 +28,11 @@ public class BattlefieldViewModel implements MVVMViewModel {
         mBattlefield.setSize(size);
     }
 
-    public BattlefieldAdapter getAdapter() {
+    public BaseAdapter getAdapter() {
         return mAdapter;
     }
+
+    public abstract void createAdapter(Context context);
 
     @Override
     public void bind() {

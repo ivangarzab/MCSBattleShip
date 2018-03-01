@@ -24,13 +24,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import mcs.salazar.jesus.mcsbattleship.databinding.GridLayoutBinding;
-import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
 import mcs.salazar.jesus.mcsbattleship.model.Session;
 import mcs.salazar.jesus.mcsbattleship.model.User;
 import mcs.salazar.jesus.mcsbattleship.util.InGameUtil;
 import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
-import mcs.salazar.jesus.mcsbattleship.view.SessionGameView;
-import mcs.salazar.jesus.mcsbattleship.viewmodel.BattlefieldViewModel;
 import mcs.salazar.jesus.mcsbattleship.viewmodel.SessionGameViewModel;
 
 import android.view.View;
@@ -64,16 +61,15 @@ public class LoginActivity extends AppCompatActivity   {
         GridLayoutBinding binding = DataBindingUtil
                 .setContentView(this, R.layout.grid_layout);
         binding.setViewmodel(new SessionGameViewModel(new Session(new User(), new User())));
-        SessionGameView sessionGameView = findViewById(R.id.session);
 
-        // Bind ChallengerBattlefield
-        InGameUtil.bindBattlefield(this,
-                binding.getViewmodel().getChallengerBattlefield(),
+        // Bind OpponentBattlefield
+        InGameUtil.bindOpponentBattlefield(this,
+                binding.getViewmodel().getOpponentBattlefield(),
                 (BattlefieldView) findViewById(R.id.session_game_opponent_battlefield));
 
-        // Bind ChallengeeBattlefield
-        InGameUtil.bindBattlefield(this,
-                binding.getViewmodel().getChallengerBattlefield(),
+        // Bind PlayerBattlefield
+        InGameUtil.bindPlayerBattlefield(this,
+                binding.getViewmodel().getPlayerBattlefield(),
                 (BattlefieldView) findViewById(R.id.session_game_player_battlefield));
         /*
         Bundle bundle = new Bundle();

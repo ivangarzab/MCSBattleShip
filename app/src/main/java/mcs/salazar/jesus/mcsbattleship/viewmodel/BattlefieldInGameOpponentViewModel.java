@@ -2,6 +2,8 @@ package mcs.salazar.jesus.mcsbattleship.viewmodel;
 
 import android.content.Context;
 
+import mcs.salazar.jesus.mcsbattleship.adapter.OpponentBattlefieldAdapter;
+import mcs.salazar.jesus.mcsbattleship.adapter.PlayerBattlefieldAdapter;
 import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
 
 /**
@@ -11,6 +13,12 @@ public class BattlefieldInGameOpponentViewModel extends BattlefieldInGameViewMod
 
     public BattlefieldInGameOpponentViewModel(Context context, Battlefield battlefield) {
         super(context, battlefield);
+    }
+
+    @Override
+    public void createAdapter(Context context) {
+        mAdapter = new OpponentBattlefieldAdapter(context,
+                mBattlefield.getSize(), mBattlefield.getGrid());
     }
 
     @Override

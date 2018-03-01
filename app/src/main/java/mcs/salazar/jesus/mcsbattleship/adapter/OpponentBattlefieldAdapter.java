@@ -1,19 +1,15 @@
-package mcs.salazar.jesus.mcsbattleship;
+package mcs.salazar.jesus.mcsbattleship.adapter;
 
 import android.content.Context;
-
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import java.util.Random;
+import mcs.salazar.jesus.mcsbattleship.R;
 
-import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
-
-public class BattlefieldAdapter extends BaseAdapter {
+public class OpponentBattlefieldAdapter extends BaseAdapter {
 
     private Context mContext;
 
@@ -22,7 +18,7 @@ public class BattlefieldAdapter extends BaseAdapter {
     // Adapter should have access to this number somehow!
     private int mBattlefieldSize;
 
-    public BattlefieldAdapter(Context context, int size, boolean[][] grid) {
+    public OpponentBattlefieldAdapter(Context context, int size, boolean[][] grid) {
         this.mContext = context;
         this.mBattlefieldSize = size;
         this.mGrid = grid;

@@ -1,13 +1,11 @@
 package mcs.salazar.jesus.mcsbattleship.util;
 
 import android.content.Context;
-import android.view.View;
 
 import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
-import mcs.salazar.jesus.mcsbattleship.model.Model;
 import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
-import mcs.salazar.jesus.mcsbattleship.view.BattleshipView;
-import mcs.salazar.jesus.mcsbattleship.view.MVVMView;
+import mcs.salazar.jesus.mcsbattleship.viewmodel.BattlefieldInGameOpponentViewModel;
+import mcs.salazar.jesus.mcsbattleship.viewmodel.BattlefieldInGamePlayerViewModel;
 import mcs.salazar.jesus.mcsbattleship.viewmodel.BattlefieldViewModel;
 
 /**
@@ -15,18 +13,15 @@ import mcs.salazar.jesus.mcsbattleship.viewmodel.BattlefieldViewModel;
  */
 public class InGameUtil {
 
-    public static void bindSession(Model model, MVVMView view) {
-
-    }
-
-    public static void bindBattlefield(Context context, Battlefield model, BattlefieldView view) {
-        BattlefieldViewModel viewModel = new BattlefieldViewModel(context, model);
-
+    public static void bindPlayerBattlefield(Context context, Battlefield model, BattlefieldView view) {
+        BattlefieldViewModel viewModel = new BattlefieldInGamePlayerViewModel(context, model);
         view.setAdapter(viewModel.getAdapter());
         view.setFieldSize(viewModel.getFieldSize());
     }
 
-    public static void bindBattleship(Model model, BattleshipView view) {
-
+    public static void bindOpponentBattlefield(Context context, Battlefield model, BattlefieldView view) {
+        BattlefieldViewModel viewModel = new BattlefieldInGameOpponentViewModel(context, model);
+        view.setAdapter(viewModel.getAdapter());
+        view.setFieldSize(viewModel.getFieldSize());
     }
 }

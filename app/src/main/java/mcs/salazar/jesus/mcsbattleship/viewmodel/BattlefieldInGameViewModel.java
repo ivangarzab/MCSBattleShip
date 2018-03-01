@@ -7,7 +7,7 @@ import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
 /**
  * Created by Ivan on 2/23/2018
  */
-public class BattlefieldInGameViewModel extends BattlefieldViewModel {
+public abstract class BattlefieldInGameViewModel extends BattlefieldViewModel {
 
     public BattlefieldInGameViewModel(Context context, Battlefield battlefield) {
         super(context, battlefield);
