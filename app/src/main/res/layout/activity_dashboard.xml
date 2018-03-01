@@ -10,63 +10,54 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_gravity="center"
-        android:paddingLeft="100dp"
-        android:paddingTop="0dp">
+        android:layout_gravity="center">
 
         <Button
             android:id="@+id/sign_out"
             android:layout_width="100dp"
             android:layout_height="80dp"
             android:layout_margin="15dp"
-            android:text="Sign Out"
-            android:layout_gravity="right"
+            android:text="@string/dashboard_sign_out"
+            android:layout_gravity="end"
             android:textAllCaps="false"
-            android:textColor="#f9f9f9"
+            android:textColor="@color/colorButtonText"
             android:textSize="18sp"
             android:background="@drawable/circular_shape" />
 
-        <TextView
+        <ImageView
+            android:id="@+id/dashboard_title_imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text=""
-            android:id="@+id/textView"
             android:layout_gravity="center_horizontal"
-            android:textColor="#f9f9f9"
+            android:textColor="@color/colorButtonText"
             android:paddingTop="20dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal"
-            android:paddingTop="350dp"
-            android:paddingRight="0dp"
-            android:paddingLeft="0dp">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/name_game"
                 android:layout_width="160dp"
                 android:layout_height="100dp"
                 android:layout_margin="15dp"
-                android:text="New Game"
+                android:text="@string/dashboard_new_game"
                 android:layout_gravity="center"
                 android:textAllCaps="false"
-                android:textColor="#f9f9f9"
+                android:textColor="@color/colorButtonText"
                 android:textSize="20sp"
-                android:background="@drawable/rounded_shape"
-                />
+                android:background="@drawable/rounded_shape" />
 
             <Button
                 android:id="@+id/sessions"
                 android:layout_width="160dp"
                 android:layout_height="100dp"
                 android:layout_margin="15dp"
-                android:text="Sessions"
+                android:text="@string/dashboard_sessions"
                 android:layout_gravity="center"
                 android:textAllCaps="false"
-                android:textColor="#f9f9f9"
+                android:textColor="@color/colorButtonText"
                 android:textSize="20sp"
                 android:background="@drawable/rounded_shape"/>
 
@@ -75,21 +66,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingRight="0dp"
-            android:paddingLeft="0dp">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/my_scores"
                 android:layout_width="160dp"
                 android:layout_height="100dp"
                 android:layout_margin="15dp"
-                android:text="My Scores"
+                android:text="@string/dashboard_scores"
                 android:layout_gravity="center"
                 android:textAllCaps="false"
-                android:textColor="#f9f9f9"
+                android:textColor="@color/colorButtonText"
                 android:textSize="20sp"
                 android:background="@drawable/rounded_shape"/>
             <Button
@@ -97,10 +84,10 @@
                 android:layout_width="160dp"
                 android:layout_height="100dp"
                 android:layout_margin="15dp"
-                android:text="Friends"
+                android:text="@string/dashboard_friends"
                 android:layout_gravity="center"
                 android:textAllCaps="false"
-                android:textColor="#f9f9f9"
+                android:textColor="@color/colorButtonText"
                 android:textSize="20sp"
                 android:background="@drawable/rounded_shape"/>
         </LinearLayout>

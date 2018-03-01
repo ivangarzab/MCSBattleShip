@@ -24,7 +24,7 @@
         android:layout_height="50dp"
         card_view:cardCornerRadius="2dp"
         android:elevation="4dp"
-        card_view:cardBackgroundColor="@color/button">
+        card_view:cardBackgroundColor="@color/colorButton">
 
         <TextView
             android:id="@+id/opponent_name"
