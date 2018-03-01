@@ -6,16 +6,14 @@ import android.os.Parcel;
  * Created by Ivan on 2/8/2018
  */
 public class Coordinate implements Model {
+
     public int x;
+
     public int y;
 
     public Coordinate(int x, int y) {
         this.x = x;
         this.y = y;
-    }
-
-    @Override
-    public void toJson() {
     }
 
     protected Coordinate(Parcel in) {
@@ -37,6 +35,11 @@ public class Coordinate implements Model {
 
     @Override
     public void fromJson() {
+
+    }
+
+    @Override
+    public void toJson() {
 
     }
 

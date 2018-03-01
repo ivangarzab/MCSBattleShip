@@ -1,10 +1,13 @@
 package mcs.salazar.jesus.mcsbattleship;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -15,10 +18,12 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,8 +44,11 @@ public class LoginActivity extends AppCompatActivity   {
 
     //defining views
     private Button buttonSignIn;
+    private Button buttonRegister;
     private EditText editTextEmail;
     private EditText editTextPassword;
+   // private TextView resetPassword;
+
 
     // Firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -56,29 +64,11 @@ public class LoginActivity extends AppCompatActivity   {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Create SessionGameView bind to ViewModel which contains Model
-        GridLayoutBinding binding = DataBindingUtil
-                .setContentView(this, R.layout.grid_layout);
-        binding.setViewmodel(new SessionGameViewModel(new Session(new User(), new User())));
-
-        // Bind OpponentBattlefield
-        InGameUtil.bindOpponentBattlefield(this,
-                binding.getViewmodel().getOpponentBattlefield(),
-                (BattlefieldView) findViewById(R.id.session_game_opponent_battlefield));
-
-        // Bind PlayerBattlefield
-        InGameUtil.bindPlayerBattlefield(this,
-                binding.getViewmodel().getPlayerBattlefield(),
-                (BattlefieldView) findViewById(R.id.session_game_player_battlefield));
-        /*
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("battlefield", new Battlefield(5, 3));
-        Battlefield ship = bundle.getParcelable("battlefield");
-        Log.i("TRASH", "SOMETHING");
+        setContentView(R.layout.activity_login);
         setupFacebookAuth();
         setupEmailLogin();
-        */
+        setUpEmailRegister();
+        setResetPassword();
     }
 
 
@@ -112,10 +102,27 @@ public class LoginActivity extends AppCompatActivity   {
         });
     }
 
+    private void setUpEmailRegister() {
+        // Initializing views
+        buttonRegister = findViewById(R.id.buttonRegister);
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+            }
+        });
+
+    }
+
+    private void dashBoard() {
+        Intent intent = new Intent(LoginActivity.this, PlayerDashBoard.class);
+        startActivity(intent);
+    }
+
     private void setupEmailLogin() {
         // Gettting firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
-        //initializing views
+        // Initializing views
         editTextEmail =  findViewById(R.id.editTextEmail);
         editTextPassword =  findViewById(R.id.editTextPassword);
         buttonSignIn = findViewById(R.id.buttonSignin);
@@ -125,27 +132,51 @@ public class LoginActivity extends AppCompatActivity   {
             public void onClick(View v) {
 
                 String email = editTextEmail.getText().toString();
-
                 String password = editTextPassword.getText().toString();
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(LoginActivity.this, "Please Enter Email", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(LoginActivity.this, "Please Enter password", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if(password.length() < 6) {
+                    Toast.makeText(LoginActivity.this, "Password too short, Enter Again", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(LoginActivity.this, "Successful login", Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(LoginActivity.this, "Successful login", Toast.LENGTH_LONG).show();
+                                    dashBoard();
                                 } else {
                                     Toast toast = Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG);
                                     toast.show();
                                 }
                             }
                         });
-
             }
         });
     }
 
-    /*@Override
+    private void setResetPassword() {
+        TextView resetPassword = findViewById(R.id.reset_password);
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, ResetPassword.class));
+            }
+        });
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and act accordingly
@@ -161,7 +192,7 @@ public class LoginActivity extends AppCompatActivity   {
         super.onActivityResult(requestCode, resultCode, data);
         // Pass the activity result back to the Facebook SDK
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
-    }*/
+    }
 
     private void handleFacebookAccessToken(AccessToken token) {
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
@@ -185,5 +216,4 @@ public class LoginActivity extends AppCompatActivity   {
                     }
                 });
     }
-
 }
