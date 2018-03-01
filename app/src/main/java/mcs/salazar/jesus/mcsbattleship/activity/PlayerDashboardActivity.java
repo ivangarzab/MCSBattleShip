@@ -37,28 +37,32 @@ public class PlayerDashboardActivity extends AppCompatActivity {
         mPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashboardActivity.this, BattleField_Board.class));
+                startActivity(new Intent(PlayerDashboardActivity.this,
+                        InGameActivity.class));
             }
         });
 
         mScores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashboardActivity.this, ScoresActivity.class));
+                startActivity(new Intent(PlayerDashboardActivity.this,
+                        ScoresActivity.class));
             }
         });
 
         mSessions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashboardActivity.this, SessionsActivity.class));
+                startActivity(new Intent(PlayerDashboardActivity.this,
+                        SessionsActivity.class));
             }
         });
 
         mFriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashboardActivity.this, FriendsActivity.class));
+                startActivity(new Intent(PlayerDashboardActivity.this,
+                        FriendsActivity.class));
             }
         });
 
