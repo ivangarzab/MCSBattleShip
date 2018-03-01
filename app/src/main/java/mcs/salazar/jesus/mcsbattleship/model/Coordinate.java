@@ -1,22 +1,19 @@
-package mcs.salazar.jesus.mcsbattleship.models;
+package mcs.salazar.jesus.mcsbattleship.model;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 /**
  * Created by Ivan on 2/8/2018
  */
 public class Coordinate implements Model {
+
     public int x;
+
     public int y;
 
     public Coordinate(int x, int y) {
         this.x = x;
         this.y = y;
-    }
-
-    @Override
-    public void toJson() {
     }
 
     protected Coordinate(Parcel in) {
@@ -42,6 +39,11 @@ public class Coordinate implements Model {
     }
 
     @Override
+    public void toJson() {
+
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
@@ -50,14 +52,5 @@ public class Coordinate implements Model {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(x);
         parcel.writeInt(y);
-    }
-
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
     }
 }

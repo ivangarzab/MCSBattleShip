@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="button">#CCCCCC</color>
     <color name="cardview">#666666</color>
+    <color name="colorGameActionBackground">#FFFFFF</color>
+    <color name="colorGameActionIcon">#0080FF</color>
+
 </resources>

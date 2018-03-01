@@ -1,6 +1,7 @@
 package mcs.salazar.jesus.mcsbattleship;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,8 +28,12 @@ import com.google.firebase.auth.FirebaseUser;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import mcs.salazar.jesus.mcsbattleship.models.Battlefield;
-import mcs.salazar.jesus.mcsbattleship.models.Battleship;
+import mcs.salazar.jesus.mcsbattleship.databinding.GridLayoutBinding;
+import mcs.salazar.jesus.mcsbattleship.model.Session;
+import mcs.salazar.jesus.mcsbattleship.model.User;
+import mcs.salazar.jesus.mcsbattleship.util.InGameUtil;
+import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
+import mcs.salazar.jesus.mcsbattleship.viewmodel.SessionGameViewModel;
 
 import android.view.View;
 import android.widget.Button;
@@ -60,22 +65,17 @@ public class LoginActivity extends AppCompatActivity   {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("battlefield", new Battlefield(5, 3));
-        Battlefield ship = bundle.getParcelable("battlefield");
-        Log.i("TRASH", "SOMETHING");
         setupFacebookAuth();
         setupEmailLogin();
         setUpEmailRegister();
         setResetPassword();
     }
 
-    private void setupFacebookAuth() {
-        ButterKnife.bind(this);
 
+    private void setupFacebookAuth() {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        ButterKnife.bind(this);
 
         // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
@@ -216,6 +216,4 @@ public class LoginActivity extends AppCompatActivity   {
                     }
                 });
     }
-
-
 }
