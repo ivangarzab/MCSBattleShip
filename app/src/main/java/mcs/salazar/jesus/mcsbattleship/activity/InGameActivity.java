@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import mcs.salazar.jesus.mcsbattleship.R;
 import mcs.salazar.jesus.mcsbattleship.databinding.ActivityInGameBinding;
+import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
 import mcs.salazar.jesus.mcsbattleship.model.Session;
 import mcs.salazar.jesus.mcsbattleship.model.User;
 import mcs.salazar.jesus.mcsbattleship.util.InGameUtil;
@@ -20,7 +21,32 @@ public class InGameActivity extends AppCompatActivity {
         // Create SessionGameView bind to ViewModel which contains Model
         ActivityInGameBinding binding = DataBindingUtil
                 .setContentView(this, R.layout.activity_in_game);
-        binding.setViewmodel(new SessionGameViewModel(new Session(new User(), new User())));
+
+        Session session = new Session(new User(), new User());
+        binding.setViewmodel(new SessionGameViewModel(session));
+
+
+
+        //TODO MOCKS: Create/add mock Battlefields
+        Battlefield b1 = session.getOpponentBattlefield();
+        b1.setGrid(new boolean[][]{{true, true, true, false, false, false},
+                {false, false, false, true, false, false},
+                {true, false, false, true, false, false},
+                {true, false, false, true, false, true},
+                {true, false, false, false, false, true},
+                {false, true, true, true, false, true}});
+        session.setOpponentBattlefield(b1);
+
+        Battlefield b2 = session.getPlayerBattlefield();
+        b2.setGrid(new boolean[][]{{true, true, true, false, false, false},
+                {false, false, false, true, false, false},
+                {true, false, false, true, false, false},
+                {true, false, false, true, false, true},
+                {true, false, false, false, false, true},
+                {false, true, true, true, false, true}});
+        session.setPlayerBattlefield(b2);
+
+
 
         // Bind OpponentBattlefield
         InGameUtil.bindOpponentBattlefield(this,

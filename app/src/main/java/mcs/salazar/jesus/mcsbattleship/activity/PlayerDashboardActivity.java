@@ -69,7 +69,7 @@ public class PlayerDashboardActivity extends AppCompatActivity {
         mSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //signOut();
+                signOut();
                 finish();
             }
         });

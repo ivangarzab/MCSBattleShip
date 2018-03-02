@@ -4,7 +4,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="4">
+    android:weightSum="4"
+    android:background="@color/colorGameActionBackground">
 
     <ImageButton
         android:id="@+id/game_action_chat_button"
@@ -12,13 +13,13 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:src="@drawable/ic_chat_black_24dp"
-        android:tint="@color/colorGameActionIcon"
+        android:tint="@color/colorPrimaryDark"
         android:background="@android:color/transparent" />
 
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:background="@color/colorGameActionIcon" />
+        android:background="@color/colorPrimaryDark" />
 
     <ImageButton
         android:id="@+id/game_action_pause_button"
@@ -26,13 +27,13 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:src="@drawable/ic_pause_black_24dp"
-        android:tint="@color/colorGameActionIcon"
+        android:tint="@color/colorPrimaryDark"
         android:background="@android:color/transparent"/>
 
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:background="@color/colorGameActionIcon" />
+        android:background="@color/colorPrimaryDark" />
 
     <ImageButton
         android:id="@+id/game_action_other_button"
@@ -40,13 +41,13 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:src="@drawable/ic_settings_black_24dp"
-        android:tint="@color/colorGameActionIcon"
+        android:tint="@color/colorPrimaryDark"
         android:background="@android:color/transparent"/>
 
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:background="@color/colorGameActionIcon" />
+        android:background="@color/colorPrimaryDark" />
 
     <ImageButton
         android:id="@+id/game_action_surrender_button"
@@ -54,7 +55,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:src="@drawable/ic_surrender_black_24dp"
-        android:tint="@color/colorGameActionIcon"
+        android:tint="@color/colorPrimaryDark"
         android:background="@android:color/transparent"/>
 
 </LinearLayout>

@@ -2,10 +2,13 @@ package mcs.salazar.jesus.mcsbattleship.adapter;
 
 import android.content.Context;
 
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 
@@ -49,22 +52,34 @@ public class PlayerBattlefieldAdapter extends BaseAdapter {
 
         if (convertView == null) {
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
-            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            //imageView.setPadding(8, 8, 8, 8);
+            imageView.setLayoutParams(new GridView.LayoutParams(
+                    FrameLayout.LayoutParams.MATCH_PARENT,
+                    (int) parent.getResources().getDimension(R.dimen.cell_size)));
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.setBackground(new ColorDrawable(parent.getResources()
+                    .getColor(R.color.colorPrimaryDark)));
         } else {
             imageView = (ImageView) convertView;
         }
 
         // if there is a ship in this position
         if (mGrid[position / mBattlefieldSize][position % mBattlefieldSize]) {
-            imageView.setImageResource(R.drawable.sample_1);
-        }
-        // else, set default/random background image
-        else {
-            imageView.setImageResource(R.drawable.water_pattern_default);
+            imageView.setBackground(new ColorDrawable(parent.getResources()
+                    .getColor(R.color.colorAccent)));
         }
 
+        imageView.setOnClickListener(getOnClickListener());
+
         return imageView;
+    }
+
+    public View.OnClickListener getOnClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.setBackground(new ColorDrawable(view.getResources()
+                        .getColor(R.color.colorShot)));
+            }
+        };
     }
 }
