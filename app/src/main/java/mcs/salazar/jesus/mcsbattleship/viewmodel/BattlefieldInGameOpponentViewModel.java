@@ -24,7 +24,7 @@ public class BattlefieldInGameOpponentViewModel extends BattlefieldInGameViewMod
     @Override
     public void createAdapter(Context context) {
         mAdapter = new OpponentBattlefieldAdapter(context,
-                mBattlefield.getSize(), mBattlefield.getGrid());
+                mBattlefield.getSize(), mBattlefield.getGrid(), mBattlefield.getShots());
     }
 
     public AdapterView.OnItemClickListener getItemClickListener() {

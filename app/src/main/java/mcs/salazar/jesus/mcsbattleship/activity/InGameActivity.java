@@ -35,6 +35,12 @@ public class InGameActivity extends AppCompatActivity {
                 {true, false, false, true, false, true},
                 {true, false, false, false, false, true},
                 {false, true, true, true, false, true}});
+        b1.setShots(new boolean[][]{{false, false, false, false, false, false},
+                {true, false, false, false, true, false},
+                {false, false, false, false, false, false},
+                {false, false, true, false, false, false},
+                {false, false, false, false, false, false},
+                {false, false, false, false, false, true}});
         session.setOpponentBattlefield(b1);
 
         Battlefield b2 = session.getPlayerBattlefield();
@@ -44,6 +50,12 @@ public class InGameActivity extends AppCompatActivity {
                 {true, false, false, true, false, true},
                 {true, false, false, false, false, true},
                 {false, true, true, true, false, true}});
+        b2.setShots(new boolean[][]{{true, true, false, false, false, false},
+                {false, false, false, false, false, false},
+                {false, false, false, false, true, false},
+                {false, false, false, false, false, false},
+                {false, false, false, false, false, false},
+                {true, false, false, false, false, false}});
         session.setPlayerBattlefield(b2);
 
 

@@ -17,7 +17,7 @@ public class BattlefieldInGamePlayerViewModel extends BattlefieldInGameViewModel
     @Override
     public void createAdapter(Context context) {
         mAdapter = new PlayerBattlefieldAdapter(context,
-                mBattlefield.getSize(), mBattlefield.getGrid());
+                mBattlefield.getSize(), mBattlefield.getGrid(), mBattlefield.getShots());
     }
 
     @Override

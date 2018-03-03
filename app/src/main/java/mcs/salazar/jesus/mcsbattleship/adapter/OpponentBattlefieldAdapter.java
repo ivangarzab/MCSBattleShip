@@ -16,15 +16,17 @@ public class OpponentBattlefieldAdapter extends BaseAdapter {
 
     private Context mContext;
 
-    public boolean[][] mGrid;
+    public boolean[][] mGrid, mShots;
 
     // Adapter should have access to this number somehow!
     private int mBattlefieldSize;
 
-    public OpponentBattlefieldAdapter(Context context, int size, boolean[][] grid) {
+    public OpponentBattlefieldAdapter(Context context, int size,
+                                      boolean[][] grid, boolean[][] shots) {
         this.mContext = context;
         this.mBattlefieldSize = size;
         this.mGrid = grid;
+        this.mShots = shots;
     }
 
     public int getCount() {
@@ -58,13 +60,16 @@ public class OpponentBattlefieldAdapter extends BaseAdapter {
         }
 
         // This spot has been shot
-        /*
-        if (mGrid[position / mBattlefieldSize][position % mBattlefieldSize]) {
-            imageView.setImageResource(R.drawable.sample_1);
-        }*/
-
-        //imageView.setOnClickListener(mClickListener);
-
+        if (mShots[position / mBattlefieldSize][position % mBattlefieldSize]) {
+            // There is a battlefield on this spot
+            if (mGrid[position / mBattlefieldSize][position % mBattlefieldSize]) {
+                imageView.setBackground(new ColorDrawable(mContext.getResources()
+                        .getColor(R.color.colorOpponentHit)));
+            } else {
+                imageView.setBackground(new ColorDrawable(mContext.getResources()
+                        .getColor(R.color.colorOpponentMiss)));
+            }
+        }
         return imageView;
     }
 }

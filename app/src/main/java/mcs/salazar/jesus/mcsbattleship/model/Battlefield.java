@@ -10,6 +10,7 @@ public class Battlefield implements Model, Parcelable {
 
     private int mSize;
     private boolean[][] mGrid;
+    private boolean[][] mShots;
     private int mNumberOfShips;
     private Battleship[] mBattleships;
     private int mNumberOfShipsLeft;
@@ -21,12 +22,14 @@ public class Battlefield implements Model, Parcelable {
         mNumberOfShipsLeft = mNumberOfShips;
         // Initiate and populate grid
         mGrid = new boolean[mSize][mSize];
+        mShots = new boolean[mSize][mSize];
     }
 
 
     protected Battlefield(Parcel in) {
         mSize = in.readInt();
         mGrid = (boolean[][])in.readSerializable();
+        mShots = (boolean[][])in.readSerializable();
         mNumberOfShips = in.readInt();
         mBattleships = in.createTypedArray(Battleship.CREATOR);
         mNumberOfShipsLeft = in.readInt();
@@ -58,6 +61,14 @@ public class Battlefield implements Model, Parcelable {
 
     public void setGrid(boolean[][] grid) {
         mGrid = grid;
+    }
+
+    public boolean[][] getShots() {
+        return mShots;
+    }
+
+    public void setShots(boolean[][] shots) {
+        mShots = shots;
     }
 
     public int getNumberOfShips() {
@@ -103,6 +114,7 @@ public class Battlefield implements Model, Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(mSize);
         parcel.writeSerializable(mGrid);
+        parcel.writeSerializable(mShots);
         parcel.writeInt(mNumberOfShips);
         parcel.writeTypedArray(mBattleships, i);
         parcel.writeInt(mNumberOfShipsLeft);
