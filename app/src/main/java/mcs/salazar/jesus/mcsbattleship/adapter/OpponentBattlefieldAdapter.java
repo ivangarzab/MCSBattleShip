@@ -58,21 +58,13 @@ public class OpponentBattlefieldAdapter extends BaseAdapter {
         }
 
         // This spot has been shot
+        /*
         if (mGrid[position / mBattlefieldSize][position % mBattlefieldSize]) {
             imageView.setImageResource(R.drawable.sample_1);
-        }
+        }*/
 
-        imageView.setOnClickListener(getOnClickListener());
+        //imageView.setOnClickListener(mClickListener);
 
         return imageView;
-    }
-
-    public View.OnClickListener getOnClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((ImageView) view).setImageResource(R.drawable.sample_1);
-            }
-        };
     }
 }

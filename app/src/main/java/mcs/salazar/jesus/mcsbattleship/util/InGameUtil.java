@@ -20,8 +20,9 @@ public class InGameUtil {
     }
 
     public static void bindOpponentBattlefield(Context context, Battlefield model, BattlefieldView view) {
-        BattlefieldViewModel viewModel = new BattlefieldInGameOpponentViewModel(context, model);
+        BattlefieldInGameOpponentViewModel viewModel = new BattlefieldInGameOpponentViewModel(context, model);
         view.setAdapter(viewModel.getAdapter());
+        view.setOnItemClickListener(viewModel.getItemClickListener());
         view.setFieldSize(viewModel.getFieldSize());
     }
 }

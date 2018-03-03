@@ -68,18 +68,6 @@ public class PlayerBattlefieldAdapter extends BaseAdapter {
                     .getColor(R.color.colorAccent)));
         }
 
-        imageView.setOnClickListener(getOnClickListener());
-
         return imageView;
-    }
-
-    public View.OnClickListener getOnClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view.setBackground(new ColorDrawable(view.getResources()
-                        .getColor(R.color.colorShot)));
-            }
-        };
     }
 }

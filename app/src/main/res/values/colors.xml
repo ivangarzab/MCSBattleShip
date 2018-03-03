@@ -7,6 +7,9 @@
     <color name="colorButtonText">#f9f9f9</color>
     <color name="colorCardView">#666666</color>
     <color name="colorGameActionBackground">#FFFFFF</color>
-    <color name="colorShot">#660000</color>
+    <color name="colorShipShot">#660000</color>
+    <color name="colorOpponentHit">#66CC00</color>
+    <color name="colorOpponentMiss">#FF0000</color>
+
 
 </resources>
