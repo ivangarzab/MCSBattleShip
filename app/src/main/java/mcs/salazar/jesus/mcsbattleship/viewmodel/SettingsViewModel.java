@@ -6,8 +6,4 @@ package mcs.salazar.jesus.mcsbattleship.viewmodel;
  */
 public class SettingsViewModel implements MVVMViewModel {
 
-    @Override
-    public void bind() {
-
-    }
 }

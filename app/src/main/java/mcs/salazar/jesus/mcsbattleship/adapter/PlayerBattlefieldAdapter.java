@@ -2,10 +2,13 @@ package mcs.salazar.jesus.mcsbattleship.adapter;
 
 import android.content.Context;
 
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 
@@ -18,15 +21,17 @@ public class PlayerBattlefieldAdapter extends BaseAdapter {
 
     private Context mContext;
 
-    public boolean[][] mGrid;
+    public boolean[][] mGrid, mShots;
 
     // Adapter should have access to this number somehow!
     private int mBattlefieldSize;
 
-    public PlayerBattlefieldAdapter(Context context, int size, boolean[][] grid) {
+    public PlayerBattlefieldAdapter(Context context, int size,
+                                    boolean[][] grid, boolean[][] shots) {
         this.mContext = context;
         this.mBattlefieldSize = size;
         this.mGrid = grid;
+        this.mShots = shots;
     }
 
     public int getCount() {
@@ -49,20 +54,31 @@ public class PlayerBattlefieldAdapter extends BaseAdapter {
 
         if (convertView == null) {
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
-            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            //imageView.setPadding(8, 8, 8, 8);
+            imageView.setLayoutParams(new GridView.LayoutParams(
+                    FrameLayout.LayoutParams.MATCH_PARENT,
+                    (int) parent.getResources().getDimension(R.dimen.cell_size)));
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.setBackground(new ColorDrawable(parent.getResources()
+                    .getColor(R.color.colorPrimaryDark)));
         } else {
             imageView = (ImageView) convertView;
         }
 
         // if there is a ship in this position
         if (mGrid[position / mBattlefieldSize][position % mBattlefieldSize]) {
-            imageView.setImageResource(R.drawable.sample_1);
+            imageView.setBackground(new ColorDrawable(parent.getResources()
+                    .getColor(R.color.colorAccent)));
         }
-        // else, set default/random background image
-        else {
-            imageView.setImageResource(R.drawable.water_pattern_default);
+        // This spot has been shot
+        if (mShots[position / mBattlefieldSize][position % mBattlefieldSize]) {
+            // There is a battlefield on this spot
+            if (mGrid[position / mBattlefieldSize][position % mBattlefieldSize]) {
+                imageView.setBackground(new ColorDrawable(mContext.getResources()
+                        .getColor(R.color.colorShipShot)));
+            } else {
+                imageView.setBackground(new ColorDrawable(mContext.getResources()
+                        .getColor(R.color.colorPrimary)));
+            }
         }
 
         return imageView;

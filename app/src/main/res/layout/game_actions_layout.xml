@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorGameActionBackground"
+    android:orientation="horizontal"
     android:weightSum="4">
 
     <ImageButton
@@ -11,50 +11,50 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@android:color/transparent"
         android:src="@drawable/ic_chat_black_24dp"
-        android:tint="@color/colorGameActionIcon"
-        android:background="@android:color/transparent" />
+        android:tint="@color/colorPrimaryDark" />
 
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:background="@color/colorGameActionIcon" />
+        android:background="@color/colorPrimaryDark" />
 
     <ImageButton
         android:id="@+id/game_action_pause_button"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@android:color/transparent"
         android:src="@drawable/ic_pause_black_24dp"
-        android:tint="@color/colorGameActionIcon"
-        android:background="@android:color/transparent"/>
+        android:tint="@color/colorPrimaryDark" />
 
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:background="@color/colorGameActionIcon" />
+        android:background="@color/colorPrimaryDark" />
 
-    <ImageButton
-        android:id="@+id/game_action_other_button"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:src="@drawable/ic_settings_black_24dp"
-        android:tint="@color/colorGameActionIcon"
-        android:background="@android:color/transparent"/>
-
-    <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="@color/colorGameActionIcon" />
 
     <ImageButton
         android:id="@+id/game_action_surrender_button"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@android:color/transparent"
         android:src="@drawable/ic_surrender_black_24dp"
-        android:tint="@color/colorGameActionIcon"
-        android:background="@android:color/transparent"/>
+        android:tint="@color/colorPrimaryDark" />
 
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark" />
+
+    <ImageButton
+        android:id="@+id/game_action_settings_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_settings_black_24dp"
+        android:tint="@color/colorPrimaryDark" />
 </LinearLayout>

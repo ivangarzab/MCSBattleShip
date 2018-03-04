@@ -1,4 +1,4 @@
-package mcs.salazar.jesus.mcsbattleship;
+package mcs.salazar.jesus.mcsbattleship.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,11 +15,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+import mcs.salazar.jesus.mcsbattleship.R;
+
 /**
  * Created by berekethaile on 2/27/18.
  */
 
-public class ResetPassword extends AppCompatActivity {
+public class ResetPasswordActivity extends AppCompatActivity {
 
     private EditText inputEmail;
     private Button resetButton;
@@ -50,10 +52,10 @@ public class ResetPassword extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(ResetPassword.this, "Check your email for a link to reset your password", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ResetPasswordActivity.this, "Check your email for a link to reset your password", Toast.LENGTH_LONG).show();
                                     loginPage();
                                 } else {
-                                    Toast.makeText(ResetPassword.this, "Enter correct email address", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ResetPasswordActivity.this, "Enter correct email address", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -63,7 +65,7 @@ public class ResetPassword extends AppCompatActivity {
     }
 
     private void loginPage() {
-        Intent intent = new Intent(ResetPassword.this, LoginActivity.class);
+        Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 }

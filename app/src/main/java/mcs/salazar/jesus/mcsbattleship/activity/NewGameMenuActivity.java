@@ -1,18 +1,19 @@
-package mcs.salazar.jesus.mcsbattleship;
+package mcs.salazar.jesus.mcsbattleship.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import mcs.salazar.jesus.mcsbattleship.R;
+
 /**
  * Created by berekethaile on 2/20/18.
  */
 
-public class NewGameMenu extends AppCompatActivity {
+public class NewGameMenuActivity extends AppCompatActivity {
 
     Button mContinue, mSurrender;
 
@@ -27,7 +28,8 @@ public class NewGameMenu extends AppCompatActivity {
         mContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NewGameMenu.this, BattleField_Board.class);
+                Intent intent = new Intent(NewGameMenuActivity.this,
+                        InGameActivity.class);
                 startActivity(intent);
             }
         });

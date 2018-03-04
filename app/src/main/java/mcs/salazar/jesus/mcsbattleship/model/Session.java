@@ -19,8 +19,8 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class Session implements Model, Parcelable {
 
-    private final static int BATTLEFIELD_SIZE = 8;
-    private final static int BATTLESHIPS_PER_PLAYER = 4;
+    private final static int BATTLEFIELD_SIZE = 6;
+    private final static int BATTLESHIPS_PER_PLAYER = 5;
 
     private User mPlayer;
     private Battlefield mPlayerBattlefield;
