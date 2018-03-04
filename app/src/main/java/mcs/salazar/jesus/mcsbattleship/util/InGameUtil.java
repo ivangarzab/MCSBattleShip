@@ -1,10 +1,14 @@
 package mcs.salazar.jesus.mcsbattleship.util;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;
 
 import mcs.salazar.jesus.mcsbattleship.R;
+import mcs.salazar.jesus.mcsbattleship.activity.PlayerDashboardActivity;
 import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
 import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
 import mcs.salazar.jesus.mcsbattleship.viewmodel.BattlefieldInGameOpponentViewModel;
@@ -49,5 +53,24 @@ public class InGameUtil {
                     break;
             }
         }
+    }
+
+    public static void displayExitWarning(final Context context) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context)
+                .setTitle("One Second...")
+                .setMessage("Would you like to save and exit this session?")
+                .setCancelable(false)
+                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        Intent intent = new Intent(context, PlayerDashboardActivity.class);
+                        context.startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Back",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+        alertDialogBuilder.create().show();
     }
 }

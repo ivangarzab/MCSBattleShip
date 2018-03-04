@@ -75,4 +75,9 @@ public class InGameActivity extends AppCompatActivity {
                 binding.getViewmodel().getPlayerBattlefield(),
                 (BattlefieldView) findViewById(R.id.session_game_player_battlefield));
     }
+
+    @Override
+    public void onBackPressed() {
+        InGameUtil.displayExitWarning(this);
+    }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import mcs.salazar.jesus.mcsbattleship.activity.PlayerDashboardActivity;
+import mcs.salazar.jesus.mcsbattleship.util.InGameUtil;
 
 /**
  * Created by Ivan on 3/3/2018
@@ -35,22 +36,7 @@ public class InGameActionsViewModel implements MVVMViewModel {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext)
-                        .setTitle("One Second...")
-                        .setMessage("Would you like to save and exit this session?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                Intent intent = new Intent(mContext, PlayerDashboardActivity.class);
-                                mContext.startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton("Back",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                dialog.cancel();
-                            }
-                        });
-                alertDialogBuilder.create().show();
+                InGameUtil.displayExitWarning(view.getContext());
             }
         };
     }

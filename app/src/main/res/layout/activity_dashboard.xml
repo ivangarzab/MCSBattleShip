@@ -10,19 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_margin="16dp">
 
-        <Button
+        <ImageButton
             android:id="@+id/sign_out"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_margin="15dp"
-            android:text="@string/dashboard_sign_out"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_gravity="end"
-            android:textAllCaps="false"
-            android:textColor="@color/colorButtonText"
-            android:textSize="18sp"
-            android:background="@drawable/circular_shape" />
+            android:src="@drawable/exit"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:tint="@color/colorButton"/>
 
         <ImageView
             android:id="@+id/dashboard_title_imageView"
@@ -31,6 +30,7 @@
             android:layout_gravity="center_horizontal"
             android:textColor="@color/colorButtonText"
             android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:src="@drawable/title"/>
 
         <LinearLayout
@@ -42,24 +42,22 @@
                 android:id="@+id/name_game"
                 android:layout_width="160dp"
                 android:layout_height="100dp"
-                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
                 android:text="@string/dashboard_new_game"
-                android:layout_gravity="center"
-                android:textAllCaps="false"
-                android:textColor="@color/colorButtonText"
                 android:textSize="20sp"
+                android:textColor="@color/colorButtonText"
                 android:background="@drawable/rounded_shape" />
 
             <Button
                 android:id="@+id/sessions"
                 android:layout_width="160dp"
                 android:layout_height="100dp"
-                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
                 android:text="@string/dashboard_sessions"
-                android:layout_gravity="center"
-                android:textAllCaps="false"
-                android:textColor="@color/colorButtonText"
                 android:textSize="20sp"
+                android:textColor="@color/colorButtonText"
                 android:background="@drawable/rounded_shape"/>
 
         </LinearLayout>
@@ -73,23 +71,21 @@
                 android:id="@+id/my_scores"
                 android:layout_width="160dp"
                 android:layout_height="100dp"
-                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
                 android:text="@string/dashboard_scores"
-                android:layout_gravity="center"
-                android:textAllCaps="false"
-                android:textColor="@color/colorButtonText"
                 android:textSize="20sp"
+                android:textColor="@color/colorButtonText"
                 android:background="@drawable/rounded_shape"/>
             <Button
                 android:id="@+id/friends"
                 android:layout_width="160dp"
                 android:layout_height="100dp"
-                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
                 android:text="@string/dashboard_friends"
-                android:layout_gravity="center"
-                android:textAllCaps="false"
-                android:textColor="@color/colorButtonText"
                 android:textSize="20sp"
+                android:textColor="@color/colorButtonText"
                 android:background="@drawable/rounded_shape"/>
         </LinearLayout>
 
