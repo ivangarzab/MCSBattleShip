@@ -1,5 +1,6 @@
 package mcs.salazar.jesus.mcsbattleship.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -62,8 +63,7 @@ public class InGameUtil {
                 .setCancelable(false)
                 .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
-                        Intent intent = new Intent(context, PlayerDashboardActivity.class);
-                        context.startActivity(intent);
+                        ((Activity)context).finish();
                     }
                 })
                 .setNegativeButton("Back",new DialogInterface.OnClickListener() {
