@@ -16,6 +16,11 @@ public class Coordinate implements Model {
         this.y = y;
     }
 
+    public Coordinate () {
+       /* this.x = 0;
+        this.y = 0;*/
+    }
+
     protected Coordinate(Parcel in) {
         x = in.readInt();
         y = in.readInt();

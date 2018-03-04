@@ -14,11 +14,18 @@ public class Battleship extends BaseObservable implements Model, Parcelable {
     private boolean[] mHitpoints;
 
     public Battleship(int shipSize) {
-        mShipSize = shipSize;
+     /*   mShipSize = shipSize;
         mCoordinates = new Coordinate[mShipSize];
-        mHitpoints = new boolean[mShipSize];
+        mHitpoints = new boolean[mShipSize];*/
 
     }
+
+    public Battleship() {
+        this.mShipSize = 0;
+        this.mCoordinates = new Coordinate[0];
+        this.mHitpoints = null;
+    }
+
 
     protected Battleship(Parcel in) {
         mShipSize = in.readInt();

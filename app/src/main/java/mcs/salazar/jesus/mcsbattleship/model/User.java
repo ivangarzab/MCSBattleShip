@@ -3,6 +3,11 @@ package mcs.salazar.jesus.mcsbattleship.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Ivan on 2/5/2018
  */
@@ -38,6 +43,8 @@ public class User implements Model, Parcelable {
         mTotalHitsSent = in.readInt();
         mTotalHitsReceived = in.readInt();
     }
+
+
 
     public static final Creator<User> CREATOR = new Creator<User>() {
         @Override

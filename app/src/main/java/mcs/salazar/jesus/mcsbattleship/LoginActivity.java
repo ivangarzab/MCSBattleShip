@@ -22,13 +22,31 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
+import mcs.salazar.jesus.mcsbattleship.model.Session;
+import mcs.salazar.jesus.mcsbattleship.model.User;
+import mcs.salazar.jesus.mcsbattleship.util.FirebaseService;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class LoginActivity extends AppCompatActivity   {
@@ -49,6 +67,21 @@ public class LoginActivity extends AppCompatActivity   {
 
     @BindView(R.id.login_facebook_button) LoginButton mFacebookButton;
 
+    User opponent, player;
+    int size, NumberOfShips;
+    Session mSession = new Session(opponent, player);
+    User mUser = new User();
+    Battlefield mBattlefield = new Battlefield(size, NumberOfShips);
+
+    FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference mBattlefieldRef = mDatabase.getReference().child("Battlefields");
+    DatabaseReference mSessionRef = mDatabase.getReference().child("Sessions");
+    DatabaseReference mUserRef = mDatabase.getReference().child("Users");
+
+    Query mBattlefieldQuery = mBattlefieldRef;
+    Query mSessionsQuery = mSessionRef;
+    Query mUsersQuery = mUserRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +92,86 @@ public class LoginActivity extends AppCompatActivity   {
         setupEmailLogin();
         setUpEmailRegister();
         setResetPassword();
+
+        userList();
+        sessionsList();
+        battlefieldsList();
+
+    }
+
+    private void userList() {
+
+        mUsersQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, String > usersList = (HashMap<String, String>) dataSnapshot.getValue();
+                JSONObject jsonObject = new JSONObject();
+                for (String key: usersList.keySet()) {
+                    Object value = usersList.get(key);
+                    try {
+                        jsonObject.put(key, value);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void sessionsList() {
+        mSessionsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, String > sessionsList = (HashMap<String, String>) dataSnapshot.getValue();
+                JSONObject jsonObject = new JSONObject();
+                for (String key: sessionsList.keySet()) {
+                    Object value = sessionsList.get(key);
+                    try {
+                        jsonObject.put(key, value);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void battlefieldsList() {
+//        final ArrayList<Battlefield> battlefieldArrayList = new ArrayList<>();
+
+        mBattlefieldQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Map<String, String > battlefieldsList = (HashMap<String, String>) dataSnapshot.getValue();
+
+                JSONObject jsonObject = new JSONObject();
+                for (String key: battlefieldsList.keySet()) {
+                    Object value = battlefieldsList.get(key);
+                    try {
+                        jsonObject.put(key, value);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     @Override

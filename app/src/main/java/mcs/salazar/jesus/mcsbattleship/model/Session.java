@@ -3,14 +3,20 @@ package mcs.salazar.jesus.mcsbattleship.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Created by Ivan on 2/5/2018
  */
+@IgnoreExtraProperties
 public class Session implements Model, Parcelable {
 
     private final static int BATTLEFIELD_SIZE = 8;
@@ -24,6 +30,17 @@ public class Session implements Model, Parcelable {
     private int mTotalTurns;
     private String mDateStarted;
     private String mDateFinished;
+
+    public Session() {
+        this.mPlayer = new User();
+        this.mPlayerBattlefield = new Battlefield();
+        this.mOpponent = new User();
+        this.mOpponentBattlefield = new Battlefield();
+        this.mNextTurn = null;
+        this.mTotalTurns = 0;
+        mDateStarted = "";
+        mDateFinished = "";
+    };
 
     public Session(User opponent, User player) {
         mPlayer = player;
@@ -48,6 +65,14 @@ public class Session implements Model, Parcelable {
         mTotalTurns = in.readInt();
         mDateStarted = in.readString();
         mDateFinished = in.readString();
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String , Object> result = new HashMap<>();
+        result.put("opponent", mOpponent);
+        result.put("player", mPlayer);
+        return result;
     }
 
     public static final Creator<Session> CREATOR = new Creator<Session>() {
