@@ -6,9 +6,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import mcs.salazar.jesus.mcsbattleship.R;
 
 
@@ -18,54 +21,63 @@ import mcs.salazar.jesus.mcsbattleship.R;
 
 public class PlayerDashboardActivity extends AppCompatActivity {
 
-    private Button mPlay, mScores, mSessions, mFriends, mSignout;
+    @BindView(R.id.name_game) Button mPlay;
+
+    @BindView(R.id.my_scores) Button mScores;
+
+    @BindView(R.id.sessions) Button mSessions;
+
+    @BindView(R.id.friends) Button mFriends;
+
+    @BindView(R.id.sign_out) ImageButton mSignout;
+
     private FirebaseAuth mFirebaseAuth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        // Bind ButterKnife!
+        ButterKnife.bind(this);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-
-        mPlay = findViewById(R.id.name_game);
-        mScores = findViewById(R.id.my_scores);
-        mSessions = findViewById(R.id.sessions);
-        mFriends = findViewById(R.id.friends);
-        mSignout = findViewById(R.id.sign_out);
 
         mPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashboardActivity.this, BattleField_Board.class));
+                startActivity(new Intent(PlayerDashboardActivity.this,
+                        InGameActivity.class));
             }
         });
 
         mScores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashboardActivity.this, ScoresActivity.class));
+                startActivity(new Intent(PlayerDashboardActivity.this,
+                        ScoresActivity.class));
             }
         });
 
         mSessions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashboardActivity.this, SessionsActivity.class));
+                startActivity(new Intent(PlayerDashboardActivity.this,
+                        SessionsActivity.class));
             }
         });
 
         mFriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashboardActivity.this, FriendsActivity.class));
+                startActivity(new Intent(PlayerDashboardActivity.this,
+                        FriendsActivity.class));
             }
         });
 
         mSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //signOut();
+                signOut();
                 finish();
             }
         });

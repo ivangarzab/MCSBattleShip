@@ -18,9 +18,4 @@ public class BattlefieldSetupViewModel extends BattlefieldViewModel {
     public void createAdapter(Context context) {
         //TODO: Create Adapter class for Setup behaviour and instantiante here
     }
-
-    @Override
-    public void bind() {
-        super.bind();
-    }
 }

@@ -33,9 +33,4 @@ public abstract class BattlefieldViewModel implements MVVMViewModel {
     }
 
     public abstract void createAdapter(Context context);
-
-    @Override
-    public void bind() {
-
-    }
 }

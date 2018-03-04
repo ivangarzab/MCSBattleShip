@@ -2,11 +2,14 @@
 <resources>
     <color name="colorPrimary">#003667 </color>
     <color name="colorPrimaryDark">#0076C0</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#666666</color>
     <color name="colorButton">#CCCCCC</color>
     <color name="colorButtonText">#f9f9f9</color>
     <color name="colorCardView">#666666</color>
     <color name="colorGameActionBackground">#FFFFFF</color>
-    <color name="colorGameActionIcon">#0080FF</color>
+    <color name="colorShipShot">#660000</color>
+    <color name="colorOpponentHit">#66CC00</color>
+    <color name="colorOpponentMiss">#FF0000</color>
+
 
 </resources>

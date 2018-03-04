@@ -28,7 +28,8 @@ public class NewGameMenuActivity extends AppCompatActivity {
         mContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NewGameMenuActivity.this, BattleField_Board.class);
+                Intent intent = new Intent(NewGameMenuActivity.this,
+                        InGameActivity.class);
                 startActivity(intent);
             }
         });

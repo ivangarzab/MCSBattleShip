@@ -43,19 +43,20 @@
         <activity android:name=".activity.SignUpActivity" />
         <activity android:name=".activity.PlayerDashboardActivity">
             <intent-filter>
-            <action android:name="android.intent.action.SEARCH"/>
+                <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-                <meta-data
-                    android:name="android.app.searchable"
-                    android:resource="@xml/searchable" />
-        </activity>
-        <activity android:name=".activity.ScoresActivity"/>
-        <activity android:name=".activity.SessionsActivity"/>
-        <activity android:name=".activity.FriendsActivity"/>
-        <activity android:name=".activity.NewGameMenuActivity"/>
-        <activity android:name=".activity.PostGameReportActivity"/>
-        <activity android:name=".activity.ResetPasswordActivity"/>
 
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity android:name=".activity.ScoresActivity" />
+        <activity android:name=".activity.SessionsActivity" />
+        <activity android:name=".activity.FriendsActivity" />
+        <activity android:name=".activity.NewGameMenuActivity" />
+        <activity android:name=".activity.PostGameReportActivity" />
+        <activity android:name=".activity.ResetPasswordActivity" />
+        <activity android:name=".activity.InGameActivity"></activity>
     </application>
 
 </manifest>
