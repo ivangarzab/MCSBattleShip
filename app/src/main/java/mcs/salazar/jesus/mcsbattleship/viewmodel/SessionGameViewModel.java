@@ -62,9 +62,4 @@ public class SessionGameViewModel implements MVVMViewModel {
     public void setTotalTurns(int totalTurns) {
         this.mSession.setTotalTurns(totalTurns);
     }
-
-    @Override
-    public void bind() {
-
-    }
 }

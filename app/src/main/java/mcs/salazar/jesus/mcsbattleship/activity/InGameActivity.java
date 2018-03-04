@@ -3,6 +3,7 @@ package mcs.salazar.jesus.mcsbattleship.activity;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ViewGroup;
 
 import mcs.salazar.jesus.mcsbattleship.R;
 import mcs.salazar.jesus.mcsbattleship.databinding.ActivityInGameBinding;
@@ -60,14 +61,16 @@ public class InGameActivity extends AppCompatActivity {
 
 
 
-        // Bind OpponentBattlefield
+        // Bind Opponent Battlefield
         InGameUtil.bindOpponentBattlefield(this,
                 binding.getViewmodel().getOpponentBattlefield(),
                 (BattlefieldView) findViewById(R.id.session_game_opponent_battlefield));
 
-        //TODO: Create and bind game_actions_layout's click listeners
+        // Bind Game Actions
+        InGameUtil.bindInGameActions(this,
+                (ViewGroup) findViewById(R.id.session_game_actions));
 
-        // Bind PlayerBattlefield
+        // Bind Player Battlefield
         InGameUtil.bindPlayerBattlefield(this,
                 binding.getViewmodel().getPlayerBattlefield(),
                 (BattlefieldView) findViewById(R.id.session_game_player_battlefield));

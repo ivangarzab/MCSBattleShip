@@ -43,9 +43,4 @@ public class BattlefieldInGameOpponentViewModel extends BattlefieldInGameViewMod
             }
         };
     }
-
-    @Override
-    public void bind() {
-        super.bind();
-    }
 }

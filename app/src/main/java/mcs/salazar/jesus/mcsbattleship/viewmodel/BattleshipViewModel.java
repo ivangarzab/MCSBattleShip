@@ -49,9 +49,4 @@ public class BattleshipViewModel implements MVVMViewModel {
             }
         };
     }
-
-    @Override
-    public void bind() {
-
-    }
 }
