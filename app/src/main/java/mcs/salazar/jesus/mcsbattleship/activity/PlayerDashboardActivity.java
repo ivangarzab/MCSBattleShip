@@ -16,7 +16,9 @@ import com.google.gson.Gson;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mcs.salazar.jesus.mcsbattleship.R;
+import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
 import mcs.salazar.jesus.mcsbattleship.model.Session;
+import mcs.salazar.jesus.mcsbattleship.model.User;
 
 
 /**
@@ -36,7 +38,11 @@ public class PlayerDashboardActivity extends AppCompatActivity {
     @BindView(R.id.sign_out) ImageButton mSignout;
 
     private FirebaseAuth mFirebaseAuth;
-    String playerEmail;
+
+    User mUser1= new User();
+    User mUser2 = new User();
+    Battlefield mBattlefield1 = new Battlefield();
+    Battlefield mBattlefield2 = new Battlefield();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,11 +51,10 @@ public class PlayerDashboardActivity extends AppCompatActivity {
         // Bind ButterKnife!
         ButterKnife.bind(this);
 
-        Intent intent = getIntent();
-        playerEmail = intent.getStringExtra("player_email");
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        getsharepreferences();
+
+        Session session = getsharepreferences();
 
         mPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,13 +99,25 @@ public class PlayerDashboardActivity extends AppCompatActivity {
 
 
     private Session getsharepreferences() {
+
         final SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         Gson gson = new Gson();
         String value = mSharedPreferences.getString("MySession", "");
         Session session= gson.fromJson(value, Session.class);
 
-        return session;
-
+        if (mFirebaseAuth.getCurrentUser().getEmail().equals(session.getPlayer().getEmail())){
+            return session;
+        } else {
+            // Switch Player & Opponent
+            User newUser = session.getPlayer();
+            session.setPlayer(session.getOpponent());
+            session.setOpponent(newUser);
+            // Switch PlayerBattlefield & OpponentBattlefield
+            Battlefield newBattlefield = session.getPlayerBattlefield();
+            session.setPlayerBattlefield(session.getOpponentBattlefield());
+            session.setOpponentBattlefield(newBattlefield);
+            return session;
+        }
     }
 
     private void signOut() {
