@@ -24,12 +24,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import butterknife.BindView;
@@ -37,22 +34,12 @@ import butterknife.ButterKnife;
 import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
 import mcs.salazar.jesus.mcsbattleship.model.Session;
 import mcs.salazar.jesus.mcsbattleship.model.User;
-import mcs.salazar.jesus.mcsbattleship.util.FirebaseService;
 
 import mcs.salazar.jesus.mcsbattleship.R;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 
 public class LoginActivity extends AppCompatActivity   {
@@ -103,7 +90,6 @@ public class LoginActivity extends AppCompatActivity   {
         setResetPassword();
 
         //sharepreferences();
-
     }
 
     private void sharepreferences() {
@@ -113,11 +99,10 @@ public class LoginActivity extends AppCompatActivity   {
         Object session_object = getSession();
         String json = gson.toJson(session_object);
         editor.putString("MySession", json);
-        editor.commit();
+        editor.apply();
     }
 
     private Session getSession() {
-
         mUser1.setId("L6bBeal7slZ_K1aZd6R");
         mUser1.setEmail("ivgarber92@hotmail.com");
 
@@ -156,7 +141,7 @@ public class LoginActivity extends AppCompatActivity   {
 
 
         mSession.setOpponent(mUser1);
-        // whos logged in
+        // who's logged in
         mSession.setPlayer(mUser2);
         mSession.setOpponentBattlefield(mBattlefield1);
         mSession.setPlayerBattlefield(mBattlefield2);
@@ -292,6 +277,7 @@ public class LoginActivity extends AppCompatActivity   {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, getString(R.string.facebook_signin_success));
+                            gotoDashboard();
                             // Get user for future use
                             //FirebaseUser user = mAuth.getCurrentUser();
                         } else {

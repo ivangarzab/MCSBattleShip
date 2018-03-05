@@ -1,11 +1,16 @@
 package mcs.salazar.jesus.mcsbattleship.activity;
 
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
+
 import mcs.salazar.jesus.mcsbattleship.R;
+import mcs.salazar.jesus.mcsbattleship.contracts.SessionContract;
 import mcs.salazar.jesus.mcsbattleship.databinding.ActivityInGameBinding;
 import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
 import mcs.salazar.jesus.mcsbattleship.model.Session;
@@ -14,7 +19,11 @@ import mcs.salazar.jesus.mcsbattleship.util.InGameUtil;
 import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
 import mcs.salazar.jesus.mcsbattleship.viewmodel.SessionGameViewModel;
 
-public class InGameActivity extends AppCompatActivity {
+import static mcs.salazar.jesus.mcsbattleship.activity.PlayerDashboardActivity.SESSION_EXTRA;
+
+public class InGameActivity extends AppCompatActivity implements SessionContract {
+
+    private Session mSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +32,11 @@ public class InGameActivity extends AppCompatActivity {
         ActivityInGameBinding binding = DataBindingUtil
                 .setContentView(this, R.layout.activity_in_game);
 
-        Session session = new Session(new User(), new User());
-        binding.setViewmodel(new SessionGameViewModel(session));
-
-
-
-        //TODO MOCKS: Create/add mock Battlefields
-        Battlefield b1 = session.getOpponentBattlefield();
+        mSession = getIntent().getParcelableExtra(SESSION_EXTRA);
+/*
+        // MOCKS MOCKS MOCKS
+        mSession = new Session(new User(), new User());
+        Battlefield b1 = mSession.getOpponentBattlefield();
         b1.setGrid(new boolean[][]{{true, true, true, false, false, false},
                 {false, false, false, true, false, false},
                 {true, false, false, true, false, false},
@@ -42,9 +49,9 @@ public class InGameActivity extends AppCompatActivity {
                 {false, false, true, false, false, false},
                 {false, false, false, false, false, false},
                 {false, false, false, false, false, true}});
-        session.setOpponentBattlefield(b1);
+        mSession.setOpponentBattlefield(b1);
 
-        Battlefield b2 = session.getPlayerBattlefield();
+        Battlefield b2 = mSession.getPlayerBattlefield();
         b2.setGrid(new boolean[][]{{true, true, true, false, false, false},
                 {false, false, false, true, false, false},
                 {true, false, false, true, false, false},
@@ -57,9 +64,12 @@ public class InGameActivity extends AppCompatActivity {
                 {false, false, false, false, false, false},
                 {false, false, false, false, false, false},
                 {true, false, false, false, false, false}});
-        session.setPlayerBattlefield(b2);
+        mSession.setPlayerBattlefield(b2);
+        mSession.setNextTurn(mSession.getPlayer());
+*/
 
-
+        // Set ViewModel for SessionView
+        binding.setViewmodel(new SessionGameViewModel(mSession));
 
         // Bind Opponent Battlefield
         InGameUtil.bindOpponentBattlefield(this,
@@ -79,5 +89,26 @@ public class InGameActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         InGameUtil.displayExitWarning(this);
+    }
+
+    @Override
+    public boolean isItMyTurn() {
+        if (mSession.getNextTurn().equals(mSession.getPlayer())) return true;
+        else return false;
+    }
+
+    @Override
+    public void storeSession(Battlefield opponent) {
+        // Update Session before storing
+        this.mSession.setNextTurn(this.mSession.getOpponent());
+        this.mSession.setOpponentBattlefield(opponent);
+        // Saved on Shared Preferences
+        SharedPreferences mSharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(mSession);
+        editor.putString("MySession", json);
+        editor.apply();
     }
 }

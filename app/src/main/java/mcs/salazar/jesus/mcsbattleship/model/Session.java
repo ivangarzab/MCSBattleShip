@@ -59,20 +59,12 @@ public class Session implements Model, Parcelable {
     protected Session(Parcel in) {
         mPlayer = in.readParcelable(User.class.getClassLoader());
         mPlayerBattlefield = in.readParcelable(Battlefield.class.getClassLoader());
-        mNextTurn = in.readParcelable(User.class.getClassLoader());
         mOpponent = in.readParcelable(User.class.getClassLoader());
         mOpponentBattlefield = in.readParcelable(Battlefield.class.getClassLoader());
+        mNextTurn = in.readParcelable(User.class.getClassLoader());
         mTotalTurns = in.readInt();
         mDateStarted = in.readString();
         mDateFinished = in.readString();
-    }
-
-    @Exclude
-    public Map<String, Object> toMap() {
-        HashMap<String , Object> result = new HashMap<>();
-        result.put("opponent", mOpponent);
-        result.put("player", mPlayer);
-        return result;
     }
 
     public static final Creator<Session> CREATOR = new Creator<Session>() {
@@ -152,23 +144,6 @@ public class Session implements Model, Parcelable {
     }
 
     @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeParcelable(mPlayerBattlefield, i);
-        parcel.writeParcelable(mNextTurn, i);
-        parcel.writeParcelable(mOpponent, i);
-        parcel.writeParcelable(mOpponentBattlefield, i);
-        parcel.writeParcelable(mPlayer, i);
-        parcel.writeInt(mTotalTurns);
-        parcel.writeString(mDateStarted);
-        parcel.writeString(mDateFinished);
-    }
-
-    @Override
     public void toJson() {
 
     }
@@ -176,5 +151,22 @@ public class Session implements Model, Parcelable {
     @Override
     public void fromJson() {
 
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeParcelable(mPlayer, i);
+        parcel.writeParcelable(mPlayerBattlefield, i);
+        parcel.writeParcelable(mOpponent, i);
+        parcel.writeParcelable(mOpponentBattlefield, i);
+        parcel.writeParcelable(mNextTurn, i);
+        parcel.writeInt(mTotalTurns);
+        parcel.writeString(mDateStarted);
+        parcel.writeString(mDateFinished);
     }
 }
