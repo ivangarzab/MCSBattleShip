@@ -94,7 +94,8 @@ public class PlayerDashboardActivity extends AppCompatActivity {
 
 
     private Session getsharepreferences() {
-        final SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        final SharedPreferences mSharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(getBaseContext());
         Gson gson = new Gson();
         String value = mSharedPreferences.getString("MySession", "");
         Session session= gson.fromJson(value, Session.class);

@@ -101,10 +101,6 @@ public class LoginActivity extends AppCompatActivity   {
         setupEmailLogin();
         setUpEmailRegister();
         setResetPassword();
-
-        //sharepreferences();
-        //getsharepreferences();
-
     }
 
     private void sharepreferences() {
@@ -114,20 +110,10 @@ public class LoginActivity extends AppCompatActivity   {
         Object session_object = getSession();
         String json = gson.toJson(session_object);
         editor.putString("MySession", json);
-        editor.commit();
+        editor.apply();
     }
-/*
-    private void getsharepreferences() {
-        SharedPreferences mSharedPreferences = getPreferences(MODE_PRIVATE);
-        Gson gson = new Gson();
-        String value = mSharedPreferences.getString("MySession", "");
-        Session session = gson.fromJson(value, Session.class);
-
-    }*/
-
 
     private Session getSession() {
-
         mUser1.setId("L6bBeal7slZ_K1aZd6R");
         mUser1.setEmail("ivgarber92@hotmail.com");
 
@@ -302,6 +288,7 @@ public class LoginActivity extends AppCompatActivity   {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, getString(R.string.facebook_signin_success));
+                            gotoDashboard();
                             // Get user for future use
                             //FirebaseUser user = mAuth.getCurrentUser();
                         } else {
