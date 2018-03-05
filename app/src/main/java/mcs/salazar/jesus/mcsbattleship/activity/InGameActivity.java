@@ -19,6 +19,8 @@ import mcs.salazar.jesus.mcsbattleship.util.InGameUtil;
 import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
 import mcs.salazar.jesus.mcsbattleship.viewmodel.SessionGameViewModel;
 
+import static mcs.salazar.jesus.mcsbattleship.activity.PlayerDashboardActivity.SESSION_EXTRA;
+
 public class InGameActivity extends AppCompatActivity implements SessionContract {
 
     private Session mSession;
@@ -30,8 +32,10 @@ public class InGameActivity extends AppCompatActivity implements SessionContract
         ActivityInGameBinding binding = DataBindingUtil
                 .setContentView(this, R.layout.activity_in_game);
 
+        mSession = getIntent().getParcelableExtra(SESSION_EXTRA);
+/*
+        // MOCKS MOCKS MOCKS
         mSession = new Session(new User(), new User());
-        //TODO MOCKS: Create/add mock Battlefields
         Battlefield b1 = mSession.getOpponentBattlefield();
         b1.setGrid(new boolean[][]{{true, true, true, false, false, false},
                 {false, false, false, true, false, false},
@@ -62,6 +66,7 @@ public class InGameActivity extends AppCompatActivity implements SessionContract
                 {true, false, false, false, false, false}});
         mSession.setPlayerBattlefield(b2);
         mSession.setNextTurn(mSession.getPlayer());
+*/
 
         // Set ViewModel for SessionView
         binding.setViewmodel(new SessionGameViewModel(mSession));

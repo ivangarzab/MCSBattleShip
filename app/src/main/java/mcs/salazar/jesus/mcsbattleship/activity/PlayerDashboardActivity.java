@@ -3,6 +3,7 @@ package mcs.salazar.jesus.mcsbattleship.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,8 @@ import mcs.salazar.jesus.mcsbattleship.model.User;
 
 public class PlayerDashboardActivity extends AppCompatActivity {
 
+    public static String SESSION_EXTRA = "SESSION_EXTRA";
+
     @BindView(R.id.name_game) Button mPlay;
 
     @BindView(R.id.my_scores) Button mScores;
@@ -39,11 +42,6 @@ public class PlayerDashboardActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
 
-    User mUser1= new User();
-    User mUser2 = new User();
-    Battlefield mBattlefield1 = new Battlefield();
-    Battlefield mBattlefield2 = new Battlefield();
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,13 +52,14 @@ public class PlayerDashboardActivity extends AppCompatActivity {
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        Session session = getsharepreferences();
-
         mPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerDashboardActivity.this,
-                        InGameActivity.class));
+                Intent intent = new Intent(PlayerDashboardActivity.this,
+                        InGameActivity.class);
+                //Bundle bundle = new Bundle()
+                intent.putExtra(SESSION_EXTRA, getSessionFromSharedPreferences());
+                startActivity(intent);
             }
         });
 
@@ -98,7 +97,7 @@ public class PlayerDashboardActivity extends AppCompatActivity {
     }
 
 
-    private Session getsharepreferences() {
+    private Session getSessionFromSharedPreferences() {
         final SharedPreferences mSharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getBaseContext());
         Gson gson = new Gson();
