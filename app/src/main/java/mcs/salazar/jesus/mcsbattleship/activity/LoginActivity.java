@@ -1,6 +1,8 @@
 package mcs.salazar.jesus.mcsbattleship.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,6 +51,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 
@@ -72,8 +76,10 @@ public class LoginActivity extends AppCompatActivity   {
     User opponent, player;
     int size, NumberOfShips;
     Session mSession = new Session(opponent, player);
-    User mUser = new User();
-    Battlefield mBattlefield = new Battlefield(size, NumberOfShips);
+    User mUser1 = new User();
+    User mUser2 = new User();
+    Battlefield mBattlefield1 = new Battlefield(size, NumberOfShips);
+    Battlefield mBattlefield2 = new Battlefield(size, NumberOfShips);
 
     FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
     DatabaseReference mBattlefieldRef = mDatabase.getReference().child("Battlefields");
@@ -83,6 +89,7 @@ public class LoginActivity extends AppCompatActivity   {
     Query mBattlefieldQuery = mBattlefieldRef;
     Query mSessionsQuery = mSessionRef;
     Query mUsersQuery = mUserRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,84 +102,76 @@ public class LoginActivity extends AppCompatActivity   {
         setUpEmailRegister();
         setResetPassword();
 
-        userList();
-        sessionsList();
-        battlefieldsList();
+        //sharepreferences();
+        //getsharepreferences();
 
     }
 
-    private void userList() {
-
-        mUsersQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, String > usersList = (HashMap<String, String>) dataSnapshot.getValue();
-                JSONObject jsonObject = new JSONObject();
-                for (String key: usersList.keySet()) {
-                    Object value = usersList.get(key);
-                    try {
-                        jsonObject.put(key, value);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+    private void sharepreferences() {
+        SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        Gson gson = new Gson();
+        Object session_object = getSession();
+        String json = gson.toJson(session_object);
+        editor.putString("MySession", json);
+        editor.commit();
     }
+/*
+    private void getsharepreferences() {
+        SharedPreferences mSharedPreferences = getPreferences(MODE_PRIVATE);
+        Gson gson = new Gson();
+        String value = mSharedPreferences.getString("MySession", "");
+        Session session = gson.fromJson(value, Session.class);
 
-    private void sessionsList() {
-        mSessionsQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, String > sessionsList = (HashMap<String, String>) dataSnapshot.getValue();
-                JSONObject jsonObject = new JSONObject();
-                for (String key: sessionsList.keySet()) {
-                    Object value = sessionsList.get(key);
-                    try {
-                        jsonObject.put(key, value);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+    }*/
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
-    }
+    private Session getSession() {
 
-    private void battlefieldsList() {
-//        final ArrayList<Battlefield> battlefieldArrayList = new ArrayList<>();
+        mUser1.setId("L6bBeal7slZ_K1aZd6R");
+        mUser1.setEmail("ivgarber92@hotmail.com");
 
-        mBattlefieldQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        mUser2.setId("L6bC6xkrVac6exjBwce");
+        mUser2.setEmail("buru@gmail.com");
 
-                Map<String, String > battlefieldsList = (HashMap<String, String>) dataSnapshot.getValue();
+        mBattlefield1.setSize(6);
+        mBattlefield1.setNumberOfShips(5);
+        mBattlefield1.setGrid(new boolean[][]{{true, true, true, false, false, false},
+                {false, false, false, true, false, false},
+                {true, false, false, true, false, false},
+                {true, false, false, true, false, true},
+                {true, false, false, false, false, true},
+                {false, true, true, true, false, true}});
+        mBattlefield1.setShots(new boolean[][]{{false, false, false, false, false, false},
+                {true, false, false, false, true, false},
+                {false, false, false, false, false, false},
+                {false, false, true, false, false, false},
+                {false, false, false, false, false, false},
+                {false, false, false, false, false, true}});
 
-                JSONObject jsonObject = new JSONObject();
-                for (String key: battlefieldsList.keySet()) {
-                    Object value = battlefieldsList.get(key);
-                    try {
-                        jsonObject.put(key, value);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+        mBattlefield2.setSize(6);
+        mBattlefield2.setNumberOfShips(5);
+        mBattlefield2.setGrid(new boolean[][]{{true, true, true, false, false, false},
+                {false, false, false, true, false, false},
+                {true, false, false, true, false, false},
+                {true, false, false, true, false, true},
+                {true, false, false, false, false, true},
+                {false, true, true, true, false, true}});
+        mBattlefield2.setShots(new boolean[][]{{true, true, false, false, false, false},
+                {false, false, false, false, false, false},
+                {false, false, false, false, true, false},
+                {false, false, false, false, false, false},
+                {false, false, false, false, false, false},
+                {true, false, false, false, false, false}});
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+        mSession.setOpponent(mUser1);
+        // whos logged in
+        mSession.setPlayer(mUser2);
+        mSession.setOpponentBattlefield(mBattlefield1);
+        mSession.setPlayerBattlefield(mBattlefield2);
+        mSession.setNextTurn(mUser2);
 
-            }
-        });
+      return mSession;
 
     }
 
@@ -217,7 +216,7 @@ public class LoginActivity extends AppCompatActivity   {
             @Override
             public void onClick(View v) {
 
-                String email = editTextEmail.getText().toString();
+                final String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
@@ -264,6 +263,7 @@ public class LoginActivity extends AppCompatActivity   {
 
     private void gotoDashboard() {
         Intent intent = new Intent(LoginActivity.this, PlayerDashboardActivity.class);
+       // intent.putExtra("player_email", playerEmail);
         startActivity(intent);
     }
 
@@ -275,7 +275,7 @@ public class LoginActivity extends AppCompatActivity   {
         mFacebookButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                gotoDashboard();
+                //gotoDashboard();
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
