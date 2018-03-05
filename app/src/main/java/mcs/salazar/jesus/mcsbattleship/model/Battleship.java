@@ -7,7 +7,7 @@ import android.os.Parcelable;
 /**
  * Created by Ivan on 2/5/2018
  */
-public class Battleship extends BaseObservable implements Model, Parcelable {
+public class Battleship extends BaseObservable implements MVVMModel, Parcelable {
 
     private int mShipSize;
     private Coordinate[] mCoordinates;

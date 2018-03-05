@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by berekethaile on 2/10/18.
  */
 
-public class Settings implements Model, Parcelable{
+public class Settings implements MVVMModel, Parcelable{
     private String mMusic;
     private String mColor;
     private String mLanguage;

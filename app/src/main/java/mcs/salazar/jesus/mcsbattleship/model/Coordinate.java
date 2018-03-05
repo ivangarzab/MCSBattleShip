@@ -5,7 +5,7 @@ import android.os.Parcel;
 /**
  * Created by Ivan on 2/8/2018
  */
-public class Coordinate implements Model {
+public class Coordinate implements MVVMModel {
 
     public int x;
 

@@ -5,7 +5,7 @@ import android.os.Parcelable;
 /**
  * Created by Ivan on 2/5/2018
  */
-public interface Model extends Parcelable {
+public interface MVVMModel extends Parcelable {
     void toJson();
     void fromJson();
 }

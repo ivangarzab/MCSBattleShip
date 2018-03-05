@@ -11,7 +11,7 @@ import java.util.Locale;
 /**
  * Created by Ivan on 2/5/2018
  */
-public class Session implements Model, Parcelable {
+public class Session implements MVVMModel, Parcelable {
 
     private final static int BATTLEFIELD_SIZE = 6;
     private final static int BATTLESHIPS_PER_PLAYER = 5;

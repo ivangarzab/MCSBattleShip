@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by Ivan on 2/5/2018
  */
-public class Battlefield implements Model, Parcelable {
+public class Battlefield implements MVVMModel, Parcelable {
 
     private int mSize;
     private boolean[][] mGrid;

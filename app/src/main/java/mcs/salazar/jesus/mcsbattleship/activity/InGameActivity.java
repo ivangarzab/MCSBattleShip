@@ -19,7 +19,7 @@ public class InGameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Create SessionGameView bind to ViewModel which contains Model
+        // Create SessionGameView bind to ViewModel which contains MVVMModel
         ActivityInGameBinding binding = DataBindingUtil
                 .setContentView(this, R.layout.activity_in_game);
 

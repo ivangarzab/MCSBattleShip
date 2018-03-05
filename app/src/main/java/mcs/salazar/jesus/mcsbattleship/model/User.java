@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by Ivan on 2/5/2018
  */
-public class User implements Model, Parcelable {
+public class User implements MVVMModel, Parcelable {
 
     private String mId;
     private String mEmail;
