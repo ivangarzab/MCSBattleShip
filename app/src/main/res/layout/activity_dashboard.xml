@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_margin="16dp">
+
+        <ImageButton
+            android:id="@+id/sign_out"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="end"
+            android:src="@drawable/exit"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:tint="@color/colorButton"/>
+
+        <ImageView
+            android:id="@+id/dashboard_title_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorButtonText"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:src="@drawable/title"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/name_game"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:text="@string/dashboard_new_game"
+                android:textSize="20sp"
+                android:textColor="@color/colorButtonText"
+                android:background="@drawable/rounded_shape" />
+
+            <Button
+                android:id="@+id/sessions"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:text="@string/dashboard_sessions"
+                android:textSize="20sp"
+                android:textColor="@color/colorButtonText"
+                android:background="@drawable/rounded_shape"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/my_scores"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:text="@string/dashboard_scores"
+                android:textSize="20sp"
+                android:textColor="@color/colorButtonText"
+                android:background="@drawable/rounded_shape"/>
+            <Button
+                android:id="@+id/friends"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:text="@string/dashboard_friends"
+                android:textSize="20sp"
+                android:textColor="@color/colorButtonText"
+                android:background="@drawable/rounded_shape"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

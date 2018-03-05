@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/user_card_imageView"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_user_100dp"/>
+
+    <TextView
+        android:id="@+id/user_card_id_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/user_card_imageView"
+        android:layout_toEndOf="@id/user_card_imageView" />
+
+    <TextView
+        android:id="@+id/user_card_email_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="fake@email.com"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_toRightOf="@id/user_card_imageView"
+        android:layout_toEndOf="@id/user_card_imageView"
+        android:layout_below="@id/user_card_id_textView"/>
+
+    <TextView
+        android:id="@+id/user_card_score_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="666"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/user_card_imageView"
+        android:layout_toEndOf="@id/user_card_imageView"
+        android:layout_below="@id/user_card_email_textView"/>
+
+    <LinearLayout
+        android:id="@+id/user_card_fourth_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_toRightOf="@id/user_card_imageView"
+        android:layout_toEndOf="@id/user_card_imageView"
+        android:layout_below="@id/user_card_score_textView">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Games Played: 123"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="Games Won: 102"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/user_card_fifth_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_toRightOf="@id/user_card_imageView"
+        android:layout_toEndOf="@id/user_card_imageView"
+        android:layout_below="@id/user_card_fourth_line">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Hits Sent: 448,764"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="Hits Received: 376,611"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</RelativeLayout>
