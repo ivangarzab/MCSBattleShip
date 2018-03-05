@@ -3,13 +3,11 @@ package mcs.salazar.jesus.mcsbattleship.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;
 
 import mcs.salazar.jesus.mcsbattleship.R;
-import mcs.salazar.jesus.mcsbattleship.activity.PlayerDashboardActivity;
 import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
 import mcs.salazar.jesus.mcsbattleship.view.BattlefieldView;
 import mcs.salazar.jesus.mcsbattleship.viewmodel.BattlefieldInGameOpponentViewModel;
@@ -44,7 +42,7 @@ public class InGameUtil {
                     child.setOnClickListener(viewModel.getChatClickListener());
                     break;
                 case R.id.game_action_pause_button:
-                    child.setOnClickListener(viewModel.getPauseClickLisntener());
+                    child.setOnClickListener(viewModel.getPauseClickListener());
                     break;
                 case R.id.game_action_surrender_button:
                     child.setOnClickListener(viewModel.getSurrenderClickListener());

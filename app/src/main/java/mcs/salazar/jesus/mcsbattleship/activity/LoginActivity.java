@@ -1,6 +1,8 @@
 package mcs.salazar.jesus.mcsbattleship.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,9 +24,17 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import mcs.salazar.jesus.mcsbattleship.model.Battlefield;
+import mcs.salazar.jesus.mcsbattleship.model.Session;
+import mcs.salazar.jesus.mcsbattleship.model.User;
+
 import mcs.salazar.jesus.mcsbattleship.R;
 
 import android.view.View;
@@ -50,6 +60,24 @@ public class LoginActivity extends AppCompatActivity   {
 
     @BindView(R.id.login_facebook_button) LoginButton mFacebookButton;
 
+    User opponent, player;
+    int size, NumberOfShips;
+    Session mSession = new Session(opponent, player);
+    User mUser1 = new User();
+    User mUser2 = new User();
+    Battlefield mBattlefield1 = new Battlefield(size, NumberOfShips);
+    Battlefield mBattlefield2 = new Battlefield(size, NumberOfShips);
+
+    FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference mBattlefieldRef = mDatabase.getReference().child("Battlefields");
+    DatabaseReference mSessionRef = mDatabase.getReference().child("Sessions");
+    DatabaseReference mUserRef = mDatabase.getReference().child("Users");
+
+    Query mBattlefieldQuery = mBattlefieldRef;
+    Query mSessionsQuery = mSessionRef;
+    Query mUsersQuery = mUserRef;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +88,67 @@ public class LoginActivity extends AppCompatActivity   {
         setupEmailLogin();
         setUpEmailRegister();
         setResetPassword();
+
+        //sharepreferences();
+    }
+
+    private void sharepreferences() {
+        SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        Gson gson = new Gson();
+        Object session_object = getSession();
+        String json = gson.toJson(session_object);
+        editor.putString("MySession", json);
+        editor.apply();
+    }
+
+    private Session getSession() {
+        mUser1.setId("L6bBeal7slZ_K1aZd6R");
+        mUser1.setEmail("ivgarber92@hotmail.com");
+
+        mUser2.setId("L6bC6xkrVac6exjBwce");
+        mUser2.setEmail("buru@gmail.com");
+
+        mBattlefield1.setSize(6);
+        mBattlefield1.setNumberOfShips(5);
+        mBattlefield1.setGrid(new boolean[][]{{true, true, true, false, false, false},
+                {false, false, false, true, false, false},
+                {true, false, false, true, false, false},
+                {true, false, false, true, false, true},
+                {true, false, false, false, false, true},
+                {false, true, true, true, false, true}});
+        mBattlefield1.setShots(new boolean[][]{{false, false, false, false, false, false},
+                {true, false, false, false, true, false},
+                {false, false, false, false, false, false},
+                {false, false, true, false, false, false},
+                {false, false, false, false, false, false},
+                {false, false, false, false, false, true}});
+
+        mBattlefield2.setSize(6);
+        mBattlefield2.setNumberOfShips(5);
+        mBattlefield2.setGrid(new boolean[][]{{true, true, true, false, false, false},
+                {false, false, false, true, false, false},
+                {true, false, false, true, false, false},
+                {true, false, false, true, false, true},
+                {true, false, false, false, false, true},
+                {false, true, true, true, false, true}});
+        mBattlefield2.setShots(new boolean[][]{{true, true, false, false, false, false},
+                {false, false, false, false, false, false},
+                {false, false, false, false, true, false},
+                {false, false, false, false, false, false},
+                {false, false, false, false, false, false},
+                {true, false, false, false, false, false}});
+
+
+        mSession.setOpponent(mUser1);
+        // who's logged in
+        mSession.setPlayer(mUser2);
+        mSession.setOpponentBattlefield(mBattlefield1);
+        mSession.setPlayerBattlefield(mBattlefield2);
+        mSession.setNextTurn(mUser2);
+
+      return mSession;
+
     }
 
     @Override
@@ -103,7 +192,7 @@ public class LoginActivity extends AppCompatActivity   {
             @Override
             public void onClick(View v) {
 
-                String email = editTextEmail.getText().toString();
+                final String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
@@ -188,6 +277,7 @@ public class LoginActivity extends AppCompatActivity   {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, getString(R.string.facebook_signin_success));
+                            gotoDashboard();
                             // Get user for future use
                             //FirebaseUser user = mAuth.getCurrentUser();
                         } else {

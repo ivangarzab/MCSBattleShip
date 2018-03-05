@@ -32,7 +32,7 @@ public class InGameActionsViewModel implements MVVMViewModel {
         };
     }
 
-    public View.OnClickListener getPauseClickLisntener() {
+    public View.OnClickListener getPauseClickListener() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
