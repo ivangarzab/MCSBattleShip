@@ -150,6 +150,7 @@ public class LoginActivity extends AppCompatActivity   {
                 {false, false, false, false, false, false},
                 {true, false, false, false, false, false}});
 
+
         mSession.setOpponent(mUser1);
         // whos logged in
         mSession.setPlayer(mUser2);
@@ -249,7 +250,6 @@ public class LoginActivity extends AppCompatActivity   {
 
     private void gotoDashboard() {
         Intent intent = new Intent(LoginActivity.this, PlayerDashboardActivity.class);
-       // intent.putExtra("player_email", playerEmail);
         startActivity(intent);
     }
 
@@ -261,7 +261,7 @@ public class LoginActivity extends AppCompatActivity   {
         mFacebookButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                //gotoDashboard();
+                gotoDashboard();
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
